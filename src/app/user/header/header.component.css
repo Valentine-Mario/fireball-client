@@ -1,0 +1,8 @@
+.activelink{
+    color:#333;
+    cursor: pointer;
+}
+
+.black-overlay {
+    position:absolute !important;
+}
