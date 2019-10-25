@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
     private meta: Meta) { }
 
   ngOnInit() {
-    this.title.setTitle('login');
+    this.title.setTitle('login/register');
     this.meta.updateTag({ name: 'fireball login', content: 'fireball login page' });
   }
 
