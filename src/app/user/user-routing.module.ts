@@ -7,6 +7,7 @@ import { NotificationComponent } from './notification/notification.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component'
 import { LandingComponent } from './landing/landing.component'
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 const UserRoutes: Routes = [
     {
@@ -40,6 +41,10 @@ const UserRoutes: Routes = [
             {
                 path:'login',
                 component:LoginComponent
+            },
+            {
+                path:'subscription',
+                component:SubscriptionComponent
             }
         ]
     }

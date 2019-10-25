@@ -240,7 +240,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-left: 2px;
     margin-right: 2px;
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
     -webkit-transition: .3s all ease;

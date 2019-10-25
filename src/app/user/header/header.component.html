@@ -1,6 +1,4 @@
-
-
-<nav class=" px-4 navbar navbar-expand-lg navbar-dark bg-info mb-4">
+<nav  class=" px-4 navbar navbar-expand-lg navbar-dark bg-info mb-4">
     <a routerLink="" class="navbar-brand" href="#">Fire <span style="color:black;">Ball</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown3" aria-controls="navbarNavDropdown3" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,7 +19,10 @@
           </li>
 
           <li class="nav-item">
-            <a routerLink="/user/notification" class="nav-link d-flex align-items-center"><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert</a>
+            <a routerLink="/user/notification" class="nav-link d-flex align-items-center"><span class="badge badge-danger badge-pill">14</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/user/subscription" class="nav-link d-flex align-items-center"><i routerLink="/user/subscription" routerLinkActive="activelink" class="material-icons">fireplace</i>Subscription</a>
           </li>
 
           <li class="nav-item">
@@ -38,9 +39,10 @@
       </ul>
     </div>
   </nav>
+
+
   
-<div class="black-overlay">
-    <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)"
     size="medium"
     color="#fff"
     name="loader"
@@ -48,4 +50,3 @@
     fullScreen="false">
     <p style="font-size: 20px; color: white">Loading...</p>
     </ngx-spinner>
-</div>

@@ -13,10 +13,11 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgxSpinnerModule } from "ngx-spinner";
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
-     NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent, FooterComponent],
+     NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent, FooterComponent, SubscriptionComponent],
   imports: [
     CommonModule,
     UserRouter,
