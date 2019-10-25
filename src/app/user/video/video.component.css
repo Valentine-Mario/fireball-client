@@ -1,0 +1,23 @@
+.video-list{
+    display: flex;
+}
+.site-section{
+    width:70%;
+}
+.blog_right_sidebar{
+    width:30%;
+    padding-top:30px;
+}
+
+@media (max-width: 768px){
+    .video-list{
+        display: block;
+    }
+    .site-section{
+        width:100%;
+    }
+    .blog_right_sidebar{
+       display: none;
+    }
+    
+}
