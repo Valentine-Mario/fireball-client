@@ -8,6 +8,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component'
 import { LandingComponent } from './landing/landing.component'
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { VideoDetailsComponent } from './video-details/video-details.component';
+import { AudiodetailsComponent } from './audiodetails/audiodetails.component';
 
 const UserRoutes: Routes = [
     {
@@ -45,6 +47,14 @@ const UserRoutes: Routes = [
             {
                 path:'subscription',
                 component:SubscriptionComponent
+            },
+            {
+                path:'video/:id',
+                component:VideoDetailsComponent
+            },
+            {
+                path:'podcast/:id',
+                component:AudiodetailsComponent
             }
         ]
     }
