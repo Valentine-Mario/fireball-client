@@ -11,8 +11,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~8.2.4",
-    "@angular/cdk": "~8.2.3",
+    "@angular/animations": "^8.2.12",
+    "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.4",
     "@angular/compiler": "~8.2.4",
     "@angular/core": "~8.2.4",
@@ -20,7 +20,6 @@
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
-    "hammerjs": "^2.0.8",
     "ngx-spinner": "^8.0.3",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

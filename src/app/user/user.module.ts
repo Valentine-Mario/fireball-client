@@ -14,15 +14,23 @@ import { FooterComponent } from './footer/footer.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { SubscriptionComponent } from './subscription/subscription.component';
+import { VideoDetailsComponent } from './video-details/video-details.component';
+import { AudiodetailsComponent } from './audiodetails/audiodetails.component';
+import { AddVideoComponent } from './add-video/add-video.component';
+import { AddPodcastComponent } from './add-podcast/add-podcast.component';
+import { AddChannelComponent } from './add-channel/add-channel.component';
+import { ChannelDetailsComponent } from './channel-details/channel-details.component';
+
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
-     NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent, FooterComponent, SubscriptionComponent],
+     NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
+      FooterComponent, SubscriptionComponent, VideoDetailsComponent, AudiodetailsComponent, AddVideoComponent, AddPodcastComponent, AddChannelComponent, ChannelDetailsComponent],
   imports: [
     CommonModule,
     UserRouter,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
   ]
 })
 export class UserModule { }
