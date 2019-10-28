@@ -7,7 +7,6 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
   constructor(private title: Title) { }
 
   ngOnInit() {
