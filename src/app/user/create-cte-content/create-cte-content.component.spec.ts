@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddChannelComponent } from './add-channel.component';
+import { CreateCteContentComponent } from './create-cte-content.component';
 
-describe('AddChannelComponent', () => {
-  let component: AddChannelComponent;
-  let fixture: ComponentFixture<AddChannelComponent>;
+describe('CreateCteContentComponent', () => {
+  let component: CreateCteContentComponent;
+  let fixture: ComponentFixture<CreateCteContentComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddChannelComponent ]
+      declarations: [ CreateCteContentComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddChannelComponent);
+    fixture = TestBed.createComponent(CreateCteContentComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

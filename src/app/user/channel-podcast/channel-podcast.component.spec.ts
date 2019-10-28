@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddVideoComponent } from './add-video.component';
+import { ChannelPodcastComponent } from './channel-podcast.component';
 
-describe('AddVideoComponent', () => {
-  let component: AddVideoComponent;
-  let fixture: ComponentFixture<AddVideoComponent>;
+describe('ChannelPodcastComponent', () => {
+  let component: ChannelPodcastComponent;
+  let fixture: ComponentFixture<ChannelPodcastComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddVideoComponent ]
+      declarations: [ ChannelPodcastComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddVideoComponent);
+    fixture = TestBed.createComponent(ChannelPodcastComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,10 +10,10 @@ import { LandingComponent } from './landing/landing.component'
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { VideoDetailsComponent } from './video-details/video-details.component';
 import { AudiodetailsComponent } from './audiodetails/audiodetails.component';
-import { AddVideoComponent } from './add-video/add-video.component';
-import { AddPodcastComponent } from './add-podcast/add-podcast.component';
-import { AddChannelComponent } from './add-channel/add-channel.component';
 import { ChannelDetailsComponent } from './channel-details/channel-details.component';
+import { CreateCteContentComponent } from './create-cte-content/create-cte-content.component';
+import { ChannelVideoComponent } from './channel-video/channel-video.component';
+import { ChannelPodcastComponent } from './channel-podcast/channel-podcast.component';
 const UserRoutes: Routes = [
     {
         path:'',
@@ -60,20 +60,21 @@ const UserRoutes: Routes = [
                 component:AudiodetailsComponent
             },
             {
-                path:'addvideo',
-                component:AddVideoComponent
-            },
-            {
-                path:'addpodcast',
-                component:AddPodcastComponent
-            },
-            {
-                path:'addchannel',
-                component:AddChannelComponent
-            },
-            {
                 path:'channel/:id',
-                component:ChannelDetailsComponent
+                component:ChannelDetailsComponent,
+                children:[
+                { path:'video/:id',
+                    component:ChannelVideoComponent
+                },
+                {
+                    path:'podcast/:id',
+                    component:ChannelPodcastComponent
+                }
+                ]
+            },
+            {
+                path:'addcontent',
+                component:CreateCteContentComponent
             }
         ]
     }

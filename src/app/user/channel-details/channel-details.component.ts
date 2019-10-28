@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./channel-details.component.css']
 })
 export class ChannelDetailsComponent implements OnInit {
-
+channel_description:boolean
   constructor() { }
 
   ngOnInit() {
+    this.channel_description=true;
+  }
+  hideDescription(){
+    this.channel_description=false;
   }
 
 }
