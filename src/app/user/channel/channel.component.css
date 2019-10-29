@@ -3,8 +3,18 @@
     padding-top:10px;
     padding-left:120px;
 }
+.upper-button{
+    display: flex;
+     padding-top: 5px; 
+     padding-left: 120px; 
+     padding-right: 8px;
+}
 @media (max-width: 768px){
 .upper-item{
     display: block;
+    padding-left:10px;
+}
+.upper-button{
+    padding-left: 10px;
 }
 }

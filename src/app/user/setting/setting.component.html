@@ -58,6 +58,16 @@
                                     </aside>
                                     <hr/>
                                     <aside class="single_sidebar_widget newsletter_widget">
+                                      <h4 class="widget_title">Delete pics</h4>
+          
+                                      
+                                          
+                                          <div align="center"><button (click)="open(content2)" class="boxed_btn_rev"
+                                              type="submit">Remove</button></div>
+                                     
+                                  </aside>
+                                    <hr/>
+                                    <aside class="single_sidebar_widget newsletter_widget">
                                         <h4 class="widget_title">Delete account</h4>
             
                                         
@@ -89,6 +99,20 @@
     </div>
     <div class="modal-body">
      <p>Are you sure you want to delete account?</p>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </ng-template>
+  
+
+  <ng-template #content2 let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     <p>Are you sure you want to delete picture?</p>
     </div>
     <div class="modal-footer">
     </div>
