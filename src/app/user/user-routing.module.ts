@@ -14,6 +14,10 @@ import { ChannelDetailsComponent } from './channel-details/channel-details.compo
 import { CreateCteContentComponent } from './create-cte-content/create-cte-content.component';
 import { ChannelVideoComponent } from './channel-video/channel-video.component';
 import { ChannelPodcastComponent } from './channel-podcast/channel-podcast.component';
+import { SettingComponent } from './setting/setting.component';
+
+
+
 const UserRoutes: Routes = [
     {
         path:'',
@@ -75,6 +79,10 @@ const UserRoutes: Routes = [
             {
                 path:'addcontent',
                 component:CreateCteContentComponent
+            },
+            {
+                path:'profile/settings',
+                component:SettingComponent
             }
         ]
     }
