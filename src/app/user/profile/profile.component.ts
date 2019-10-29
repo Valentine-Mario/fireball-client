@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-profile',
@@ -7,10 +8,11 @@ import { Meta, Title } from '@angular/platform-browser';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  constructor(private title: Title) { }
+  closeResult: string;
+  constructor(private title: Title, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.title.setTitle('Username');
   }
-
+  
 }

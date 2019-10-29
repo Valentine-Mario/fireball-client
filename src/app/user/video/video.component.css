@@ -8,6 +8,12 @@
     width:30%;
     padding-top:30px;
 }
+.upper-item{
+    display: flex;
+    padding-top:10px;
+    padding-left:10px;
+}
+
 
 @media (max-width: 768px){
     .video-list{
@@ -18,6 +24,9 @@
     }
     .blog_right_sidebar{
        display: none;
+    }
+    .upper-item{
+        display: block;
     }
     
 }

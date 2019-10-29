@@ -20,18 +20,22 @@ import { ChannelDetailsComponent } from './channel-details/channel-details.compo
 import { CreateCteContentComponent } from './create-cte-content/create-cte-content.component';
 import { ChannelVideoComponent } from './channel-video/channel-video.component';
 import { ChannelPodcastComponent } from './channel-podcast/channel-podcast.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { SettingComponent } from './setting/setting.component';
+
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
      NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
       FooterComponent, SubscriptionComponent, VideoDetailsComponent, AudiodetailsComponent,
        ChannelDetailsComponent, CreateCteContentComponent, ChannelVideoComponent, 
-       ChannelPodcastComponent],
+       ChannelPodcastComponent, SettingComponent],
   imports: [
     CommonModule,
     UserRouter,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbModule
     ]
 })
 export class UserModule { }
