@@ -2,18 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
+
+
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  selector: 'app-profile-id',
+  templateUrl: './profile-id.component.html',
+  styleUrls: ['./profile-id.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileIdComponent implements OnInit {
   closeResult: string;
-  constructor(private title: Title, private modalService: NgbModal) { }
+
+  constructor(private title: Title, private modalService: NgbModal,  private meta: Meta) { }
 
   ngOnInit() {
     this.title.setTitle('Username');
+    this.meta.updateTag({ name: `${'username'} profile`, content: `the fireball profile page of ${'username'}` });
+
+
   }
+
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -31,4 +38,5 @@ export class ProfileComponent implements OnInit {
       return  `with: ${reason}`;
     }
   }
+
 }
