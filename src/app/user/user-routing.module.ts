@@ -15,7 +15,11 @@ import { CreateCteContentComponent } from './create-cte-content/create-cte-conte
 import { ChannelVideoComponent } from './channel-video/channel-video.component';
 import { ChannelPodcastComponent } from './channel-podcast/channel-podcast.component';
 import { SettingComponent } from './setting/setting.component';
-
+import { VidHistoryComponent } from './vid-history/vid-history.component';
+import { PodHistoryComponent } from './pod-history/pod-history.component';
+import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
+import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
+import { ProfileIdComponent } from './profile-id/profile-id.component';
 
 
 const UserRoutes: Routes = [
@@ -83,6 +87,26 @@ const UserRoutes: Routes = [
             {
                 path:'profile/settings',
                 component:SettingComponent
+            },
+            {
+                path:'videohistory',
+                component:VidHistoryComponent
+            },
+            {
+                path:'podcasthistory',
+                component:PodHistoryComponent
+            },
+            {
+                path:'videobookmark',
+                component:VidBookmarkComponent
+            },
+            {
+                path:'podcastbookmark',
+                component:PodBookmarkComponent
+            },
+            {
+                path:'profile/:id',
+                component:ProfileIdComponent
             }
         ]
     }

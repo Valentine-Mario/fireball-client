@@ -22,6 +22,11 @@ import { ChannelVideoComponent } from './channel-video/channel-video.component';
 import { ChannelPodcastComponent } from './channel-podcast/channel-podcast.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SettingComponent } from './setting/setting.component';
+import { VidHistoryComponent } from './vid-history/vid-history.component';
+import { PodHistoryComponent } from './pod-history/pod-history.component';
+import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
+import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
+import { ProfileIdComponent } from './profile-id/profile-id.component';
 
 
 @NgModule({
@@ -29,7 +34,8 @@ import { SettingComponent } from './setting/setting.component';
      NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
       FooterComponent, SubscriptionComponent, VideoDetailsComponent, AudiodetailsComponent,
        ChannelDetailsComponent, CreateCteContentComponent, ChannelVideoComponent, 
-       ChannelPodcastComponent, SettingComponent],
+       ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
+        VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent],
   imports: [
     CommonModule,
     UserRouter,
