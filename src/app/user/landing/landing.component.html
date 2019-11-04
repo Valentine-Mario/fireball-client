@@ -4,8 +4,8 @@
       <div class="row justify-content-center">
         <div class="col-md-7 mx-auto text-center align-self-center bg-text">
             <h1 class="font-weight-bold mb-0 text-white">Fire <span style="color:rgb(91, 150, 163);">Ball</span></h1>
-            <p class="text-white text-center">In Fire <span style="color:rgb(91, 150, 163);">Ball</span> we believe learning should be free and fun.
-                 Learn for free via video and podcast<br/>through community effort</p>
+            <p class="text-white text-center">In Fire <span style="color:rgb(91, 150, 163);">Ball</span> we believe learning should be free and accessible to everyone.
+                Share knowledge with countless people at no cost via videos and podcasts. Create a channel, add content to it and share to the world. </p>
           </div>
       </div>
       
@@ -31,7 +31,7 @@
                     <div class="courses">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>200</span>
+                                <span>{{info.video}}</span>
                                 <p> Videos</p>
                             </div>
                         </div>
@@ -39,8 +39,8 @@
                     <div class="courses-blue">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>7638</span>
-                                <p> Podcast</p>
+                                <span>{{info.podcast}}</span>
+                                <p> Podcasts</p>
                             </div>
 
                         </div>
@@ -48,7 +48,7 @@
                     <div class="courses-sky">
                         <div class="inner_courses">
                             <div class="text_info">
-                                <span>2300</span>
+                                <span>{{info.user}}</span>
                                 <p> Users</p>
                             </div>
 
@@ -68,72 +68,29 @@
                 <h3>New channels</h3>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6">
+        <div *ngFor="let a of channel" class="col-xl-4 col-lg-4 col-md-6">
                 <div class="single_courses">
                     <div class="thumb">
-                        <a routerLink="/user/channel/1">
-                            <img src="assets/img/1.png" alt="">
+                        <a routerLink="/user/channel/{{a.content.token_channel}}">
+                            <img style="height: 300px;" src="{{a.images}}" alt="">
                         </a>
                     </div>
                     <div class="courses_info">
-                        <span>Photoshop</span>
-                        <h3><a routerLink="/user/channel/1">Mobile App design step by step <br>
-                                from beginner</a></h3>
+                        <span>{{a.content.name}}</span>
+                        <h3><a routerLink="/user/channel/{{a.content.token_channel}}">{{a.content.description| slice:0:70}}... <br>
+                                <p *ngIf="a.content.content == 1">Podcast Channel</p>
+                                <p *ngIf="a.content.content == 2">Video Channel</p></a></h3>
                         <div class="star_prise d-flex justify-content-between">
                             <div class="star">
-                                    <a routerLink="/user/profile/1"><span>Mike Thomas</span></a> 
-
+                                    <a routerLink="/user/profile/{{a.user.token}}"><span>By {{a.user.name}} on {{a.content.created_at | date:"MM/dd/yyyy"}} at {{a.content.created_at | date :'h:mm:ss'}}</span></a> 
                             </div>
                             
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-lg-4 col-md-6">
-                    <div class="single_courses">
-                        <div routerLink="/user/channel/1">
-                            <a href="#">
-                                <img src="assets/img/3.png" alt="">
-                            </a>
-                        </div>
-                        <div class="courses_info">
-                            <span>Photoshop</span>
-                            <h3><a routerLink="/user/channel/1">Mobile App design step by step <br>
-                                    from beginner</a></h3>
-                            <div class="star_prise d-flex justify-content-between">
-                                <div class="star">
-                                    
-                                        <a routerLink="/user/profile/1"><span>Mike Philip</span></a> 
-
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single_courses">
-                            <div class="thumb">
-                                <a routerLink="/user/channel/1">
-                                    <img src="assets/img/6.png" alt="">
-                                </a>
-                            </div>
-                            <div class="courses_info">
-                                <span>Photoshop</span>
-                                <h3><a routerLink="/user/channel/1">Mobile App design step by step <br>
-                                        from beginner</a></h3>
-                                <div class="star_prise d-flex justify-content-between">
-                                    <div class="star">
-                                        
-                                            <a routerLink="/user/profile/1"><span>Mike Philip</span></a> 
-
-                                       
-                                    </div>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            
+                
                     
     </div>
     <div class="col-xl-12">
