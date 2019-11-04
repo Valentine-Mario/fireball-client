@@ -27,6 +27,10 @@ import { PodHistoryComponent } from './pod-history/pod-history.component';
 import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
+
 
 
 @NgModule({
@@ -41,7 +45,10 @@ import { ProfileIdComponent } from './profile-id/profile-id.component';
     UserRouter,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgbModule
-    ]
+    NgbModule,
+    HttpClientModule,
+    ToastrModule.forRoot() 
+    ],
+    providers: [GetLengthOfUsersVideosPodcast]
 })
 export class UserModule { }
