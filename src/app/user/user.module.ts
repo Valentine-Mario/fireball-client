@@ -30,7 +30,8 @@ import { ProfileIdComponent } from './profile-id/profile-id.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
-
+import {GetNewChannels} from './resolvers/channel.resolvers'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -47,8 +48,10 @@ import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
     NgxSpinnerModule,
     NgbModule,
     HttpClientModule,
-    ToastrModule.forRoot() 
+    ToastrModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule
     ],
-    providers: [GetLengthOfUsersVideosPodcast]
+    providers: [GetLengthOfUsersVideosPodcast, GetNewChannels]
 })
 export class UserModule { }
