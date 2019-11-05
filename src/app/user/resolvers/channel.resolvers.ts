@@ -16,3 +16,27 @@ export class GetNewChannels implements Resolve<any> {
     
   }
 }
+
+@Injectable()
+export class GetMyPodcast implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getMyPodcastChannel().pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetMyVideos implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getMyVideoChannel().pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}

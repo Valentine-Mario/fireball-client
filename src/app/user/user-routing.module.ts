@@ -21,7 +21,8 @@ import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
-import {GetNewChannels} from './resolvers/channel.resolvers'
+import {GetNewChannels, GetMyPodcast, GetMyVideos} from './resolvers/channel.resolvers'
+import {AuthGuard} from './guard/auth.guard'
 
 
 const UserRoutes: Routes = [
@@ -48,11 +49,13 @@ const UserRoutes: Routes = [
             },
             {
                 path:'notification',
-                component:NotificationComponent
+                component:NotificationComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'profile',
-                component:ProfileComponent
+                component:ProfileComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'login',
@@ -60,52 +63,64 @@ const UserRoutes: Routes = [
             },
             {
                 path:'subscription',
-                component:SubscriptionComponent
+                component:SubscriptionComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'video/:id',
-                component:VideoDetailsComponent
+                component:VideoDetailsComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'podcast/:id',
-                component:AudiodetailsComponent
+                component:AudiodetailsComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'channel/:id',
                 component:ChannelDetailsComponent,
                 children:[
                 { path:'video/:id',
-                    component:ChannelVideoComponent
+                    component:ChannelVideoComponent,
+                    canActivate:[AuthGuard]
                 },
                 {
                     path:'podcast/:id',
-                    component:ChannelPodcastComponent
+                    component:ChannelPodcastComponent,
+                    canActivate:[AuthGuard]
                 }
                 ]
             },
             {
                 path:'addcontent',
-                component:CreateCteContentComponent
+                component:CreateCteContentComponent,
+                resolve:{podcast:GetMyPodcast, video:GetMyVideos},
+                canActivate:[AuthGuard]
             },
             {
                 path:'profile/settings',
-                component:SettingComponent
+                component:SettingComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'videohistory',
-                component:VidHistoryComponent
+                component:VidHistoryComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'podcasthistory',
-                component:PodHistoryComponent
+                component:PodHistoryComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'videobookmark',
-                component:VidBookmarkComponent
+                component:VidBookmarkComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'podcastbookmark',
-                component:PodBookmarkComponent
+                component:PodBookmarkComponent,
+                canActivate:[AuthGuard]
             },
             {
                 path:'profile/:id',

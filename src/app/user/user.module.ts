@@ -30,9 +30,9 @@ import { ProfileIdComponent } from './profile-id/profile-id.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
-import {GetNewChannels} from './resolvers/channel.resolvers'
+import {GetNewChannels, GetMyPodcast, GetMyVideos} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {AuthGuard} from './guard/auth.guard'
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -52,6 +52,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
     ],
-    providers: [GetLengthOfUsersVideosPodcast, GetNewChannels]
+    providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos,
+      GetNewChannels, AuthGuard]
 })
 export class UserModule { }
