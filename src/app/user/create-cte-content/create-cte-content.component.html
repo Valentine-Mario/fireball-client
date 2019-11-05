@@ -23,7 +23,7 @@
                                             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
                                             </div>
                                         </div>
-                                          <form [formGroup]="Channelform" (ngSubmit)="uploadChannel()" action="#">
+                                          <form [formGroup]="Channelform" (ngSubmit)="uploadChannel()">
                                               <div class="form-group">
                                                   <p>Channel title</p>
                                                   <input formControlName="name" type="text" class="form-control" placeholder='Enter Channel title'>
@@ -56,33 +56,40 @@
                       <div class="blog_right_sidebar container"> 
                               <aside class="single_sidebar_widget newsletter_widget">
                                       <h4 class="widget_title">Video</h4>
-          
-                                      <form action="#">
-                                          <div class="form-group">
-                                              <p>Select Channel</p>
-                                                <select class="form-control" name="channel">
-                                                        <option value="volvo">Select Channel</option>
-                                                        <option value="saab">My Tv</option>
-                                                        <option value="mercedes">247</option>
-                                                        <option value="audi">Life</option>
-                                                      </select>
+                                      <div class="progress form-group" *ngIf="progress2 > 0">
+                                          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress2">
                                           </div>
-                                            <div class="form-group">
-                                                <p>Video title</p>
-                                                <input type="text" class="form-control" placeholder='Enter Video title'>
-                                            </div>
-                                            <div class="form-group">
-                                                <p>Video Description</p>
-                                                    <textarea  class="form-control"  placeholder='Enter video description'>
-                                                        </textarea>
+                                      </div>
+                                    <div *ngIf="videos.code==01">
+                                      <p>Your account has been temporarily suspended. Reach out to the any of the admin to rectify the situation</p>
+                                    </div>
+                                    <div *ngIf="videos.code==00">
+                                      <form [formGroup]="VideoForm" (ngSubmit)="uploadVideo()">
+                                        <div class="form-group">
+                                            <p>Select Video Channel</p>
+                                              <select formControlName="channel" class="form-control" name="channel">
+                                                      <option value="">Select Channel</option>
+                                                      <option *ngFor='let element of videos.message' [selected]="element === nameDevice" [value]="element.id">{{element.name}}</option>
+                                                    </select>
+                                        </div>
+                                          <div class="form-group">
+                                              <p>Video title</p>
+                                              <input formControlName="title" type="text" class="form-control" placeholder='Enter Video title'>
+                                          </div>
+                                          <div class="form-group">
+                                              <p>Video Description</p>
+                                                  <textarea formControlName="description" class="form-control"  placeholder='Enter video description'>
+                                                      </textarea>
+                                              </div>
+                                              <div class="form-group">
+                                                  <p>Video</p>
+                                                    <input (change)="setVideo($event)" accept="video/*" type="file" class="form-control">
                                                 </div>
-                                                <div class="form-group">
-                                                    <p>Video</p>
-                                                      <input accept="video/*" type="file" class="form-control">
-                                                  </div>
-                                            <div align="center"><button class="boxed_btn_rev"
-                                                type="submit">Add Video</button></div>
-                                        </form>
+                                          <div align="center"><button [disabled]="VideoForm.invalid" class="boxed_btn_rev"
+                                              type="submit">Add Video</button></div>
+                                      </form>
+                                    </div>
+                                      
                                   </aside>
                               </div>
                 </div>
@@ -91,33 +98,40 @@
                         <div class="blog_right_sidebar container"> 
                                 <aside class="single_sidebar_widget newsletter_widget">
                                         <h4 class="widget_title">Podcast</h4>
-            
-                                        <form action="#">
+                                        <div class="progress form-group" *ngIf="progress3 > 0">
+                                            <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress3">
+                                            </div>
+                                        </div>
+                                        <div *ngIf="podcast.code==01">
+                                          <p>Your account has been temporarily suspended. Reach out to the any of the admin to rectify the situation</p>
+                                        </div>
+                                        <div *ngIf="podcast.code==00">
+                                            <form [formGroup]="AudioForm" (ngSubmit)="uploadAudio()">
                                                 <div class="form-group">
                                                     <p>Select Channel</p>
-                                                      <select class="form-control" name="channel">
-                                                              <option value="volvo">Select Channel</option>
-                                                              <option value="saab">My Tv</option>
-                                                              <option value="mercedes">247</option>
-                                                              <option value="audi">Life</option>
+                                                      <select formControlName="channel" class="form-control" name="channel">
+                                                              <option value="">Select Channel</option>
+                                                              <option *ngFor='let element of podcast.message' [selected]="element === nameDevice" [value]="element.id">{{element.name}}</option>
                                                             </select>
                                                 </div>
                                                   <div class="form-group">
                                                       <p>Podcast title</p>
-                                                      <input type="text" class="form-control" placeholder='Enter Podcast title'>
+                                                      <input formControlName="title" type="text" class="form-control" placeholder='Enter Podcast title'>
                                                   </div>
                                                   <div class="form-group">
                                                       <p>Podcast Description</p>
-                                                          <textarea  class="form-control"  placeholder='Enter podcast description'>
+                                                          <textarea formControlName="desciption" class="form-control"  placeholder='Enter podcast description'>
                                                               </textarea>
                                                       </div>
                                                       <div class="form-group">
                                                           <p>Podcast</p>
-                                                            <input accept="audio/*" type="file" class="form-control">
+                                                            <input (change)="setAudio($event)" accept="audio/*" type="file" class="form-control">
                                                         </div>
-                                                  <div align="center"><button class="boxed_btn_rev"
+                                                  <div align="center"><button [disabled]="AudioForm.invalid" class="boxed_btn_rev"
                                                       type="submit">Add Podcast</button></div>
                                               </form>
+                                        </div>
+                                        
                                     </aside>
                                 </div>
                   </div>

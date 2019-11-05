@@ -21,7 +21,7 @@ import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
-import {GetNewChannels} from './resolvers/channel.resolvers'
+import {GetNewChannels, GetMyPodcast, GetMyVideos} from './resolvers/channel.resolvers'
 import {AuthGuard} from './guard/auth.guard'
 
 
@@ -94,6 +94,7 @@ const UserRoutes: Routes = [
             {
                 path:'addcontent',
                 component:CreateCteContentComponent,
+                resolve:{podcast:GetMyPodcast, video:GetMyVideos},
                 canActivate:[AuthGuard]
             },
             {
