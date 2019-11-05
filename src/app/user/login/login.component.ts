@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import {FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router'
 import {UserService} from '../services/user.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
@@ -14,7 +13,7 @@ import {OthersService} from '../services/others.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private title: Title, private meta: Meta, private toast:ToastrService,
+  constructor(private title: Title, private meta: Meta, 
      private fb:FormBuilder, private route:Router, private data:UserService, 
      private modalService: NgbModal, private reuseable:OthersService) { }
 loginForm:FormGroup

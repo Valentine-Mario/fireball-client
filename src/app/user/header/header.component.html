@@ -18,22 +18,22 @@
             <a routerLink="/user/video" class="nav-link d-flex align-items-center"><i routerLink="/user/video" routerLinkActive="activelink" class="material-icons">video_library</i>Videos</a>
           </li>
 
-          <li class="nav-item">
-            <a routerLink="/user/notification" class="nav-link d-flex align-items-center"><span class="badge badge-danger badge-pill">14</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
+          <li *ngIf="login_user" class="nav-item">
+            <a  routerLink="/user/notification" class="nav-link d-flex align-items-center"><span class="badge badge-danger badge-pill">14</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
           </li>
-          <li class="nav-item">
+          <li *ngIf="login_user" class="nav-item">
             <a routerLink="/user/subscription" class="nav-link d-flex align-items-center"><i routerLink="/user/subscription" routerLinkActive="activelink" class="material-icons">fireplace</i>Subscription</a>
           </li>
 
-          <li class="nav-item">
+          <li *ngIf="login_user" class="nav-item">
             <a routerLink="/user/profile" class="nav-link d-flex align-items-center"><i routerLink="/user/profile" routerLinkActive="activelink" class="material-icons">account_circle</i>Account</a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center"><i class="material-icons">power_settings_new</i> Logout</a>
+          <li *ngIf="login_user" class="nav-item">
+            <a (click)="logout()" class="nav-link d-flex align-items-center"><i class="material-icons">power_settings_new</i> Logout</a>
           </li>
 
-          <li class="nav-item">
+          <li *ngIf="logout_user" class="nav-item">
             <a routerLink="/user/login" class="nav-link d-flex align-items-center"><i routerLink="/user/login" routerLinkActive="activelink" class="material-icons">person_add</i> Login/register</a>
           </li>
       </ul>

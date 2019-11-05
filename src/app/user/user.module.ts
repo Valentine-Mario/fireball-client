@@ -32,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
 import {GetNewChannels} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {AuthGuard} from './guard/auth.guard'
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -52,6 +52,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
     ],
-    providers: [GetLengthOfUsersVideosPodcast, GetNewChannels]
+    providers: [GetLengthOfUsersVideosPodcast, GetNewChannels, AuthGuard]
 })
 export class UserModule { }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import {Router} from '@angular/router'
 
 
 @Injectable({
@@ -7,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class OthersService {
 
-  constructor(private toast: ToastrService) { }
+  constructor(private toast: ToastrService, private route:Router) { }
 
   successToast(header, body){
     this.toast.success(body, header, {
@@ -32,4 +33,13 @@ export class OthersService {
       timeOut: 5000
     })
   }
+
+  logoutAndRedirect(){
+    localStorage.removeItem('token')
+    this.route.navigate(['/user/login'])
+  }
+  
+  loggedIn(){
+    return !!localStorage.getItem('token')
+    }
 }

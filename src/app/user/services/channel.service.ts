@@ -13,5 +13,14 @@ export class ChannelService {
   getNewChannels(page, limit){
     return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getall?page=${page}&per_page=${limit}`)
   }
+
+  addChannel(data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+'/channel/add', data,  {
+      reportProgress: true,
+      observe: 'events',
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
   
 }
