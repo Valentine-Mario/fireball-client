@@ -31,6 +31,9 @@ import { ChannelPodcastPageComponent } from './channel-podcast-page/channel-podc
 import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-paginate/channel-podcast-page-paginate.component';
 import { ChannelSearchComponent } from './channel-search/channel-search.component';
 import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
+import {getSubscriptionPage1, getSubscriptionPageOther} from './resolvers/subscription.resolvers'
+import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
+
 
 
 const UserRoutes: Routes = [
@@ -108,7 +111,14 @@ const UserRoutes: Routes = [
             {
                 path:'subscription',
                 component:SubscriptionComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{sub:getSubscriptionPage1}
+            },
+            {
+                path:'subscription/:id',
+                component:SubscriptionPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{sub:getSubscriptionPageOther}
             },
             {
                 path:'video-item/:id',
