@@ -34,7 +34,7 @@ export class ChannelPodcastPagePaginateComponent implements OnInit {
     }
     else{
     this.route.navigate(['user/channel-podcast/'+a])
-    this.channelService.getPodcastChannel(a, 2).subscribe(val=>{
+    this.channelService.getPodcastChannel(a, 6).subscribe(val=>{
       this.channel=val['message']
     })
     this.p=parseInt(a)

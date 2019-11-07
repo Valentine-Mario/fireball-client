@@ -35,7 +35,7 @@ p:number
     }
     else{
     this.route.navigate(['user/channel-video/'+a])
-    this.channelService.getPodcastChannel(a, 6).subscribe(val=>{
+    this.channelService.getVideoChannel(a, 6).subscribe(val=>{
       this.channel=val['message']
     })
     this.p=parseInt(a)

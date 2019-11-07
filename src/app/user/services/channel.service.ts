@@ -28,6 +28,10 @@ export class ChannelService {
     })
   }
 
+  searchChannel(search, page, limit){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/search/${search}?page=${page}&per_page=${limit}`)
+  }
+
   getMyVideoChannel(){
     let authToken= localStorage.getItem('token')
     return this.http.get(AppEndpoint.API_ENDPOINT+'/channel/myvideo',  {  

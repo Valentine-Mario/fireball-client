@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
-   GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther} from './resolvers/channel.resolvers'
+   GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthGuard} from './guard/auth.guard'
 import {BrowserModule} from '@angular/platform-browser';
@@ -41,6 +41,9 @@ import { ChannelVideoPageComponent } from './channel-video-page/channel-video-pa
 import { ChannelVideoPagePaginateComponent } from './channel-video-page-paginate/channel-video-page-paginate.component';
 import { ChannelPodcastPageComponent } from './channel-podcast-page/channel-podcast-page.component';
 import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-paginate/channel-podcast-page-paginate.component';
+import { ChannelSearchComponent } from './channel-search/channel-search.component';
+import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
+import { ChannelSerachFormComponent } from './channel-serach-form/channel-serach-form.component';
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -48,7 +51,7 @@ import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-pagi
       FooterComponent, SubscriptionComponent, VideoDetailsComponent, AudiodetailsComponent,
        ChannelDetailsComponent, CreateCteContentComponent, ChannelVideoComponent, 
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
-        VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent],
+        VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent, ChannelSearchPaginateComponent, ChannelSerachFormComponent],
   imports: [
     CommonModule,
     UserRouter,
@@ -64,6 +67,7 @@ import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-pagi
     ],
     providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos, GetNewChannelsPage1,
       GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
-      GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther]
+      GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
+      SearchChannel, SearchChannelPageOther]
 })
 export class UserModule { }

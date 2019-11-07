@@ -22,14 +22,15 @@ import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast, GetMyVideos, GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
-    GetNewChannelsPage1, GetNewChannelsPageOther} from './resolvers/channel.resolvers'
+    GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther} from './resolvers/channel.resolvers'
 import {AuthGuard} from './guard/auth.guard'
 import { ChannelPaginateComponent } from './channel-paginate/channel-paginate.component';
 import { ChannelVideoPageComponent } from './channel-video-page/channel-video-page.component';
 import { ChannelVideoPagePaginateComponent } from './channel-video-page-paginate/channel-video-page-paginate.component';
 import { ChannelPodcastPageComponent } from './channel-podcast-page/channel-podcast-page.component';
 import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-paginate/channel-podcast-page-paginate.component';
-
+import { ChannelSearchComponent } from './channel-search/channel-search.component';
+import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
 
 
 const UserRoutes: Routes = [
@@ -71,6 +72,16 @@ const UserRoutes: Routes = [
                 path:'channel-podcast/:id',
                 component:ChannelPodcastPagePaginateComponent,
                 resolve:{channel:GetPodcastChannelPageOther}
+            },
+            {
+                path:'channel-search/:id',
+                component:ChannelSearchComponent,
+                resolve:{channel:SearchChannel}
+            },
+            {
+                path:'channel-search/:id/:id2',
+                component:ChannelSearchPaginateComponent,
+                resolve:{channel:SearchChannelPageOther}
             },
             {
                 path:'video',
