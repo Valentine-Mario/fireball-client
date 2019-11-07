@@ -3,25 +3,26 @@
     <div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Create Channel</a></div>
 
 <div class="col-md-3">
-<div class="input-group">  
-    <app-channel-serach-form></app-channel-serach-form>       
+<div class="input-group">           
+        <form [formGroup]="searchForm" (ngSubmit)="search();">
+                <div style="display: flex;">
+                        <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search channel" aria-label="Search channel" aria-describedby="basic-addon1">   
+                        <button [disabled]="searchForm.invalid" class="icon-search"></button>
+                </div>
+                    
+            </form>   
   </div>
 </div>
 </div>
 
-<div class="upper-button">
-<div >
-    <a routerLink="/user/channel-podcast"><button  type="button" class="btn px-4 m-1 btn-outline-info">Podcast Channels</button></a>
-</div>
-<div >
-    <a routerLink="/user/channel-video"><button  type="button" class="btn px-4 m-1 btn-outline-info">Video Channels</button></a>
-</div>
+<div style="padding-top:10px" *ngIf="channel.length < 1">
+    <div align="center">
+    <h5><i class="material-icons"> mood_bad</i></h5> 
+     <p>Oops your search didn't return anything. Can we try again?</p>
+    </div>
 </div>
 
-
-
-
-    <div class="popular_courses">
+    <div *ngIf="channel.length > 0" class="popular_courses">
                 <div class="container">
                     <div class="row">
                         <div *ngFor="let a of channel| paginate: {id:'channel', itemsPerPage: 6, currentPage: p, totalItems: total}" class="col-xl-4 col-lg-4 col-md-6">

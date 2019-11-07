@@ -14,11 +14,22 @@ export class ChannelService {
     return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getall?page=${page}&per_page=${limit}`)
   }
 
+  getVideoChannel(page, limit){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getvideo?page=${page}&per_page=${limit}`)
+  }
+  getPodcastChannel(page, limit){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getpodcast?page=${page}&per_page=${limit}`)
+  }
+
   getMyPodcastChannel(){
     let authToken= localStorage.getItem('token')
     return this.http.get(AppEndpoint.API_ENDPOINT+'/channel/mypodcast', {  
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
+  }
+
+  searchChannel(search, page, limit){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/search/${search}?page=${page}&per_page=${limit}`)
   }
 
   getMyVideoChannel(){

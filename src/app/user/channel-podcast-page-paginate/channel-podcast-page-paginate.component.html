@@ -3,16 +3,15 @@
     <div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Create Channel</a></div>
 
 <div class="col-md-3">
-<div class="input-group">  
-    <app-channel-serach-form></app-channel-serach-form>       
+<div class="input-group">           
+        <app-channel-serach-form></app-channel-serach-form>       
+
   </div>
 </div>
 </div>
 
 <div class="upper-button">
-<div >
-    <a routerLink="/user/channel-podcast"><button  type="button" class="btn px-4 m-1 btn-outline-info">Podcast Channels</button></a>
-</div>
+
 <div >
     <a routerLink="/user/channel-video"><button  type="button" class="btn px-4 m-1 btn-outline-info">Video Channels</button></a>
 </div>
@@ -24,7 +23,8 @@
     <div class="popular_courses">
                 <div class="container">
                     <div class="row">
-                        <div *ngFor="let a of channel| paginate: {id:'channel', itemsPerPage: 6, currentPage: p, totalItems: total}" class="col-xl-4 col-lg-4 col-md-6">
+                        
+                        <div *ngFor="let a of channel| paginate: {id:'channel', itemsPerPage: 2, currentPage: p, totalItems: total}" class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a routerLink="/user/channel-item/{{a.content.token_channel}}">

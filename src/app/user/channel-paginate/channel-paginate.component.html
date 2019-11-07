@@ -3,8 +3,8 @@
     <div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Create Channel</a></div>
 
 <div class="col-md-3">
-<div class="input-group">  
-    <app-channel-serach-form></app-channel-serach-form>       
+<div class="input-group">           
+        <app-channel-serach-form></app-channel-serach-form>       
   </div>
 </div>
 </div>
@@ -24,6 +24,7 @@
     <div class="popular_courses">
                 <div class="container">
                     <div class="row">
+                        
                         <div *ngFor="let a of channel| paginate: {id:'channel', itemsPerPage: 6, currentPage: p, totalItems: total}" class="col-xl-4 col-lg-4 col-md-6">
                                 <div class="single_courses">
                                     <div class="thumb">
