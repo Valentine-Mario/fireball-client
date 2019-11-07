@@ -30,9 +30,17 @@ import { ProfileIdComponent } from './profile-id/profile-id.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
-import {GetNewChannels, GetMyPodcast, GetMyVideos} from './resolvers/channel.resolvers'
+import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
+   GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthGuard} from './guard/auth.guard'
+import {BrowserModule} from '@angular/platform-browser';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ChannelPaginateComponent } from './channel-paginate/channel-paginate.component';
+import { ChannelVideoPageComponent } from './channel-video-page/channel-video-page.component';
+import { ChannelVideoPagePaginateComponent } from './channel-video-page-paginate/channel-video-page-paginate.component';
+import { ChannelPodcastPageComponent } from './channel-podcast-page/channel-podcast-page.component';
+import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-paginate/channel-podcast-page-paginate.component';
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -40,7 +48,7 @@ import {AuthGuard} from './guard/auth.guard'
       FooterComponent, SubscriptionComponent, VideoDetailsComponent, AudiodetailsComponent,
        ChannelDetailsComponent, CreateCteContentComponent, ChannelVideoComponent, 
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
-        VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent],
+        VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent],
   imports: [
     CommonModule,
     UserRouter,
@@ -50,9 +58,12 @@ import {AuthGuard} from './guard/auth.guard'
     HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule, 
+    NgxPaginationModule
     ],
-    providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos,
-      GetNewChannels, AuthGuard]
+    providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos, GetNewChannelsPage1,
+      GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
+      GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther]
 })
 export class UserModule { }

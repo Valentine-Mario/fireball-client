@@ -18,6 +18,30 @@ export class GetNewChannels implements Resolve<any> {
 }
 
 @Injectable()
+export class GetNewChannelsPage1 implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getNewChannels(1, 6).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetNewChannelsPageOther implements Resolve<any> {
+  constructor(private data:ChannelService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    
+   return this.data.getNewChannels(route.paramMap.get('id'), 6).pipe(catchError((err)=>{
+      return empty();
+  }))
+  }
+}
+
+@Injectable()
 export class GetMyPodcast implements Resolve<any> {
   constructor(private data: ChannelService) {}
     
@@ -40,3 +64,52 @@ export class GetMyVideos implements Resolve<any> {
     
   }
 }
+
+@Injectable()
+export class GetVideoChannelPage1 implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getVideoChannel(1, 2).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetVideoChannelPageOther implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    return this.data.getVideoChannel(route.paramMap.get('id'), 2).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetPodcastChannelPage1 implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getPodcastChannel(1, 2).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetPodcastChannelPageOther implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    return this.data.getPodcastChannel(route.paramMap.get('id'), 2).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+

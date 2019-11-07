@@ -71,13 +71,13 @@
         <div *ngFor="let a of channel" class="col-xl-4 col-lg-4 col-md-6">
                 <div class="single_courses">
                     <div class="thumb">
-                        <a routerLink="/user/channel/{{a.content.token_channel}}">
+                        <a routerLink="/user/channel-item/{{a.content.token_channel}}">
                             <img style="height: 300px;" src="{{a.images}}" alt="">
                         </a>
                     </div>
                     <div class="courses_info">
                         <span>{{a.content.name}}</span>
-                        <h3><a routerLink="/user/channel/{{a.content.token_channel}}">{{a.content.description| slice:0:70}}... <br>
+                        <h3><a routerLink="/user/channel-item/{{a.content.token_channel}}">{{a.content.description| slice:0:70}}... <br>
                                 <p *ngIf="a.content.content == 1">Podcast Channel</p>
                                 <p *ngIf="a.content.content == 2">Video Channel</p></a></h3>
                         <div class="star_prise d-flex justify-content-between">

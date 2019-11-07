@@ -47,6 +47,10 @@ export class CreateCteContentComponent implements OnInit {
     })
     this.videos=this.router.snapshot.data['video']
     this.podcast=this.router.snapshot.data['podcast']
+    if(this.videos.code=="02"){
+      this.reusabele.logoutAndRedirect()
+      this.reusabele.infoToast("Token Expired", "token expired please login again")
+    }
     
   }
 
@@ -83,13 +87,7 @@ export class CreateCteContentComponent implements OnInit {
           setTimeout(() => {
             this.progress3 = 0;
           }, 500);
-          this.AudioForm=this.fb.group({
-            title:['', Validators.required], 
-            desciption:['', Validators.required],
-            channel:['', Validators.required]
-          })
-        }else if(event.body['code']=="02"){
-          this.reusabele.logoutAndRedirect()
+          
         }
     }
     
@@ -129,13 +127,7 @@ export class CreateCteContentComponent implements OnInit {
           setTimeout(() => {
             this.progress2 = 0;
           }, 500);
-          this.VideoForm=this.fb.group({
-            title:['', Validators.required], 
-            description:['', Validators.required],
-            channel:['', Validators.required]
-          })
-        }else if(event.body['code']=="02"){
-          this.reusabele.logoutAndRedirect()
+          
         }
     }
     
@@ -183,13 +175,6 @@ export class CreateCteContentComponent implements OnInit {
           setTimeout(() => {
             this.progress = 0;
           }, 500);
-          this.Channelform=this.fb.group({
-            name:['', Validators.required], 
-            description:['', Validators.required], 
-            content:['', Validators.required]
-          })
-        }else if(event.body['code']=="02"){
-          this.reusabele.logoutAndRedirect()
         }
     }
     
