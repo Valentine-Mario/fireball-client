@@ -29,9 +29,10 @@ import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
-import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
+import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
-   GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther} from './resolvers/channel.resolvers'
+   GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther,
+   GetMyChannel, GetChannelOfUser} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthGuard} from './guard/auth.guard'
 import {BrowserModule} from '@angular/platform-browser';
@@ -73,7 +74,8 @@ import { SubscriptionPaginateComponent } from './subscription-paginate/subscript
     providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos, GetNewChannelsPage1,
       GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
       GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
-      SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther
+      SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther,
+      GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser
     ]
 })
 export class UserModule { }

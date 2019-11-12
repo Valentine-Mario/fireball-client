@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
+import { ActivatedRoute} from '@angular/router'
+import {OthersService} from '../services/others.service'
+import {ChannelService} from '../services/channel.service'
 
 
 @Component({
@@ -12,13 +14,39 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 export class ProfileIdComponent implements OnInit {
   closeResult: string;
 
-  constructor(private title: Title, private modalService: NgbModal,  private meta: Meta) { }
-
+  constructor(private title: Title, private modalService: NgbModal,  private meta: Meta, private reuse:OthersService,
+    private router:ActivatedRoute, private channelService:ChannelService) {
+      this.router.params.subscribe(params => this.parameter = params.id)
+     }
+parameter:string
+user:any
+user2:any
+show_item:boolean
+channels:any
+total:number
   ngOnInit() {
-    this.title.setTitle('Username');
-    this.meta.updateTag({ name: `${'username'} profile`, content: `the fireball profile page of ${'username'}` });
+    this.user=this.router.snapshot.data['user']
+    this.user2=this.router.snapshot.data['user2']
+    this.channels=this.router.snapshot.data['channel'].message
+    this.total=this.router.snapshot.data['channel'].total
+    
+    this.title.setTitle(this.user.message.name);
+    this.meta.updateTag({ name: `${this.user.message.name} profile`, content: `the fireball profile page of ${this.user.message.name}` });
+    if(localStorage.getItem('token')==undefined){
+      this.show_item=false
+    }else{
+      this.show_item=true
+      if(this.user2.code!="00"){
+        this.reuse.logoutAndRedirect()
+        this.reuse.infoToast('Error', this.user2.message)
+      }
+    }
 
-
+  }
+  paginate(a){
+    this.channelService.getChannelOfUser(this.parameter, a, 6).subscribe(val=>{
+      this.channels=val['message']
+    })
   }
 
   open(content) {

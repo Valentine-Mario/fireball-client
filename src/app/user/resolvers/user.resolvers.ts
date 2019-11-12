@@ -17,3 +17,31 @@ export class GetLengthOfUsersVideosPodcast implements Resolve<any> {
     
   }
 }
+
+@Injectable()
+export class GetUserProfile implements Resolve<any> {
+  constructor(private data:UserService) {}
+    
+  resolve(){
+    if(localStorage.getItem('token')==undefined){
+      return true
+    }else{
+      return this.data.getProfile().pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+}
+
+@Injectable()
+export class GetUserById implements Resolve<any> {
+  constructor(private data: UserService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    return this.data.getUserById(route.paramMap.get('id')).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}

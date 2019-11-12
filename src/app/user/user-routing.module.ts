@@ -20,9 +20,10 @@ import { PodHistoryComponent } from './pod-history/pod-history.component';
 import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
-import {GetLengthOfUsersVideosPodcast} from './resolvers/user.resolvers'
+import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast, GetMyVideos, GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
-    GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther} from './resolvers/channel.resolvers'
+    GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther,
+    GetMyChannel, GetChannelOfUser} from './resolvers/channel.resolvers'
 import {AuthGuard} from './guard/auth.guard'
 import { ChannelPaginateComponent } from './channel-paginate/channel-paginate.component';
 import { ChannelVideoPageComponent } from './channel-video-page/channel-video-page.component';
@@ -102,7 +103,8 @@ const UserRoutes: Routes = [
             {
                 path:'profile',
                 component:ProfileComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{user:GetUserProfile, channel:GetMyChannel}
             },
             {
                 path:'login',
@@ -178,7 +180,8 @@ const UserRoutes: Routes = [
             },
             {
                 path:'profile/:id',
-                component:ProfileIdComponent
+                component:ProfileIdComponent,
+                resolve:{user:GetUserById, user2:GetUserProfile, channel:GetChannelOfUser}
             }
         ]
     }

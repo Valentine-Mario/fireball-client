@@ -17,7 +17,7 @@
               <div style="display: flex;" class="blog_right_sidebar container"> 
                 <p>Listens: 300</p>&nbsp;&nbsp;&nbsp;
                 <p><i class="material-icons">bookmark</i></p>&nbsp;&nbsp;&nbsp;
-                <i class="material-icons"> report</i>
+                <i class="material-icons"> bug_report</i>
             </div>
             </div>
           </div>
@@ -29,9 +29,23 @@
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                 <p class="card-text"><i>Crime channel by <a routerLink="/user/profile/3"> Igwe Micheal</a></i></p>
                 <a style="color: white;" class="btn btn-primary">Subscribe</a>
+                <button (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Edit</button>
               </div>
             </div>
           </div>
         </div>
 </div>
   
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <p>Edit Video</p>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>
