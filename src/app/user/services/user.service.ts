@@ -30,4 +30,18 @@ export class UserService {
       headers: new HttpHeaders({'Content-Type': 'application/json'}),
     })
   }
+
+  getProfile(){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+'/user/get',  {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  getUserById(id){
+    return this.http.get(AppEndpoint.API_ENDPOINT+'/user/get/'+id, {
+      headers: new HttpHeaders({'Content-Type': 'application/json'}),
+    })
+  }
+
 }

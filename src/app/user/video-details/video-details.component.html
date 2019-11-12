@@ -10,8 +10,9 @@
     <p>Views: 300</p>&nbsp;&nbsp;&nbsp;
     <p><i class="material-icons">bookmark</i></p>&nbsp;&nbsp;&nbsp;
         <p> Channel 44 by <a routerLink="/user/profile/3"> Igwe Micheal</a></p>&nbsp;&nbsp;&nbsp;
-        <i class="material-icons"> report</i>&nbsp;&nbsp;&nbsp;
+        <i class="material-icons"> bug_report</i>&nbsp;&nbsp;&nbsp;
     <p><a class="btn btn-primary" style="color:white;" role="button" > Subscribe</a></p> 
+
 </div>
 <br/>
 <div class="container">
@@ -19,6 +20,7 @@
         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
           See Videos description
         </a>
+        <button (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Edit</button>
       </p>
       <div class="collapse" id="collapseExample">
         <div class="card card-body">
@@ -27,3 +29,16 @@
       </div>
 </div>
 
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+   <p>Edit Video</p>
+  </div>
+  <div class="modal-footer">
+  </div>
+</ng-template>

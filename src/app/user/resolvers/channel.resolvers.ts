@@ -137,3 +137,29 @@ export class SearchChannelPageOther implements Resolve<any> {
   }
 }
 
+@Injectable()
+export class GetMyChannel implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(){
+    return this.data.getMyChannel(1, 6).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetChannelOfUser implements Resolve<any> {
+  constructor(private data: ChannelService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    return this.data.getChannelOfUser(route.paramMap.get('id'), 1, 6).pipe(catchError((err)=>{
+          return empty();
+      }))
+    
+  }
+}
+
+
+

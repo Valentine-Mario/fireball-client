@@ -47,5 +47,16 @@ export class ChannelService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
+
+  getMyChannel(page, limit){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/get?page=${page}&per_page=${limit}`,  {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  getChannelOfUser(id, page, limit){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/get/${id}?page=${page}&per_page=${limit}`)
+  }
   
 }
