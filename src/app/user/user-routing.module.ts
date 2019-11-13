@@ -156,7 +156,8 @@ const UserRoutes: Routes = [
             {
                 path:'profile/settings',
                 component:SettingComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{user:GetUserProfile}
             },
             {
                 path:'videohistory',
