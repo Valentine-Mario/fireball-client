@@ -17,41 +17,60 @@
                           <div class="blog_right_sidebar container"> 
                                   <aside class="single_sidebar_widget newsletter_widget">
                                           <h4 class="widget_title">Edit Details</h4>
-              
-                                          <form action="#">
+
+                                         <div *ngIf="edit_spinner" align="center">
+                                          <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                         </div> 
+
+
+                                          <form [formGroup]="editForm" (ngSubmit)="edit()">
                                               <div class="form-group">
-                                                  <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                                                  <input formControlName="email" type="email" class="form-control" onfocus="this.placeholder = ''"
                                                       onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
                                               </div>
                                               <div class="form-group">
-                                                      <input type="name" class="form-control"  placeholder='Enter name' required>
+                                                      <input formControlName="name" type="name" class="form-control"  placeholder='Enter name' required>
                                                   </div>
-                                              <div align="center"><button class="boxed_btn_rev"
+                                              <div align="center"><button [disabled]="editForm.invalid" class="boxed_btn_rev"
                                                   type="submit">Edit</button></div>
                                           </form>
                                       </aside>
                                       <hr/>
                                       <aside class="single_sidebar_widget newsletter_widget">
                                         <h4 class="widget_title">Edit Password</h4>
-            
-                                        <form action="#">
+                                        
+                                        <div *ngIf="password_spinner" align="center">
+                                          <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                          </div>
+                                         </div> 
+
+
+                                        <form [formGroup]="passwordForm" (ngSubmit)="editPassword()">
                                             <div class="form-group">
-                                                <input type="password" class="form-control"  placeholder='Current password' required>
+                                                <input formControlName="old_password" type="password" class="form-control"  placeholder='Current password' required>
                                             </div>
                                             <div class="form-group">
-                                                    <input type="password" class="form-control"  placeholder='New password' required>
+                                                    <input formControlName="password" type="password" class="form-control"  placeholder='New password' required>
                                                 </div>
-                                            <div align="center"><button class="boxed_btn_rev"
+                                            <div align="center"><button [disabled]="passwordForm.invalid" class="boxed_btn_rev"
                                                 type="submit">Change</button></div>
                                         </form>
                                     </aside>
                                     <hr/>
                                     <aside class="single_sidebar_widget newsletter_widget">
                                         <h4 class="widget_title">Upload pics</h4>
+
+                                        <div class="progress form-group" *ngIf="progress > 0">
+                                          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                                          </div>
+                                      </div>
             
-                                        <form action="#">
+                                        <form (ngSubmit)="uploadImg()">
                                             <div class="form-group">
-                                                <input type="file" accept="image/*" class="form-control"  required>
+                                                <input (change)="setImage($event)" type="file" accept="image/*" class="form-control"  required>
                                             </div>
                                             
                                             <div align="center"><button class="boxed_btn_rev"
@@ -61,8 +80,7 @@
                                     <hr/>
                                     <aside class="single_sidebar_widget newsletter_widget">
                                       <h4 class="widget_title">Delete pics</h4>
-          
-                                      
+      
                                           
                                           <div align="center"><button (click)="open(content2)" class="boxed_btn_rev"
                                               type="submit">Remove</button></div>
@@ -99,8 +117,13 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
-     <p>Are you sure you want to delete account?</p>
+    <div align="center" class="modal-body">
+     <p>Are you sure you want to delete account? <i class="material-icons"> mood_bad </i></p>
+     <div align="center">
+        <button (click)="deleteAcc(); modal.dismiss('Cross click')" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
+        <button (click)="modal.dismiss('Cross click')" class="btn btn-primary">No</button>
+       </div>
+
     </div>
     <div class="modal-footer">
     </div>
@@ -113,8 +136,18 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <div class="modal-body">
+    <div align="center" class="modal-body">
+        <div *ngIf="delete_pics_spinner">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+           </div> 
      <p>Are you sure you want to delete picture?</p>
+        <div align="center">
+            <button (click)="deletePics(); modal.dismiss('Cross click')" class="btn btn-danger">Delete</button>&nbsp;&nbsp;
+            <button (click)="modal.dismiss('Cross click')" class="btn btn-primary">No</button>
+           </div>
+    
     </div>
     <div class="modal-footer">
     </div>

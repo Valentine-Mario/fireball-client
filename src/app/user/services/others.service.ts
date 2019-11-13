@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router'
-
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OthersService {
-
+  private messageSource = new BehaviorSubject(true);
+  currentMessage = this.messageSource.asObservable();
   constructor(private toast: ToastrService, private route:Router) { }
+  changeMessage(message: boolean) {
+    this.messageSource.next(message)
+  }
 
   successToast(header, body){
     this.toast.success(body, header, {

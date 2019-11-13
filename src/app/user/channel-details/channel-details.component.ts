@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {Router, ActivatedRoute} from '@angular/router'
+import {OthersService} from '../services/others.service'
 
 
 @Component({
@@ -9,11 +11,17 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ChannelDetailsComponent implements OnInit {
 channel_description:boolean
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private route:Router, private data:OthersService) { }
   closeResult:string
   ngOnInit() {
     this.channel_description=true;
+    this.data.currentMessage.subscribe(message => this.channel_description = message)
+
+    
   }
+
+  
+  
   hideDescription(){
     this.channel_description=false;
   }

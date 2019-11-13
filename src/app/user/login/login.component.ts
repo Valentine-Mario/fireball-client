@@ -20,6 +20,8 @@ loginForm:FormGroup
 closeResult:string;
 registerForm:FormGroup
 forgotPasswordForm:FormGroup
+register_spinner:boolean=false
+login_spinner:boolean=false
   ngOnInit() {
     this.title.setTitle('login/register');
     this.meta.updateTag({ name: 'fireball login', content: 'fireball login page' });
@@ -44,12 +46,15 @@ forgotPasswordForm:FormGroup
   login(){
     var formData=this.loginForm.value;
     this.data.loginUser(formData).subscribe(val=>{
+      this.login_spinner=true
      if(val['code']=="00"){
     this.reuseable.successToast('Successful login', `<i class="material-icons"> emoji_emotions </i>`)
        localStorage.setItem('token', val['token'])
        this.route.navigate([''])
+       this.login_spinner=false
      }else{
     this.reuseable.errorToast(val['message'], `<i class="material-icons"> mood_bad </i>`)
+    this.login_spinner=false
      }
     })
   }
@@ -57,16 +62,18 @@ forgotPasswordForm:FormGroup
   register(){
     var formData=this.registerForm.value;
     this.data.registerUser(formData).subscribe(val=>{
+      this.register_spinner=true
       if(val['code']=="00"){
         this.reuseable.successToast('Welcome to FireBall', `<i class="material-icons"> emoji_emotions </i>`)
            localStorage.setItem('token', val['token'])
            this.route.navigate([''])
+           this.register_spinner=false
          }else{
            if(val['message'].email){
             this.reuseable.errorToast("Email has already been taken", `<i class="material-icons"> mood_bad </i>`)
            }else if(val['message'].password_confirmation){
             this.reuseable.errorToast("Password don't match", `<i class="material-icons"> mood_bad </i>`)
-
+            this.register_spinner=false
            }
          }
     })

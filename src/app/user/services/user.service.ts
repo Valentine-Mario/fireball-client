@@ -44,4 +44,41 @@ export class UserService {
     })
   }
 
+  editProfile(data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+'/user/edit', data, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
+
+  editPassword(data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+'/user/editpasssword', data, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
+
+  uploadPics(data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+'/user/addpics', data,  {
+      reportProgress: true,
+      observe: 'events',
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+  
+  deletePics(){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+'/user/removepics',  {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  deleteAccount(){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+'/user/delete',  {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
 }

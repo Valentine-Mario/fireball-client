@@ -47,7 +47,7 @@ import { ChannelSearchPaginateComponent } from './channel-search-paginate/channe
 import { ChannelSerachFormComponent } from './channel-serach-form/channel-serach-form.component';
 import {getSubscriptionPage1, getSubscriptionPageOther} from './resolvers/subscription.resolvers';
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
-
+import {FormatNumber} from './pipes/formatNumber';
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -57,7 +57,7 @@ import { SubscriptionPaginateComponent } from './subscription-paginate/subscript
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
-         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent],
+         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber],
   imports: [
     CommonModule,
     UserRouter,

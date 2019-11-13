@@ -21,7 +21,7 @@
             <ul class="blog-info-link">
                     <li><a href="#"><i class="fa fa-user"></i> {{user.message.name}}</a></li>
                     <div *ngIf="show_item"><li *ngIf="user.message.id == user2.message.id"><a href="#"><i class="material-icons">email</i> {{user.message.email}}</a></li></div>
-                    <li><a href="#"><i class="material-icons">date_range</i>{{user.message.created_at| date:"MM/dd/yyyy"}}</a></li>
+                    <li style="padding-left: 5px;"><a href="#"><i class="material-icons">date_range</i>{{user.message.created_at| date:"MM/dd/yyyy"}}</a></li>
             </ul>
         </div>
     </article>

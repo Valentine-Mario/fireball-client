@@ -18,6 +18,12 @@
                                 <div class="blog_right_sidebar container"> 
                                         <aside class="single_sidebar_widget newsletter_widget">
                                                 <h4 class="widget_title">Login</h4>
+
+                                                <div *ngIf="login_spinner" align="center">
+                                                                <div class="spinner-border" role="status">
+                                                                  <span class="sr-only">Loading...</span>
+                                                                </div>
+                                                               </div> 
                     
                                                 <form [formGroup]="loginForm" (ngSubmit)="login()">
                                                     <div class="form-group">
@@ -39,6 +45,12 @@
                             <div class="blog_right_sidebar container"> 
                                     <aside class="single_sidebar_widget newsletter_widget">
                                             <h4 class="widget_title">Register</h4>
+
+                                            <div *ngIf="register_spinner" align="center">
+                                                        <div class="spinner-border" role="status">
+                                                          <span class="sr-only">Loading...</span>
+                                                        </div>
+                                                       </div> 
                 
                                             <form [formGroup]="registerForm" (ngSubmit)="register()">
                                                     <div class="form-group">
