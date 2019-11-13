@@ -1,17 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-
+import {OthersService} from '../services/others.service'
 
 @Component({
   selector: 'app-channel-video',
   templateUrl: './channel-video.component.html',
   styleUrls: ['./channel-video.component.css']
 })
-export class ChannelVideoComponent implements OnInit {
+export class ChannelVideoComponent implements OnInit, OnDestroy{
 closeResult:string
-  constructor(private modalService:NgbModal) { }
+  constructor(private modalService:NgbModal, private data:OthersService) { }
 
   ngOnInit() {
+    this.data.changeMessage(false)
+  }
+  
+  ngOnDestroy(){
+    this.data.changeMessage(true)
   }
 
   open(content) {

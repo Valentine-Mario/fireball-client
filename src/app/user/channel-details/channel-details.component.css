@@ -8,17 +8,11 @@
     width: 75%;
     padding-left:20px;
 }
-.small-list{
-    display: none;
-}
+
 
 @media (max-width: 768px){
-    .large-list{
-        display: none;
-    }
-    .small-list{
-        display:  block;
-    }
+   
+    
     .item{
         width:100%;
     }
