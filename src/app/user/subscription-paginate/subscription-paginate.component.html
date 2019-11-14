@@ -1,11 +1,7 @@
 <app-header></app-header>
 
 <div style="padding-top:15px;" class="container">
-    <div align="center" *ngIf="sub.length < 1">
-            <h5><i class="material-icons"> mood_bad</i></h5> 
-            <p>You haven't subscribed to any channel. Let's change that.</p><br/>
-            <a routerLink="/user/channel"><button class="btn px-4 m-1 btn-outline-info">Get started</button> </a>
-    </div>
+    
         <div *ngIf="sub.length > 0" class="list-group">
             
             <a *ngFor="let a of sub| paginate: {id:'sub', itemsPerPage: 10, currentPage: p, totalItems: total}" class="list-group-item list-group-item-action flex-column align-items-start">
