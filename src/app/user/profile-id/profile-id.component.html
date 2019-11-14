@@ -39,8 +39,11 @@
     
             <div class="popular_courses">
                     <div style="width: 90%;" class="container">
+                            <div *ngIf="channels.length < 1" align="center">
+                                    <p>{{user.message.name}} has no channels yet</p>
+                                </div>
             <div class="row">
-                    <div class="col-xl-12">
+                    <div  *ngIf="channels.length > 0" class="col-xl-12">
                         <div class="section_title text-center mb-100">
                             <h3>{{user.message.name}} channels</h3>
                         </div>
@@ -72,7 +75,7 @@
                                 </div>
                             </div>         
                 </div>
-                <div align="center"><pagination-controls id="channel"  (pageChange)="p = $event; paginate($event)"></pagination-controls></div> 
+                <div  *ngIf="channels.length > 0" align="center"><pagination-controls id="channel"  (pageChange)="p = $event; paginate($event)"></pagination-controls></div> 
 
                 </div>
                 </div>

@@ -176,5 +176,17 @@ export class GetChannelOfUser implements Resolve<any> {
   }
 }
 
+@Injectable()
+export class GetChannelBYToken implements Resolve<any> {
+  constructor(private data: ChannelService, private reuse: OthersService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    return this.data.getChannelByToken(route.paramMap.get('id')).pipe(catchError((err)=>{
+      this.reuse.errorToast('Error', 'Error connection to the server')
+          return empty();
+      }))
+    
+  }
+}
 
 

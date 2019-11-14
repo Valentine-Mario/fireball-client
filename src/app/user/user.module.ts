@@ -32,7 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
    GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther,
-   GetMyChannel, GetChannelOfUser} from './resolvers/channel.resolvers'
+   GetMyChannel, GetChannelOfUser, GetChannelBYToken} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthGuard} from './guard/auth.guard'
 import {BrowserModule} from '@angular/platform-browser';
@@ -75,7 +75,7 @@ import {FormatNumber} from './pipes/formatNumber';
       GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
       GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
       SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther,
-      GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser
+      GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser, GetChannelBYToken
     ]
 })
 export class UserModule { }

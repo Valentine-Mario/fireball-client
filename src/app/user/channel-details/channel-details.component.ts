@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {Router, ActivatedRoute} from '@angular/router'
 import {OthersService} from '../services/others.service'
-
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-channel-details',
@@ -11,12 +11,17 @@ import {OthersService} from '../services/others.service'
 })
 export class ChannelDetailsComponent implements OnInit {
 channel_description:boolean
-  constructor(private modalService: NgbModal, private route:Router, private data:OthersService) { }
+  constructor(private modalService: NgbModal, private route:Router,private title: Title, private meta: Meta,
+     private data:OthersService, private router:ActivatedRoute) { }
   closeResult:string
+  channel:any
   ngOnInit() {
     this.channel_description=true;
     this.data.currentMessage.subscribe(message => this.channel_description = message)
-
+    this.channel=this.router.snapshot.data['channel']
+    this.title.setTitle(this.channel.message.name);
+    this.meta.updateTag({ name: this.channel.message.name, content: this.channel.message.description });
+    console.log(this.channel)
     
   }
 

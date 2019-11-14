@@ -8,8 +8,18 @@
     width: 75%;
     padding-left:20px;
 }
-
-
+.small-list{
+    display: none;
+}
+.large-list{
+    display: block;
+}
+.body{
+    white-space: pre-wrap;
+}
+.activelink{
+    color:rgba(216, 75, 20, 0.823)
+}
 @media (max-width: 768px){
    
     
@@ -22,5 +32,11 @@
     }
     .channel{
         display: block;
+    }
+    .small-list{
+        display: block;
+    }
+    .large-list{
+        display: none;
     }
 }

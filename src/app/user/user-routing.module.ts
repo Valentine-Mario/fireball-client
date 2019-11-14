@@ -23,7 +23,7 @@ import { ProfileIdComponent } from './profile-id/profile-id.component';
 import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast, GetMyVideos, GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
     GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther,
-    GetMyChannel, GetChannelOfUser} from './resolvers/channel.resolvers'
+    GetMyChannel, GetChannelOfUser, GetChannelBYToken} from './resolvers/channel.resolvers'
 import {AuthGuard} from './guard/auth.guard'
 import { ChannelPaginateComponent } from './channel-paginate/channel-paginate.component';
 import { ChannelVideoPageComponent } from './channel-video-page/channel-video-page.component';
@@ -135,13 +135,14 @@ const UserRoutes: Routes = [
             {
                 path:'channel-item/:id',
                 component:ChannelDetailsComponent,
+                resolve:{channel:GetChannelBYToken},
                 children:[
-                { path:'video/:id',
+                { path:'video/:id2',
                     component:ChannelVideoComponent,
                     canActivate:[AuthGuard]
                 },
                 {
-                    path:'podcast/:id',
+                    path:'podcast/:id2',
                     component:ChannelPodcastComponent,
                     canActivate:[AuthGuard]
                 }

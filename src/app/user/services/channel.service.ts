@@ -58,5 +58,9 @@ export class ChannelService {
   getChannelOfUser(id, page, limit){
     return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/get/${id}?page=${page}&per_page=${limit}`)
   }
+
+  getChannelByToken(id){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getonechannel/${id}`);
+  }
   
 }

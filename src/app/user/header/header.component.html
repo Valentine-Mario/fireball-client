@@ -42,11 +42,17 @@
 
 
   
-  <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+  <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)"
     size="medium"
     color="#fff"
     name="loader"
     type="ball-atom"
     fullScreen="false">
     <p style="font-size: 20px; color: white">Loading...</p>
-    </ngx-spinner>
+    </ngx-spinner> -->
+
+    <div *ngIf="load" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
