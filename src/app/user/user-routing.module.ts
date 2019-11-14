@@ -135,7 +135,7 @@ const UserRoutes: Routes = [
             {
                 path:'channel-item/:id',
                 component:ChannelDetailsComponent,
-                resolve:{channel:GetChannelBYToken},
+                resolve:{channel:GetChannelBYToken, user:GetUserProfile},
                 children:[
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
