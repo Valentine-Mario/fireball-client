@@ -1,38 +1,63 @@
 <app-header></app-header>
                             
-                                <h5 align="center">My Channel</h5>
-
-<div style="padding-top:10px;" class="container">
+                                <h5 align="center">{{channel.message.name}}</h5>
+  
+<!-- Show if channel type is podcast -->
+<div *ngIf="channel.message.content== 1">
+    <div style="padding-top:10px;" class="container">
    
         <div class="channel">
                 <div class="list item">
+                    <p >{{channel.subscribers| formatNumber}} subscribers
+                        <a style="color:white;" class="btn btn-primary" >Subscribe</a>     
+                        </p>
+                        <div *ngIf="show_item">
+                            <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
+                        </div>
                         <ul class="list-group large-list">
-                                        <p >3000 subscribers
-                                                        <a style="color:white;" class="btn btn-primary" >Subscribe</a>     
-                                                        </p>
-                                <p> <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                                          See videos
-                                        </a>
-                                      </p>
-                                      
-                                      <div class="collapse" id="collapseExample2">
-                                        <div class="card card-body">
+                                        
+                                                <div class="card card-body">
                                                 
-                                                <p><a routerLink="/user/profile/3"> Igwe Micheal</a><button (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Edit</button></p> 
-                                                <h5>Description</h5>
-                                                <p>Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-
-                                                        <ul class="list-group">
-                                                              <a (click)="hideDescription()" routerLink="/user/channel-item/1/video/1"> <li  class="list-group-item active">Cras justo odio</li></a> 
-                                                                <li class="list-group-item">Dapibus ac facilisis in</li>
-                                                                <li class="list-group-item">Morbi leo risus</li>
-                                                                <li class="list-group-item">Porta ac consectetur ac</li>
-                                                                <li class="list-group-item">Vestibulum at eros</li>
-                                                              </ul>
+                                                <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                                                 
+                                               
+                                                <div *ngIf="channel.message.podcasts.length < 1">
+                                                    <p>No Podcast yet here. Check back later</p>
+                                                  </div>
+                                                      <ul *ngFor="let a of channel.message.podcasts" class="list-group">
+                                                          <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a>    
+                                                          <hr/> 
+                                                        </ul>
                                                
                                         </div>
-                                      </div>
                         </ul>
+
+                        <!-- small list -->
+
+                        <ul class="list-group small-list">
+                            
+                    <p> <a class="btn btn-primary vid" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                              See videos
+                            </a>
+                          </p>
+                          
+                          <div class="collapse" id="collapseExample2">
+                              <div class="card card-body">
+                                      
+                                      <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p> 
+                                      
+
+                                      <div *ngIf="channel.message.podcasts.length < 1">
+                                          <p>No Podcast yet here. Check back later</p>
+                                        </div>
+                                            <ul *ngFor="let a of channel.message.podcasts" class="list-group">
+                                                <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a>    
+                                                <hr/>    
+                                              </ul>
+                                       
+                              </div>
+                            </div>
+            </ul>
                 </div>
                 
 
@@ -47,9 +72,12 @@
                                                                     <div class="blog_left_sidebar">
                                                     <article class="blog_item">
                                                         <div class="blog_item_img">
-                                                            <img class="card-img rounded-0" src="assets/img/single_blog_1.png" alt="">
+                                                            <img class="card-img rounded-0" style="height:450px;" src="{{channel.channel_pics}}" alt="">
                                                         </div>
-                                                    
+                                                        <div class="blog_details">
+                                                            <p align="justify" class="body">{{channel.message.description}}</p>
+            
+                                                        </div>
                                                         
                                                     </article>
                                                                     </div>
@@ -65,6 +93,108 @@
 
             </div>
 </div>
+</div>
+
+
+
+
+
+<!-- Show if channel type is video -->
+
+<div *ngIf="channel.message.content== 2">
+    <div style="padding-top:10px;" class="container">
+   
+        <div class="channel">
+                <div class="list item">
+                    <p >{{channel.subscribers| formatNumber}} subscribers
+                        <a style="color:white;" class="btn btn-primary" >Subscribe</a>     
+                        </p>
+                        <div *ngIf="show_item">
+                            <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
+                        </div>
+                        <ul class="list-group large-list">
+                                        
+                                                <div class="card card-body">
+                                                
+                                                <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                                                
+                                                
+                                               
+                                                  <div *ngIf="channel.message.videos.length < 1">
+                                                    <p>No Video yet here. Check back later</p>
+                                                  </div>
+                                                      <ul *ngFor="let a of channel.message.videos" class="list-group">
+                                                          <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a>    
+                                                          <hr/> 
+                                                        </ul>
+                                          
+                                        </div>
+                        </ul>
+
+                        <!-- small list -->
+
+                        <ul class="list-group small-list">
+                            
+                    <p> <a class="btn btn-primary vid" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                              See videos
+                            </a>
+                          </p>
+                          
+                          <div class="collapse" id="collapseExample2">
+                            <div class="card card-body">
+                                    
+                                    <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                                    
+                                    
+
+                                    <div *ngIf="channel.message.videos.length < 1">
+                                        <p>No Video yet here. Check back later</p>
+                                      </div>
+                                          <ul *ngFor="let a of channel.message.videos" class="list-group">
+                                              <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a>    
+                                              <hr/>    
+                                            </ul>
+                                     
+                            </div>
+                          </div>
+            </ul>
+                </div>
+                
+
+
+
+
+                <div class="content">
+                                <router-outlet></router-outlet>
+                        <div *ngIf="channel_description" >
+                                        <section style="padding-top: 20px;" class="blog_area">
+                                                        <div class="container">
+                                                                    <div class="blog_left_sidebar">
+                                                    <article class="blog_item">
+                                                        <div class="blog_item_img">
+                                                            <img class="card-img rounded-0" style="height:450px;" src="{{channel.channel_pics}}" alt="">
+                                                        </div>
+                                                        <div class="blog_details">
+                                                            <p align="justify" class="body">{{channel.message.description}}</p>
+            
+                                                        </div>
+                                                        
+                                                    </article>
+                                                                    </div>
+                                                                </div>
+                                                            </section>
+                        </div>
+                      
+                 
+                        
+                </div>
+                    
+
+
+            </div>
+</div>
+  </div>
+
 
 
 <ng-template #content let-modal>
@@ -73,9 +203,73 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-         <p>Edit Video</p>
+        <div align="center" class="modal-body">
+         <p>Edit  Channel</p>
+         <aside class="single_sidebar_widget newsletter_widget">
+            <h4 class="widget_title">Edit Channel</h4>
+
+
+            <div *ngIf="edit_spinner" align="center">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+               </div> 
+
+
+            <form [formGroup]="editForm" (ngSubmit)="edit()">
+                    <div class="form-group">
+                            <input formControlName="name" type="text" class="form-control"  required>
+                        </div>
+               
+                <div class="form-group">
+                        <textarea formControlName="description" class="form-control" required></textarea>
+                    </div>
+                   
+                <div align="center"><button [disabled]="editForm.invalid" class="btn btn-primary"
+                    type="submit">edit</button></div>
+            </form>
+        </aside>
+        <hr/>
+        <form (ngSubmit)="uploadImg()">
+            <div class="progress form-group" *ngIf="progress > 0">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width.%]="progress">
+                </div>
+            </div>
+            <div class="form-group">
+                <input (change)="setImage($event)" type="file" accept="image/*" class="form-control"  required>
+            </div>
+            
+            <div align="center"><button class="btn btn-primary"
+                type="submit">Upload</button></div>
+        </form>
+        <hr/>
+        <div>
+          <button  (click)="open(content2); modal.dismiss('Cross click')" class="btn btn-danger">Delete Channel</button>
+        </div><br/>
+         <a routerLink="/user/addcontent">Create a fireball</a>
         </div>
         <div class="modal-footer">
         </div>
       </ng-template>
+
+
+
+      <ng-template #content2 let-modal>
+          <div class="modal-header">
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div align="center" class="modal-body">
+              <div *ngIf="delete_spinner" align="center">
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                 </div> 
+           <p>Deleting this channel would also delete all the item in it which might take a couple of seconds</p>
+           <button class="btn btn-primary" (click)="modal.dismiss('Cross click')">No</button>&nbsp;&nbsp;
+           <button class="btn btn-danger" (click)="delete(); modal.dismiss('Cross click')" >Yes</button>
+          </div>
+          <div class="modal-footer">
+          </div>
+        </ng-template>

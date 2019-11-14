@@ -33,17 +33,20 @@
                 <button (click)="open(content2)" class="btn px-4 m-1 btn-outline-info">Bookmarks</button>
             </div>
 
+
+
         <div class="popular_courses">
                 <div style="width: 90%;" class="container">
+                        <div *ngIf="channels.length < 1" align="center">
+                                <p>You have no channel yet. Try creating a channel and share your ideas to the world</p>
+                            </div>
         <div class="row">
-                <div class="col-xl-12">
+                <div *ngIf="channels.length > 0" class="col-xl-12">
                     <div class="section_title text-center mb-100">
                         <h3>Your channels</h3>
                     </div>
                 </div>
-                <div *ngIf="channels.length < 1" class="text-center">
-                    <h5>You have no channel yet. Try creating a channel and share your ideas to the world</h5>
-                </div>
+                
                     <div *ngFor="let a of channels| paginate: {id:'channel', itemsPerPage: 6, currentPage: p, totalItems:total}" class="col-xl-4 col-lg-4 col-md-6">
                             <div class="single_courses">
                                 <div class="thumb">
@@ -67,7 +70,7 @@
                         </div>  
                         
             </div>
-            <div align="center"><pagination-controls id="channel"  (pageChange)="p = $event; paginate($event)"></pagination-controls></div> 
+            <div *ngIf="channels.length > 0" align="center"><pagination-controls id="channel"  (pageChange)="p = $event; paginate($event)"></pagination-controls></div> 
 
             </div>
             </div>

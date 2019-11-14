@@ -58,5 +58,32 @@ export class ChannelService {
   getChannelOfUser(id, page, limit){
     return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/get/${id}?page=${page}&per_page=${limit}`)
   }
+
+  getChannelByToken(id){
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/getonechannel/${id}`);
+  }
+
+  editChannel(id, data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+`/channel/edit/${id}`,  data, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
+
+  changeChannelImage(id, data){
+    let authToken= localStorage.getItem('token')
+    return this.http.post(AppEndpoint.API_ENDPOINT+`/channel/updateimage/${id}`,  data,  {
+      reportProgress: true,
+      observe: 'events',
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  deleteChannel(id){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/channel/delete/${id}`,  {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
   
 }

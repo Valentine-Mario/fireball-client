@@ -18,13 +18,14 @@ export class HeaderComponent implements OnInit {
   loading:boolean=false
   logout_user:boolean;
   login_user:boolean
+  load:boolean=false
   constructor(private router: Router, private spinner:NgxSpinnerService, private reuseable:OthersService) {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
          
-          this.spinner.show('loader')
-         
+         // this.spinner.show('loader')
+          this.load=true
           break;
         }
 
@@ -32,10 +33,10 @@ export class HeaderComponent implements OnInit {
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
           
-          setTimeout(() => {
-            this.spinner.hide('loader');
-          }, 20);
-        
+          // setTimeout(() => {
+          //   this.spinner.hide('loader');
+          // }, 20);
+        this.load=false
           break;
         }
         default: {
