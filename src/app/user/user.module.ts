@@ -45,7 +45,7 @@ import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-pagi
 import { ChannelSearchComponent } from './channel-search/channel-search.component';
 import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
 import { ChannelSerachFormComponent } from './channel-serach-form/channel-serach-form.component';
-import {getSubscriptionPage1, getSubscriptionPageOther} from './resolvers/subscription.resolvers';
+import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed} from './resolvers/subscription.resolvers';
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
 import {FormatNumber} from './pipes/formatNumber';
 
@@ -75,7 +75,8 @@ import {FormatNumber} from './pipes/formatNumber';
       GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
       GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
       SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther,
-      GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser, GetChannelBYToken
+      GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser, GetChannelBYToken,
+      CheckIfUserIsSubscribed
     ]
 })
 export class UserModule { }

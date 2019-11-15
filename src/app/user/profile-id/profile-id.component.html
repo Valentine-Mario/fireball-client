@@ -68,7 +68,7 @@
                                                     <span>Created on {{a.content.created_at | date:"MM/dd/yyyy"}} at {{a.content.created_at | date :'h:mm:ss'}}</span>
                                             </div>
                                             <div *ngIf="show_item">
-                                                    <div *ngIf="user.message.id == user2.message.id" align="center"><button class="btn btn-primary">See subscribers</button></div>
+                                                    <div *ngIf="user.message.id == user2.message.id" align="center"><button (click)="getSubscribers(a.content.id, 1); open(content3)" class="btn btn-primary">See subscribers</button></div>
                                             </div>
                                         </div>
                                     </div>
@@ -111,3 +111,29 @@
                         </div>
                       </ng-template>
                       
+
+                      <ng-template #content3 let-modal>
+                        <div class="modal-header">
+                          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div style="padding-left: 10px; padding-right: 10px;" class="modal-body">
+                            <div *ngIf="sub_loader" align="center">
+                                <div class="spinner-border" role="status">
+                                  <span class="sr-only">Loading...</span>
+                                </div>
+                               </div>   
+                                This channel has {{total_sub}} subscribers
+                               <div *ngFor="let a of subscribers| paginate: {id:'sub', itemsPerPage: 30, currentPage: p, totalItems:total_sub}">
+                                <h5>{{a.user.name}}</h5>
+                                 <p>subscribed on {{a.created_at| date:"MM/dd/yyyy"}} at {{a.created_at| date :'h:mm:ss'}}</p>
+                               <hr/>
+                                </div>
+    
+                               <pagination-controls id="sub"  (pageChange)="p = $event; getSubscribers(subscribers[0].channel_id, $event)"></pagination-controls>
+    
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                      </ng-template>          

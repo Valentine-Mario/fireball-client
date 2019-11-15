@@ -4,6 +4,8 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute} from '@angular/router'
 import {OthersService} from '../services/others.service'
 import {ChannelService} from '../services/channel.service'
+import {SubscriptionService} from '../services/subscription.service'
+
 
 @Component({
   selector: 'app-profile',
@@ -13,10 +15,15 @@ import {ChannelService} from '../services/channel.service'
 export class ProfileComponent implements OnInit {
   closeResult: string;
   constructor(private title: Title, private modalService: NgbModal, private reuse:OthersService,
-     private router:ActivatedRoute, private channelService:ChannelService) { }
+     private router:ActivatedRoute, private channelService:ChannelService, private subServices:SubscriptionService) { }
+
 user:any
 channels:any
 total:number
+sub_loader:boolean=false
+subscribers:Array<object>
+total_sub:number
+p:number
   ngOnInit() {
     this.user=this.router.snapshot.data['user']
     this.title.setTitle(this.user.message.name);
@@ -29,6 +36,21 @@ total:number
 
   }
 
+
+getSubscribers(id, a){
+  this.subServices.viewSubscribersInYourChannel(id, a, 30).subscribe(val=>{
+    this.sub_loader=true
+
+    if(val['code']=="00"){
+      this.sub_loader=false
+      this.subscribers=val['message'];
+      this.total_sub=val['total']
+    }else{
+      this.sub_loader=false
+      this.modalService.dismissAll()
+    }
+  })
+}
   paginate(a){
     this.channelService.getMyChannel(a, 6).subscribe(val=>{
       this.channels=val['message']

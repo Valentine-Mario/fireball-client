@@ -32,7 +32,7 @@ import { ChannelPodcastPageComponent } from './channel-podcast-page/channel-podc
 import { ChannelPodcastPagePaginateComponent } from './channel-podcast-page-paginate/channel-podcast-page-paginate.component';
 import { ChannelSearchComponent } from './channel-search/channel-search.component';
 import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
-import {getSubscriptionPage1, getSubscriptionPageOther} from './resolvers/subscription.resolvers'
+import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed} from './resolvers/subscription.resolvers'
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
 
 
@@ -135,7 +135,7 @@ const UserRoutes: Routes = [
             {
                 path:'channel-item/:id',
                 component:ChannelDetailsComponent,
-                resolve:{channel:GetChannelBYToken, user:GetUserProfile},
+                resolve:{channel:GetChannelBYToken, user:GetUserProfile, sub:CheckIfUserIsSubscribed},
                 children:[
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
