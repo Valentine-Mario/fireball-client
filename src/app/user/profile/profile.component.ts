@@ -21,7 +21,7 @@ user:any
 channels:any
 total:number
 sub_loader:boolean=false
-subscribers:Array<object>
+subscribers:any
 total_sub:number
 p:number
   ngOnInit() {

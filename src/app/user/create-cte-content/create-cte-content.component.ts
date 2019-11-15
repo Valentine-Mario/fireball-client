@@ -27,6 +27,7 @@ export class CreateCteContentComponent implements OnInit {
   progress3: number =0;
     videos:any
     podcast:any
+    nameDevice:any;
   ngOnInit() {
     this.Channelform=this.fb.group({
       name:['', Validators.required], 
