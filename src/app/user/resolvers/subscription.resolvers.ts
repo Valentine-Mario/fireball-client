@@ -32,3 +32,20 @@ export class getSubscriptionPageOther implements Resolve<any> {
   }
 }
 
+
+@Injectable()
+export class CheckIfUserIsSubscribed implements Resolve<any> {
+  constructor(private data: SubscriptionService, private reuse:OthersService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+    if(localStorage.getItem('token')==undefined){
+      return true
+    }else{
+    return this.data.checkIfUserIsSubscribed(route.paramMap.get('id')).pipe(catchError((err)=>{
+      this.reuse.errorToast('Error', 'Error connection to the server')
+          return empty();
+      }))
+    }
+    
+  }
+}

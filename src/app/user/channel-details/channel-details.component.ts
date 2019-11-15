@@ -6,7 +6,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import {FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
 import {ChannelService} from '../services/channel.service'
 import { HttpEvent, HttpEventType,HttpResponse} from '@angular/common/http';
-
+import {SubscriptionService} from '../services/subscription.service'
 
 @Component({
   selector: 'app-channel-details',
@@ -16,7 +16,8 @@ import { HttpEvent, HttpEventType,HttpResponse} from '@angular/common/http';
 export class ChannelDetailsComponent implements OnInit {
 channel_description:boolean
   constructor(private modalService: NgbModal, private route:Router,private title: Title, private meta: Meta,
-     private data:OthersService, private router:ActivatedRoute, private fb:FormBuilder, private channelService:ChannelService) { }
+     private data:OthersService, private router:ActivatedRoute, private subServices:SubscriptionService,
+     private fb:FormBuilder, private channelService:ChannelService) { }
   closeResult:string
   channel:any
   user2:any
@@ -26,11 +27,13 @@ edit_spinner:boolean=false
 selectedPics:any
 progress: number = 0;
 delete_spinner:boolean=false;
+check_sub:any
   ngOnInit() {
     this.channel_description=true;
     this.data.currentMessage.subscribe(message => this.channel_description = message)
     this.channel=this.router.snapshot.data['channel']
     this.user2=this.router.snapshot.data['user']
+    this.check_sub=this.router.snapshot.data['sub']
     this.title.setTitle(this.channel.message.name);
     this.meta.updateTag({ name: this.channel.message.name, content: this.channel.message.description });
     if(localStorage.getItem('token')==undefined){
@@ -46,7 +49,36 @@ delete_spinner:boolean=false;
       name:[ this.channel.message.name, Validators.required],
       description:[this.channel.message.description, Validators.required]
     })
-    
+  }
+
+
+  addSubscription(){
+    if(this.show_item==false){
+      this.data.logoutAndRedirect()
+      this.data.infoToast('Info', 'You need to be logged in to subscribe')
+    }else{
+      this.subServices.addSubscription(this.channel.message.id).subscribe(val=>{
+        if(val['code']=="00"){
+          this.data.successToast('Success', val['message'])
+          this.channel.subscribers=this.channel.subscribers+1;
+          this.check_sub.subscribed=true
+        }else{
+          this.data.errorToast('Error', 'error subscribing')
+        }
+      })
+    }
+  }
+
+  unSubscribe(){
+    this.subServices.Unsubscribe(this.check_sub.message.id).subscribe(val=>{
+      if(val['code']=="00"){
+        this.data.successToast('Success', val['message'])
+        this.channel.subscribers=this.channel.subscribers-1;
+        this.check_sub.subscribed=false
+      }else{
+        this.data.errorToast('Error', 'error subscribing')
+      }
+    })
   }
 
   setImage(event){

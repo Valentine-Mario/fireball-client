@@ -5,6 +5,8 @@ import {Router} from '@angular/router'
 import {UserService} from '../services/user.service'
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {OthersService} from '../services/others.service'
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ import {OthersService} from '../services/others.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private title: Title, private meta: Meta, 
+  constructor(private title: Title, private meta: Meta, private location: Location,
      private fb:FormBuilder, private route:Router, private data:UserService, 
      private modalService: NgbModal, private reuseable:OthersService) { }
 loginForm:FormGroup
@@ -40,7 +42,6 @@ login_spinner:boolean=false
     this.forgotPasswordForm=this.fb.group({
       email:['', [Validators.email, Validators.required]]
     })
-
   }
   
   login(){
@@ -50,7 +51,7 @@ login_spinner:boolean=false
      if(val['code']=="00"){
     this.reuseable.successToast('Successful login', `<i class="material-icons"> emoji_emotions </i>`)
        localStorage.setItem('token', val['token'])
-       this.route.navigate([''])
+       this.location.back()
        this.login_spinner=false
      }else{
     this.reuseable.errorToast(val['message'], `<i class="material-icons"> mood_bad </i>`)
@@ -66,7 +67,7 @@ login_spinner:boolean=false
       if(val['code']=="00"){
         this.reuseable.successToast('Welcome to FireBall', `<i class="material-icons"> emoji_emotions </i>`)
            localStorage.setItem('token', val['token'])
-           this.route.navigate([''])
+           this.location.back()
            this.register_spinner=false
          }else{
            if(val['message'].email){
