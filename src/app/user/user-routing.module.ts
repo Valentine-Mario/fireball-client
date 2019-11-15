@@ -37,7 +37,7 @@ import { SubscriptionPaginateComponent } from './subscription-paginate/subscript
 
 
 
-const UserRoutes: Routes = [
+export const UserRoutes: Routes = [
     {
         path:'',
         component:LandingComponent,
@@ -188,6 +188,3 @@ const UserRoutes: Routes = [
         ]
     }
 ]
-    
-  
-  export const UserRouter = RouterModule.forChild(UserRoutes);

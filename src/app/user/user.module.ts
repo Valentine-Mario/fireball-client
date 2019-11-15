@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {UserRouter} from './user-routing.module';
+import {UserRoutes} from './user-routing.module';
 import { HomeComponent } from './home/home.component';
 import { ChannelComponent } from './channel/channel.component';
 import { PodcastComponent } from './podcast/podcast.component';
@@ -11,7 +11,6 @@ import { LoginComponent } from './login/login.component';
 import { LandingComponent } from './landing/landing.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgxSpinnerModule } from "ngx-spinner";
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { VideoDetailsComponent } from './video-details/video-details.component';
@@ -27,7 +26,6 @@ import { PodHistoryComponent } from './pod-history/pod-history.component';
 import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
-import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
@@ -35,7 +33,6 @@ import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOt
    GetMyChannel, GetChannelOfUser, GetChannelBYToken} from './resolvers/channel.resolvers'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AuthGuard} from './guard/auth.guard'
-import {BrowserModule} from '@angular/platform-browser';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ChannelPaginateComponent } from './channel-paginate/channel-paginate.component';
 import { ChannelVideoPageComponent } from './channel-video-page/channel-video-page.component';
@@ -48,6 +45,8 @@ import { ChannelSerachFormComponent } from './channel-serach-form/channel-serach
 import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed} from './resolvers/subscription.resolvers';
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
 import {FormatNumber} from './pipes/formatNumber';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -60,16 +59,13 @@ import {FormatNumber} from './pipes/formatNumber';
          ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber],
   imports: [
     CommonModule,
-    UserRouter,
-    BrowserAnimationsModule,
+    RouterModule.forChild(UserRoutes),
     NgxSpinnerModule,
     NgbModule,
-    HttpClientModule,
     ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule, 
-    NgxPaginationModule
+    NgxPaginationModule,
     ],
     providers: [GetLengthOfUsersVideosPodcast, GetMyPodcast, GetMyVideos, GetNewChannelsPage1,
       GetNewChannels, AuthGuard, GetNewChannelsPageOther, GetVideoChannelPage1, 
