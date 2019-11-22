@@ -34,7 +34,9 @@ import { ChannelSearchComponent } from './channel-search/channel-search.componen
 import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
 import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed} from './resolvers/subscription.resolvers'
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
-
+import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate.component';
+import { VideoSearchComponent } from './video-search/video-search.component';
+import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 
 
 export const UserRoutes: Routes = [
@@ -90,6 +92,18 @@ export const UserRoutes: Routes = [
             {
                 path:'video',
                 component:VideoComponent
+            },
+            {
+                path:'video/:id',
+                component:VideoPagpaginateComponent
+            },
+            {
+                path:'video-search/:id',
+                component:VideoSearchComponent
+            },
+            {
+                path:'video-search/:id/:id2',
+                component:VideoSearchPaginateComponent
             },
             {
                 path:'podcast',

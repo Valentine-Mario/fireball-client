@@ -26,7 +26,6 @@ import { PodHistoryComponent } from './pod-history/pod-history.component';
 import { VidBookmarkComponent } from './vid-bookmark/vid-bookmark.component';
 import { PodBookmarkComponent } from './pod-bookmark/pod-bookmark.component';
 import { ProfileIdComponent } from './profile-id/profile-id.component';
-import { ToastrModule } from 'ngx-toastr';
 import {GetLengthOfUsersVideosPodcast, GetUserProfile, GetUserById} from './resolvers/user.resolvers'
 import {GetNewChannels, GetMyPodcast,GetVideoChannelPage1, GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
    GetMyVideos, GetNewChannelsPage1, GetNewChannelsPageOther, SearchChannel, SearchChannelPageOther,
@@ -46,6 +45,9 @@ import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed}
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
 import {FormatNumber} from './pipes/formatNumber';
 import { RouterModule } from '@angular/router';
+import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate.component';
+import { VideoSearchComponent } from './video-search/video-search.component';
+import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 
 
 @NgModule({
@@ -56,13 +58,12 @@ import { RouterModule } from '@angular/router';
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
-         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber],
+         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
     NgxSpinnerModule,
     NgbModule,
-    ToastrModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,

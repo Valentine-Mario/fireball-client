@@ -16,16 +16,16 @@ export class CreateCteContentComponent implements OnInit {
 
   constructor(private data:ChannelService, private fb:FormBuilder, private audioService:PodcastService,
     private reusabele:OthersService, private router:ActivatedRoute, private videoService:VideoService) { }
-  selectedPics:any;
-  selectedVideo:any;
-  selectedAudio:any
-  Channelform: FormGroup;
-  VideoForm:FormGroup
-  AudioForm:FormGroup;
-  progress: number = 0;
-  progress2: number =0;
-  progress3: number =0;
-    videos:any
+    selectedPics:any;
+    selectedVideo:any;
+    selectedAudio:any
+    Channelform: FormGroup;
+    VideoForm:FormGroup
+    AudioForm:FormGroup;
+    progress: number = 0;
+    progress2: number =0;
+    progress3: number =0;
+    videos:any;
     podcast:any
     nameDevice:any;
   ngOnInit() {
@@ -35,6 +35,7 @@ export class CreateCteContentComponent implements OnInit {
       content:['', Validators.required]
     })
 
+    
     this.VideoForm=this.fb.group({
       title:['', Validators.required], 
       description:['', Validators.required],
