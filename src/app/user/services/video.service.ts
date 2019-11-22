@@ -30,7 +30,7 @@ export class VideoService {
   }
 
   searchVideo(param, page, limit){
-    return this.http.get(AppEndpoint.API_ENDPOINT+`video/search/${param}?page=${page}&per_page=${limit}`)
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/video/search/${param}?page=${page}&per_page=${limit}`)
   }
 
   getVideoByToken(id){
@@ -41,6 +41,6 @@ export class VideoService {
   }
 
   mostViewedVideos(page, limit){
-    return this.http.get(AppEndpoint.API_ENDPOINT+`video/mostviews?page=${page}&per_page=${limit}`)
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/video/mostviews?page=${page}&per_page=${limit}`)
   }
 }

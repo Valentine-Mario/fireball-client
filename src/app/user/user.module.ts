@@ -48,6 +48,7 @@ import { RouterModule } from '@angular/router';
 import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate.component';
 import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
+import {GetNewVideo, GetNewVideoPaginate, GetVideoFeed, GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
 
 
 @NgModule({
@@ -73,7 +74,8 @@ import { VideoSearchPaginateComponent } from './video-search-paginate/video-sear
       GetVideoChannelPageOther, GetPodcastChannelPage1, GetPodcastChannelPageOther,
       SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther,
       GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser, GetChannelBYToken,
-      CheckIfUserIsSubscribed
+      CheckIfUserIsSubscribed, GetNewVideo, GetNewVideoPaginate, GetVideoFeed, GetVideoFeedPaginate,
+       SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed
     ]
 })
 export class UserModule { }

@@ -1,1 +1,44 @@
-<p>video-pagpaginate works!</p>
+<app-header></app-header>
+
+<div class="upper-item">
+  <div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Add Video</a></div>
+  <div class="col-md-3">
+        <form [formGroup]="searchForm" (ngSubmit)="searchVideo();">
+            <div class="input-group">           
+                <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
+                <button [disabled]="searchForm.invalid" class="icon-search"></button>
+              </div>
+        </form>
+        
+        </div>
+  </div>
+
+<div class="video-list">
+
+<div class="site-section">
+    <div class="container">
+    
+      <div class="row">
+        <div *ngFor="let a of video.message| paginate: {id:'video', itemsPerPage: 6, currentPage: p, totalItems: video.total}" class="col-lg-4">
+          <div class="card card-20201">
+            
+            <div class="card-body">
+              <h5 class="card-title">{{a.title}} <i class="material-icons"> play_circle_filled</i></h5>
+              <small style="color:gray;"><i>by <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> at {{a.created_at| date:"MM/dd/yyyy"}} {{a.created_at| date :'h:mm:ss'}}</i></small><br/>
+              <small  style="color:gray;">views: {{a.views}}</small>
+              <p class="card-text mb-5">{{a.description| slice:0:50}}</p>
+              <hr/>
+              <small style="color:gray;">posted in <a routerLink="/user/channel-item/{{a.channel.token_channel}}">{{a.channel.name}}</a></small><br/>
+              <a routerLink="/user/video-item/{{a.token}}" class="btn btn-primary">Take a look</a>
+            </div>
+          </div>
+        </div>   
+      </div>
+<br/>
+      <div align="center"><pagination-controls id="video"  (pageChange)="p = $event; paginateVideo($event)"></pagination-controls></div> 
+
+    </div>
+  </div>
+
+  
+</div>
