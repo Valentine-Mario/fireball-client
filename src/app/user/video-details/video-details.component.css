@@ -7,5 +7,7 @@
     .container{
         width:80%;
     }
-    
+    .blog_right_sidebar{
+        font-size: 15px;
+    }
 }

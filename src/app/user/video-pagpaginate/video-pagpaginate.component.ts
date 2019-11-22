@@ -6,20 +6,22 @@ import {VideoService} from '../services/video.service'
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'app-video',
-  templateUrl: './video.component.html',
-  styleUrls: ['./video.component.css']
+  selector: 'app-video-pagpaginate',
+  templateUrl: './video-pagpaginate.component.html',
+  styleUrls: ['./video-pagpaginate.component.css']
 })
-export class VideoComponent implements OnInit {
+export class VideoPagpaginateComponent implements OnInit {
 
-  constructor(private title: Title, private reuse:OthersService, private vidservice:VideoService,
-    private meta: Meta, private route:Router, private router:ActivatedRoute, private fb:FormBuilder) { }
-video:any
-most_watched:any
-p:number
-p2:number;
-searchForm:FormGroup
+  constructor(private title: Title, private reuse:OthersService, private vidService:VideoService,
+    private meta: Meta, private route:Router, private router:ActivatedRoute, private fb:FormBuilder) { 
+      this.router.params.subscribe(params => this.parameter = params.id)
+    }
+    parameter:string
+    video:any
+    p:number
+    searchForm:FormGroup
   ngOnInit() {
+    this.p=parseInt(this.parameter)
     this.title.setTitle('Videos');
     this.meta.updateTag({ name: 'fireball videos', content: 'fireball video page' });
     if(localStorage.getItem('token')==undefined){
@@ -42,28 +44,30 @@ searchForm:FormGroup
     this.searchForm=this.fb.group({
       search:['', Validators.required]
     })
-
-    this.most_watched=this.router.snapshot.data['most_viewed']
-
   }
-
   searchVideo(){
     var formValue=this.searchForm.value
     this.route.navigate(['/user/video-search/'+formValue.search])
   }
-
-  paginateMostViewed(a){
-    this.vidservice.mostViewedVideos(a, 6).subscribe(val=>{
-     this.most_watched=val
-    })
-  }
-
   paginateVideo(a){
     if(a==1){
       this.route.navigate(['/user/video'])
-    }else{
-      this.route.navigate(['/user/video/'+a])
     }
+    else{
+    this.route.navigate(['/user/video'+a])
+    if(localStorage.getItem('token')==undefined|| this.router.snapshot.data['feed_video'].message.length <1){
+     this.vidService.getNewVideos(a, 6).subscribe(val=>{
+       this.video=val
+     })
+    }else{
+      this.video=this.router.snapshot.data['feed_video']
+      this.vidService.getVideoFeed(a, 6).subscribe(val=>{
+        this.video=val
+        
+      })
+    }
+    this.p=parseInt(a)
+    } 
   }
 
 }

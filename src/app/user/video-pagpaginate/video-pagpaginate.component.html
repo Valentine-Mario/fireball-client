@@ -3,14 +3,14 @@
 <div class="upper-item">
   <div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Add Video</a></div>
   <div class="col-md-3">
-    <form [formGroup]="searchForm" (ngSubmit)="searchVideo();">
-        <div class="input-group">           
-            <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
-            <button [disabled]="searchForm.invalid" class="icon-search"></button>
-          </div>
-    </form>
-    
-    </div>
+        <form [formGroup]="searchForm" (ngSubmit)="searchVideo();">
+            <div class="input-group">           
+                <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
+                <button [disabled]="searchForm.invalid" class="icon-search"></button>
+              </div>
+        </form>
+        
+        </div>
   </div>
 
 <div class="video-list">
@@ -34,25 +34,11 @@
           </div>
         </div>   
       </div>
-      <br/>
+<br/>
       <div align="center"><pagination-controls id="video"  (pageChange)="p = $event; paginateVideo($event)"></pagination-controls></div> 
 
     </div>
   </div>
 
-  <div class="blog_right_sidebar container"> 
-  <aside class="single_sidebar_widget post_category_widget">
-    <h4 class="widget_title">Most Viewed Videos</h4>
-    <ul *ngFor="let a of most_watched.message| paginate: {id:'viewed', itemsPerPage: 6, currentPage: p2, totalItems: most_watched.total}" class="list cat-list">
-        
-        <li style="height: 50px;">
-            <a routerLink="/user/video-item/{{a.token}}" class="d-flex">
-                <p>{{a.title}}</p>
-            </a>
-            <hr/>
-        </li>
-    </ul>
-    <pagination-controls id="viewed"  (pageChange)="p2 = $event; paginateMostViewed($event)"></pagination-controls>
-</aside>
-</div>
+  
 </div>

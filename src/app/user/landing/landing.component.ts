@@ -11,7 +11,7 @@ export class LandingComponent implements OnInit {
 
   constructor(private title: Title, private meta: Meta, private router:ActivatedRoute, 
     ) { }
-info:object
+info:any
 channel:any
   ngOnInit() {
     this.title.setTitle('Fireball');

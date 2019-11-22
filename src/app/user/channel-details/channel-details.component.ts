@@ -62,6 +62,7 @@ check_sub:any
           this.data.successToast('Success', val['message'])
           this.channel.subscribers=this.channel.subscribers+1;
           this.check_sub.subscribed=true
+         this.check_sub.message= val['sub']
         }else{
           this.data.errorToast('Error', 'error subscribing')
         }

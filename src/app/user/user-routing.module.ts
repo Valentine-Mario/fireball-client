@@ -34,10 +34,14 @@ import { ChannelSearchComponent } from './channel-search/channel-search.componen
 import { ChannelSearchPaginateComponent } from './channel-search-paginate/channel-search-paginate.component';
 import {getSubscriptionPage1, getSubscriptionPageOther, CheckIfUserIsSubscribed} from './resolvers/subscription.resolvers'
 import { SubscriptionPaginateComponent } from './subscription-paginate/subscription-paginate.component'
+import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate.component';
+import { VideoSearchComponent } from './video-search/video-search.component';
+import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
+import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed, VideoByToken2, CheckVideoBookmark2,
+    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
 
 
-
-const UserRoutes: Routes = [
+export const UserRoutes: Routes = [
     {
         path:'',
         component:LandingComponent,
@@ -89,7 +93,23 @@ const UserRoutes: Routes = [
             },
             {
                 path:'video',
-                component:VideoComponent
+                component:VideoComponent,
+                resolve:{new_video:GetNewVideo, feed_video:GetVideoFeed, most_viewed:MostViewed}
+            },
+            {
+                path:'video/:id',
+                component:VideoPagpaginateComponent,
+                resolve:{new_video:GetNewVideoPaginate, feed_video:GetVideoFeedPaginate}
+            },
+            {
+                path:'video-search/:id',
+                component:VideoSearchComponent,
+                resolve:{video:SearchVideo}
+            },
+            {
+                path:'video-search/:id/:id2',
+                component:VideoSearchPaginateComponent,
+                resolve:{video: SearchVideoPaginate}
             },
             {
                 path:'podcast',
@@ -125,7 +145,8 @@ const UserRoutes: Routes = [
             {
                 path:'video-item/:id',
                 component:VideoDetailsComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark}
             },
             {
                 path:'podcast-item/:id',
@@ -139,7 +160,8 @@ const UserRoutes: Routes = [
                 children:[
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
-                    canActivate:[AuthGuard]
+                    canActivate:[AuthGuard],
+                    resolve:{video:VideoByToken2, user:GetUserProfile, bookmark:CheckVideoBookmark2}
                 },
                 {
                     path:'podcast/:id2',
@@ -188,6 +210,3 @@ const UserRoutes: Routes = [
         ]
     }
 ]
-    
-  
-  export const UserRouter = RouterModule.forChild(UserRoutes);
