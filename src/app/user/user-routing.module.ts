@@ -37,7 +37,8 @@ import { SubscriptionPaginateComponent } from './subscription-paginate/subscript
 import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate.component';
 import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
-import {GetNewVideo, GetNewVideoPaginate, GetVideoFeed, GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
+import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed, VideoByToken2, CheckVideoBookmark2,
+    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
 
 
 export const UserRoutes: Routes = [
@@ -145,7 +146,7 @@ export const UserRoutes: Routes = [
                 path:'video-item/:id',
                 component:VideoDetailsComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:VideoByToken}
+                resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark}
             },
             {
                 path:'podcast-item/:id',
@@ -160,7 +161,7 @@ export const UserRoutes: Routes = [
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
                     canActivate:[AuthGuard],
-                    resolve:{video:VideoByToken}
+                    resolve:{video:VideoByToken2, user:GetUserProfile, bookmark:CheckVideoBookmark2}
                 },
                 {
                     path:'podcast/:id2',

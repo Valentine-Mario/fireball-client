@@ -1,0 +1,13 @@
+.container{
+    width:100%;
+}
+
+
+@media (max-width: 768px){
+    .container{
+        width:80%;
+    }
+    .blog_right_sidebar{
+        font-size: 15px;
+    }
+}

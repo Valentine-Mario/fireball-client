@@ -105,3 +105,36 @@ export class SearchVideoPaginate implements Resolve<any> {
       
     }
   }
+
+  export class CheckVideoBookmark implements Resolve<any> {
+    constructor(private data: VideoService, private reuse:OthersService) {}
+      
+    resolve(route: ActivatedRouteSnapshot){
+      return this.data.checkVideoBookMark(route.paramMap.get('id')).pipe(catchError((err)=>{
+            return empty();
+        }))
+      
+    }
+  }
+
+  export class VideoByToken2 implements Resolve<any> {
+    constructor(private data: VideoService, private reuse:OthersService) {}
+      
+    resolve(route: ActivatedRouteSnapshot){
+      return this.data.getVideoByToken(route.paramMap.get('id2')).pipe(catchError((err)=>{
+            return empty();
+        }))
+      
+    }
+  }
+
+  export class CheckVideoBookmark2 implements Resolve<any> {
+    constructor(private data: VideoService, private reuse:OthersService) {}
+      
+    resolve(route: ActivatedRouteSnapshot){
+      return this.data.checkVideoBookMark(route.paramMap.get('id2')).pipe(catchError((err)=>{
+            return empty();
+        }))
+      
+    }
+  }

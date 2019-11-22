@@ -28,7 +28,7 @@
             <div class="card-body">
               <h5 class="card-title">{{a.title}} <i class="material-icons"> play_circle_filled</i></h5>
               <small style="color:gray;"><i>by <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> at {{a.created_at| date:"MM/dd/yyyy"}} {{a.created_at| date :'h:mm:ss'}}</i></small><br/>
-              <small  style="color:gray;">views: {{a.views}}</small>
+              <small  style="color:gray;">views: {{a.views| formatNumber}}</small>
               <p class="card-text mb-5">{{a.description| slice:0:50}}</p>
               <hr/>
               <small style="color:gray;">posted in <a routerLink="/user/channel-item/{{a.channel.token_channel}}">{{a.channel.name}}</a></small><br/>
