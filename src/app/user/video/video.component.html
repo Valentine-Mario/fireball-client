@@ -48,6 +48,7 @@
         <li style="height: 50px;">
             <a routerLink="/user/video-item/{{a.token}}" class="d-flex">
                 <p>{{a.title}}</p>
+                <small><i>views:{{a.views| formatNumber}}</i></small>
             </a>
             <hr/>
         </li>
