@@ -28,7 +28,7 @@
                                                 <p *ngIf="a.content.content == 2">Video Channel</p></a></h3>
                                         <div class="star_prise d-flex justify-content-between">
                                             <div class="star">
-                                                    <a routerLink="/user/profile/{{a.user.token}}"><span>By {{a.user.name}} on {{a.content.created_at | date:"MM/dd/yyyy"}} at {{a.content.created_at | date :'h:mm:ss'}}</span></a> 
+                                                    <a routerLink="/user/profile/{{a.user.token}}"><span>By {{a.user.name}} {{a.content.created_at | timeAgo}}</span></a> 
                                             </div>
                                             
                                         </div>

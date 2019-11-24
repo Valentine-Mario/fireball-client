@@ -28,7 +28,7 @@
         <div style="white-space: pre-wrap;" class="card card-body">
          {{video.message.description}}
           <br/>
-          <small>Created:{{video.message.created_at| date:"MM/dd/yyyy"}} at {{video.message.created_at|date :'h:mm' }}</small>
+          <small>Created: {{video.message.created_at|timeAgo }}</small>
         </div>
       </div>
 </div>

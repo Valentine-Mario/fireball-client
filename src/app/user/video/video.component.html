@@ -5,8 +5,8 @@
   <div class="col-md-3">
     <form [formGroup]="searchForm" (ngSubmit)="searchVideo();">
         <div class="input-group">           
-            <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
-            <button [disabled]="searchForm.invalid" class="icon-search"></button>
+            <input style="height:30px;" formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
+            <button style="height: 30px;" [disabled]="searchForm.invalid"><i class="material-icons">search</i></button>
           </div>
     </form>
     
@@ -24,7 +24,8 @@
             
             <div class="card-body">
               <h5 class="card-title">{{a.title}} <i class="material-icons"> play_circle_filled</i></h5>
-              <small style="color:gray;"><i>by <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> at {{a.created_at| date:"MM/dd/yyyy"}} {{a.created_at| date :'h:mm:ss'}}</i></small><br/>
+              <p style="color:gray;">By <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> {{a.created_at| timeAgo}}</p>
+
               <small  style="color:gray;">views: {{a.views| formatNumber}}</small>
               <p class="card-text mb-5">{{a.description| slice:0:50}}</p>
               <hr/>

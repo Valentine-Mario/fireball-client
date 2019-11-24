@@ -1,7 +1,7 @@
 <form [formGroup]="searchForm" (ngSubmit)="search();">
         <div style="display: flex;">
-                <input formControlName="search" type="text" class="form-control border-right-0" placeholder="Search channel" aria-label="Search channel" aria-describedby="basic-addon1">   
-                <button [disabled]="searchForm.invalid" class="icon-search"></button>
+                <input style="height: 30px;" formControlName="search" type="text" class="form-control border-right-0" placeholder="Search channel" aria-label="Search channel" aria-describedby="basic-addon1">   
+                <button style="height: 30px;" [disabled]="searchForm.invalid"><i class="material-icons">search</i></button>
         </div>
             
     </form>   
