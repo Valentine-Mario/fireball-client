@@ -6,7 +6,7 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import {PodcastService} from '../services/podcast.service';
 import {OthersService} from '../services/others.service'
 
-
+@Injectable()
 export class GetNewPodcast implements Resolve<any> {
     constructor(private data:PodcastService, private reuse:OthersService) {}
       
@@ -73,6 +73,7 @@ export class GetNewPodcast implements Resolve<any> {
     }
   }
   
+  @Injectable()
   export class SearchPodcastPaginate implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
@@ -84,6 +85,7 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
   
+    @Injectable()
     export class PodcastByToken implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
@@ -95,6 +97,8 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
   
+
+    @Injectable()
     export class MostListens implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
@@ -106,6 +110,8 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
   
+
+    @Injectable()
     export class CheckPodcastBookmark implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
@@ -117,6 +123,7 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
   
+    @Injectable()
     export class PodcastByToken2 implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
@@ -128,6 +135,8 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
   
+
+    @Injectable()
     export class CheckPodcastBookmark2 implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         

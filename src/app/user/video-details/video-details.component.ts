@@ -36,7 +36,7 @@ editForm:FormGroup
       }
       if(this.user.code!="00"){
         this.reuse.logoutAndRedirect();
-        this.reuse.infoToast('Error', this.user.message)
+        this.reuse.infoToast('Try to login again', "Token expired")
       }
       this.bookmark=this.router.snapshot.data['bookmark'].message
       this.reportForm=this.fb.group({

@@ -43,7 +43,7 @@ p:number
       this.show_item=true
       if(this.user2.code!="00"){
         this.reuse.logoutAndRedirect()
-        this.reuse.infoToast('Error', this.user2.message)
+        this.reuse.infoToast('Try to login again', "Token expired")
       }
     }
 

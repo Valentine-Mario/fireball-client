@@ -29,7 +29,8 @@ p:number
     this.title.setTitle(this.user.message.name);
     if(this.user.code!="00"){
       this.reuse.logoutAndRedirect()
-      this.reuse.infoToast('Error', this.user.message)
+      this.reuse.infoToast('Try to login again', "Token expired")
+
     }
     this.channels=this.router.snapshot.data['channel'].message
     this.total=this.router.snapshot.data['channel'].total

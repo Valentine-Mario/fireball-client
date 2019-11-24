@@ -73,6 +73,7 @@ export class SearchVideo implements Resolve<any> {
   }
 }
 
+@Injectable()
 export class SearchVideoPaginate implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
@@ -84,6 +85,7 @@ export class SearchVideoPaginate implements Resolve<any> {
     }
   }
 
+  @Injectable()
   export class VideoByToken implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
@@ -95,6 +97,8 @@ export class SearchVideoPaginate implements Resolve<any> {
     }
   }
 
+
+  @Injectable()
   export class MostViewed implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
@@ -106,6 +110,8 @@ export class SearchVideoPaginate implements Resolve<any> {
     }
   }
 
+
+  @Injectable()
   export class CheckVideoBookmark implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
@@ -117,6 +123,8 @@ export class SearchVideoPaginate implements Resolve<any> {
     }
   }
 
+
+  @Injectable()
   export class VideoByToken2 implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
@@ -128,6 +136,8 @@ export class SearchVideoPaginate implements Resolve<any> {
     }
   }
 
+
+  @Injectable()
   export class CheckVideoBookmark2 implements Resolve<any> {
     constructor(private data: VideoService, private reuse:OthersService) {}
       
