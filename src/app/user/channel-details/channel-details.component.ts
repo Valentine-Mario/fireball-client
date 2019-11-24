@@ -42,7 +42,8 @@ check_sub:any
       this.show_item=true
       if(this.user2.code!="00"){
         this.data.logoutAndRedirect()
-        this.data.infoToast('Error', this.user2.message)
+        this.data.infoToast('Try to login again', "Token expired")
+
       }
     }
     this.editForm=this.fb.group({

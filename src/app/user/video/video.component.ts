@@ -34,7 +34,8 @@ searchForm:FormGroup
         this.video=this.router.snapshot.data['new_video']
         if(this.video.code=="02"){
           this.reuse.logoutAndRedirect()
-          this.reuse.infoToast('Error', this.video['message'])
+          this.reuse.infoToast('Try to login again', "Token expired")
+
         }
       }
     }
