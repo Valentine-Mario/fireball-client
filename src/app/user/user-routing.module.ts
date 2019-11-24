@@ -39,7 +39,11 @@ import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed, VideoByToken2, CheckVideoBookmark2,
     GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
-
+import {CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
+        SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast} from './resolvers/podcast.resolvers'
+import { PodcastPaginateComponent } from './podcast-paginate/podcast-paginate.component';
+import { PodcastSearchComponent } from './podcast-search/podcast-search.component';
+import { PodcastSearchPaginateComponent } from './podcast-search-paginate/podcast-search-paginate.component'     
 
 export const UserRoutes: Routes = [
     {
@@ -113,7 +117,23 @@ export const UserRoutes: Routes = [
             },
             {
                 path:'podcast',
-                component:PodcastComponent
+                component:PodcastComponent,
+                resolve:{podcast:GetNewPodcast, feed:GetPodcastFeed, most_listens:MostListens}
+            },
+            {
+                path:'podcast/:id',
+                component:PodcastPaginateComponent,
+                resolve:{podcast:GetNewPodcastPaginate, feed:GetPodcastFeedPaginate}
+            },
+            {
+                path:'podcast-search/:id',
+                component:PodcastSearchComponent,
+                resolve:{podcast:SearchPodcast}
+            },
+            {
+                path:'podcast-search/:id/:id2',
+                component:PodcastSearchPaginateComponent,
+                resolve:{podcast:SearchPodcastPaginate}
             },
             {
                 path:'notification',
@@ -151,7 +171,8 @@ export const UserRoutes: Routes = [
             {
                 path:'podcast-item/:id',
                 component:AudiodetailsComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{podcast:PodcastByToken, user:GetUserProfile, bookmark:CheckPodcastBookmark}
             },
             {
                 path:'channel-item/:id',
@@ -166,7 +187,8 @@ export const UserRoutes: Routes = [
                 {
                     path:'podcast/:id2',
                     component:ChannelPodcastComponent,
-                    canActivate:[AuthGuard]
+                    canActivate:[AuthGuard],
+                    resolve:{podcast:PodcastByToken2, user:GetUserProfile, bookmark:CheckPodcastBookmark2}
                 }
                 ]
             },

@@ -50,7 +50,11 @@ import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed,VideoByToken2, CheckVideoBookmark2,
     GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
-
+import {CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
+   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast} from './resolvers/podcast.resolvers';
+import { PodcastPaginateComponent } from './podcast-paginate/podcast-paginate.component';
+import { PodcastSearchComponent } from './podcast-search/podcast-search.component';
+import { PodcastSearchPaginateComponent } from './podcast-search-paginate/podcast-search-paginate.component'
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -60,7 +64,7 @@ import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed,VideoB
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
-         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent],
+         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
@@ -76,7 +80,9 @@ import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed,VideoB
       SearchChannel, SearchChannelPageOther, getSubscriptionPage1, getSubscriptionPageOther,
       GetUserProfile,GetMyChannel, GetUserById, GetChannelOfUser, GetChannelBYToken,
       CheckIfUserIsSubscribed, GetNewVideo, GetNewVideoPaginate, GetVideoFeed, GetVideoFeedPaginate,
-       SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed,CheckVideoBookmark, VideoByToken2, CheckVideoBookmark2
+       SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed,CheckVideoBookmark, VideoByToken2, CheckVideoBookmark2,
+       CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
+   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast
     ]
 })
 export class UserModule { }
