@@ -1,0 +1,26 @@
+.podcast-list{
+    display: flex;
+}
+.site-section{
+    width:100%;
+}
+
+.upper-item{
+    display: flex;
+    padding-top:10px;
+    padding-left:10px;
+}
+
+@media (max-width: 768px){
+    .podcast-list{
+        display: block;
+    }
+    .site-section{
+        width:100%;
+    }
+    
+    .upper-item{
+        display: block;
+    }
+    
+}

@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {OthersService} from '../services/others.service'
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import {VideoService} from '../services/video.service'
 import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 import { Meta, Title } from '@angular/platform-browser';
@@ -16,14 +16,27 @@ export class ChannelVideoComponent implements OnInit, OnDestroy{
 closeResult:string
   constructor(private modalService:NgbModal,  private title: Title, private reuse:OthersService, private vidservice:VideoService,
     private meta: Meta, private route:Router, private router:ActivatedRoute, private fb:FormBuilder,
-    private location:Location) { }
+    private location:Location, private cdRef: ChangeDetectorRef) { 
+      this.router.params.subscribe(params => this.parameter = params.id2)
+      route.events.forEach((event) => {
+        if(event instanceof NavigationEnd) {
+         this.loadNew()
+        }
+        
+      });
+    }
+    parameter:string
     video:any
     user:any
     bookmark:boolean
     reportForm:FormGroup
     editForm:FormGroup
+    video_link:string
   ngOnInit() {
-    this.reuse.changeMessage(false)
+    setTimeout(() => {
+      this.reuse.changeMessage(false)
+
+    }, 1000);
     this.video=this.router.snapshot.data['video']
       this.user=this.router.snapshot.data['user']
       this.title.setTitle(this.video.message.title);
@@ -45,14 +58,28 @@ closeResult:string
         title:[this.video.message.title, Validators.required],
         description:[this.video.message.description, Validators.required]
       })
+      
   }
-  
+  loadNew(){
+    this.vidservice.getVideoByToken(this.parameter).subscribe(val=>{
+      this.video=val
+      
+      
+      this.title.setTitle(this.video.message.title);
+      this.cdRef.detectChanges();
+      this.vidservice.checkVideoBookMark(this.parameter).subscribe(value=>{
+        this.bookmark=value['bookmark']
+      })
+    })
+    
+  }
   deleteVideo(){
     this.vidservice.deleteVideo(this.video.message.id).subscribe(val=>{
       this.reuse.successToast('Success', val['message'])
       this.route.navigate(['/user/addcontent'])
 
     })
+    
   }
 
   editVideo(){

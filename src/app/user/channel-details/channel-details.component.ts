@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import {Router, ActivatedRoute} from '@angular/router'
+import {Router, ActivatedRoute, NavigationEnd} from '@angular/router'
 import {OthersService} from '../services/others.service'
 import { Meta, Title } from '@angular/platform-browser';
 import {FormControl, Validators, FormBuilder, FormGroup} from '@angular/forms';
@@ -17,7 +17,10 @@ export class ChannelDetailsComponent implements OnInit {
 channel_description:boolean
   constructor(private modalService: NgbModal, private route:Router,private title: Title, private meta: Meta,
      private data:OthersService, private router:ActivatedRoute, private subServices:SubscriptionService,
-     private fb:FormBuilder, private channelService:ChannelService) { }
+     private fb:FormBuilder, private channelService:ChannelService) {
+      
+      }
+  parameter:string
   closeResult:string
   channel:any
   user2:any
@@ -52,7 +55,7 @@ check_sub:any
     })
   }
 
-
+  
   addSubscription(){
     if(this.show_item==false){
       this.data.logoutAndRedirect()

@@ -1,23 +1,23 @@
 <app-header></app-header>
-<h5 align="center" style="padding-bottom: 10px; padding-top:10px;" class="card-title">Podcast title</h5>
+<h5 align="center" style="padding-bottom: 10px; padding-top:10px;" class="card-title">{{podcast.message.title}}</h5>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
           <div class="card card-20201">
-            <img src="assets/img/1.png" class="card-img-top" alt="...">
+            <img src="{{podcast.channel_pics}}" class="card-img-top" alt="...">
             <div  class="card-body">
               
               <p class="card-text mb-5">
                 <audio controlsList="nodownload" style="width:100%" controls >
-                    <source  src="http://whiteoakstables.net/chat/audio/rock.wav">
+                    <source  src="{{podcast.podcast}}">
                   </audio>  
                   
               </p>
               <div style="display: flex;" class="blog_right_sidebar container"> 
-                <p>Listens: 300</p>&nbsp;&nbsp;&nbsp;
-                <p><i class="material-icons">bookmark</i></p>&nbsp;&nbsp;&nbsp;
-                <i class="material-icons"> bug_report</i>
+                <p>Listens: {{podcast.message.listens|formatNumber}}</p>&nbsp;&nbsp;&nbsp;
+                <p><i [ngStyle]="{'color':bookmark === true ? 'rgb(91, 150, 163)' : '#333' }" style="cursor: pointer;" (click)="bookmark_func()" class="material-icons">bookmark</i></p>&nbsp;
+               
             </div>
             </div>
           </div>
@@ -26,10 +26,12 @@
         <div class="col-lg-8">
             <div class="card card-21029">
               <div class="card-body">
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <p class="card-text"><i>Crime channel by <a routerLink="/user/profile/3"> Igwe Micheal</a></i></p>
-                <a style="color: white;" class="btn btn-primary">Subscribe</a>
-                <button (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Edit</button>
+                <p style="white-space: pre-wrap;" class="card-text">{{podcast.message.desciption}}</p>
+                <br/>
+                <small>{{podcast.message.created_at| timeAgo}}</small>
+                <p class="card-text"><a routerLink="/user/channel-item/{{podcast.message.channel.token_channel}}">{{podcast.message.channel.name}}</a> by <a routerLink="/user/profile/{{podcast.message.user.token}}">{{podcast.message.user.name}}</a></p>
+                <a (click)="open(content2)" class="btn px-4 m-1 btn-outline-danger">Report Podcast</a>
+                <button *ngIf="user.message.id == podcast.message.user_id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
               </div>
             </div>
           </div>
@@ -44,8 +46,64 @@
     </button>
   </div>
   <div class="modal-body">
-   <p>Edit Video</p>
-  </div>
+   <p>Edit podcast</p>
+   <form [formGroup]="editForm" (ngSubmit)="editPodcast(); modal.dismiss('Cross click');">
+      <div class="form-group">
+       <input type="text" formControlName="title" placeholder="title" class="form-control">
+      </div>
+      <div class="form-group">
+         <textarea formControlName="desciption" placeholder="edit podcast" class="form-control">
+ 
+           </textarea>
+      </div>
+      <button [disabled]="editForm.invalid" class="btn px-4 m-1 btn-outline-info"> Update</button>
+ 
+    </form>
+    <hr/>
+    <button (click)="open(content3); modal.dismiss('Cross click');" class="btn px-4 m-1 btn-outline-damger">Delete Podcast</button>
+   </div>
   <div class="modal-footer">
   </div>
 </ng-template>
+
+
+<!-- report  -->
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+     <h5>Report podcast</h5>
+     <form [formGroup]="reportForm" (ngSubmit)="report(); modal.dismiss('Cross click');">
+      
+        <div class="form-group">
+          <textarea formControlName="report" placeholder="Report video" class="form-control">
+  
+          </textarea>
+        </div>
+        
+       <button [disabled]="reportForm.invalid" class="btn px-4 m-1 btn-outline-info"> Report</button>
+    </form>
+    </div>
+    <div class="modal-footer">
+    </div>
+  </ng-template>
+
+
+  <!-- delete -->
+  <ng-template #content3 let-modal>
+      <div class="modal-header">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div align="center" class="modal-body">
+        <h5>Are You Sure You Want To Delete podcast (all content in this video would be deleted)</h5>
+        <button (click)="modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-info">No</button>
+        <button (click)="deletepodcast(); modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-danger"> Delete</button>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </ng-template>
