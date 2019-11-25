@@ -48,7 +48,7 @@
       <input type="text" formControlName="title" placeholder="title" class="form-control">
      </div>
      <div class="form-group">
-        <textarea formControlName="description" placeholder="Report video" class="form-control">
+        <textarea formControlName="description" placeholder="edit video" class="form-control">
 
           </textarea>
      </div>
@@ -95,7 +95,7 @@
       </button>
     </div>
     <div align="center" class="modal-body">
-      <h5>Are You Sure You Want ToDelete Video (all content in this video would be deleted)</h5>
+      <h5>Are You Sure You Want To Delete Video (all content in this video would be deleted)</h5>
       <button (click)="modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-info">No</button>
       <button (click)="deleteVideo(); modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-danger"> Delete</button>
     </div>

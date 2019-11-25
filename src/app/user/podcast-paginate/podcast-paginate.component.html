@@ -1,1 +1,44 @@
-<p>podcast-paginate works!</p>
+<app-header></app-header>
+
+<div class="upper-item">
+<div><a routerLink="/user/addcontent"><i class="material-icons">add_circle</i> Add Podcast</a></div>
+<div class="col-md-3">
+    <form [formGroup]="searchForm" (ngSubmit)="searchPodcast();">
+        <div class="input-group">           
+            <input style="height:30px;" formControlName="search" type="text" class="form-control border-right-0" placeholder="Search podcast" aria-label="Search video" aria-describedby="basic-addon1">
+            <button style="height: 30px;" [disabled]="searchForm.invalid"><i class="material-icons">search</i></button>
+          </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="podcast-list">
+<div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let a of podcast.message | paginate: {id:'podcast', itemsPerPage: 6, currentPage: p, totalItems: podcast.total}" class="col-lg-4">
+          <div class="card card-20201">
+            
+            <div class="card-body">
+              <h5 class="card-title">{{a.title}} <i class="material-icons">mic_none</i></h5>
+              <p style="color:gray;">By <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> {{a.created_at| timeAgo}}</p>
+              <small  style="color:gray;">listens: {{a.listens| formatNumber}}</small>
+              <p class="card-text mb-5">{{a.desciption| slice:0:50}}</p>
+              <hr/>
+              <small style="color:gray;">posted in <a routerLink="/user/channel-item/{{a.channel.token_channel}}">{{a.channel.name}}</a></small><br/>
+              <a routerLink="/user/podcast-item/{{a.token}}" class="btn btn-primary">Listen</a>
+            </div>
+          </div>
+        </div>
+      
+      </div>
+
+      <div align="center"><pagination-controls id="podcast"  (pageChange)="p = $event; paginatePodcast($event)"></pagination-controls></div> 
+
+    </div>
+  </div>
+
+  
+  </div>

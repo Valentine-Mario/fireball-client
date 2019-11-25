@@ -34,11 +34,7 @@ export class VideoPagpaginateComponent implements OnInit {
       }
       if(this.video.message.length <1){
         this.video=this.router.snapshot.data['new_video']
-        if(this.video.code=="02"){
-          this.reuse.logoutAndRedirect()
-          this.reuse.infoToast('Try to login again', "Token expired")
-
-        }
+        
       }
     }
 

@@ -55,8 +55,7 @@ import {CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByT
 import { PodcastPaginateComponent } from './podcast-paginate/podcast-paginate.component';
 import { PodcastSearchComponent } from './podcast-search/podcast-search.component';
 import { PodcastSearchPaginateComponent } from './podcast-search-paginate/podcast-search-paginate.component'
-import {TimeAgoPipe} from 'time-ago-pipe';
-
+import {DateAgoPipe} from './pipes/timeago'
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
      NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
@@ -65,7 +64,7 @@ import {TimeAgoPipe} from 'time-ago-pipe';
        ChannelPodcastComponent, SettingComponent, VidHistoryComponent, PodHistoryComponent,
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
-         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, TimeAgoPipe,
+         ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, DateAgoPipe,
          FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent],
   imports: [
     CommonModule,
