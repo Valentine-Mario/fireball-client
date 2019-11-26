@@ -148,3 +148,58 @@ export class GetNewPodcast implements Resolve<any> {
       }
     }
 
+    @Injectable()
+    export class GetPodcastBookMark implements Resolve<any> {
+      constructor(private data:PodcastService, private reuse:OthersService) {}
+        
+      resolve(){
+          return this.data.viewBookmark(1, 15).pipe(catchError((err)=>{
+            this.reuse.errorToast('Error', 'Error connection to the server')
+    
+              return empty();
+          }))
+        
+      }
+    }
+    
+    @Injectable()
+    export class GetPodcastBookMarkPaginate implements Resolve<any> {
+      constructor(private data:PodcastService, private reuse:OthersService) {}
+        
+      resolve(route: ActivatedRouteSnapshot){
+          return this.data.viewBookmark(route.paramMap.get('id'), 15).pipe(catchError((err)=>{
+            this.reuse.errorToast('Error', 'Error connection to the server')
+    
+              return empty();
+          }))
+        
+      }
+    }
+    
+    @Injectable()
+    export class GetPodcastHistory implements Resolve<any> {
+      constructor(private data:PodcastService, private reuse:OthersService) {}
+        
+      resolve(){
+          return this.data.podcastHistory(1, 15).pipe(catchError((err)=>{
+            this.reuse.errorToast('Error', 'Error connection to the server')
+    
+              return empty();
+          }))
+        
+      }
+    }
+    
+    @Injectable()
+    export class GetPodcastHistoryPaginate implements Resolve<any> {
+      constructor(private data:PodcastService, private reuse:OthersService) {}
+        
+      resolve(route: ActivatedRouteSnapshot){
+          return this.data.podcastHistory(route.paramMap.get('id'), 15).pipe(catchError((err)=>{
+            this.reuse.errorToast('Error', 'Error connection to the server')
+    
+              return empty();
+          }))
+        
+      }
+    }

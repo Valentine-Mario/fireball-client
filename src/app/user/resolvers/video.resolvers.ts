@@ -148,3 +148,59 @@ export class SearchVideoPaginate implements Resolve<any> {
       
     }
   }
+
+  @Injectable()
+export class GetVideoBookMark implements Resolve<any> {
+  constructor(private data:VideoService, private reuse:OthersService) {}
+    
+  resolve(){
+      return this.data.viewBookmark(1, 15).pipe(catchError((err)=>{
+        this.reuse.errorToast('Error', 'Error connection to the server')
+
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetVideoBookMarkPginate implements Resolve<any> {
+  constructor(private data:VideoService, private reuse:OthersService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+      return this.data.viewBookmark(route.paramMap.get('id'), 15).pipe(catchError((err)=>{
+        this.reuse.errorToast('Error', 'Error connection to the server')
+
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetVideoHistory implements Resolve<any> {
+  constructor(private data:VideoService, private reuse:OthersService) {}
+    
+  resolve(){
+      return this.data.videoHistory(1, 15).pipe(catchError((err)=>{
+        this.reuse.errorToast('Error', 'Error connection to the server')
+
+          return empty();
+      }))
+    
+  }
+}
+
+@Injectable()
+export class GetVideoHistoryPaginate implements Resolve<any> {
+  constructor(private data:VideoService, private reuse:OthersService) {}
+    
+  resolve(route: ActivatedRouteSnapshot){
+      return this.data.videoHistory(route.paramMap.get('id'), 15).pipe(catchError((err)=>{
+        this.reuse.errorToast('Error', 'Error connection to the server')
+
+          return empty();
+      }))
+    
+  }
+}

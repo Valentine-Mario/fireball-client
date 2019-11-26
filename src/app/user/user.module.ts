@@ -49,13 +49,19 @@ import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate
 import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed,VideoByToken2, CheckVideoBookmark2,
-    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
+    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed, 
+    GetVideoBookMark, GetVideoBookMarkPginate, GetVideoHistory, GetVideoHistoryPaginate} from './resolvers/video.resolvers'
 import {CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
-   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast} from './resolvers/podcast.resolvers';
+   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, 
+   GetNewPodcast, GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate} from './resolvers/podcast.resolvers';
 import { PodcastPaginateComponent } from './podcast-paginate/podcast-paginate.component';
 import { PodcastSearchComponent } from './podcast-search/podcast-search.component';
 import { PodcastSearchPaginateComponent } from './podcast-search-paginate/podcast-search-paginate.component'
-import {DateAgoPipe} from './pipes/timeago'
+import {DateAgoPipe} from './pipes/timeago';
+import { PodBookmarkPaginateComponent } from './pod-bookmark-paginate/pod-bookmark-paginate.component';
+import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-paginate.component';
+import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
+import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
      NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
@@ -65,7 +71,7 @@ import {DateAgoPipe} from './pipes/timeago'
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
          ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, DateAgoPipe,
-         FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent],
+         FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent, PodBookmarkPaginateComponent, PodHistoryPaginateComponent, VidBookmarkPaginateComponent, VidHistoryPaginateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
@@ -83,7 +89,9 @@ import {DateAgoPipe} from './pipes/timeago'
       CheckIfUserIsSubscribed, GetNewVideo, GetNewVideoPaginate, GetVideoFeed, GetVideoFeedPaginate,
        SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed,CheckVideoBookmark, VideoByToken2, CheckVideoBookmark2,
        CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
-   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast
+   SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast,
+   GetVideoBookMark, GetVideoBookMarkPginate, GetVideoHistory, GetVideoHistoryPaginate,
+   GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate
     ]
 })
 export class UserModule { }
