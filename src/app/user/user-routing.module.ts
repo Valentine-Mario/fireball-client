@@ -38,12 +38,18 @@ import { VideoPagpaginateComponent } from './video-pagpaginate/video-pagpaginate
 import { VideoSearchComponent } from './video-search/video-search.component';
 import { VideoSearchPaginateComponent } from './video-search-paginate/video-search-paginate.component';
 import {GetNewVideo,CheckVideoBookmark, GetNewVideoPaginate, GetVideoFeed, VideoByToken2, CheckVideoBookmark2,
-    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed} from './resolvers/video.resolvers'
+    GetVideoFeedPaginate, SearchVideo, SearchVideoPaginate, VideoByToken, MostViewed, 
+    GetVideoBookMark, GetVideoBookMarkPginate, GetVideoHistory, GetVideoHistoryPaginate} from './resolvers/video.resolvers'
 import {CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
-        SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast} from './resolvers/podcast.resolvers'
+        SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate,
+         GetNewPodcast, GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate} from './resolvers/podcast.resolvers'
 import { PodcastPaginateComponent } from './podcast-paginate/podcast-paginate.component';
 import { PodcastSearchComponent } from './podcast-search/podcast-search.component';
 import { PodcastSearchPaginateComponent } from './podcast-search-paginate/podcast-search-paginate.component'     
+import { PodBookmarkPaginateComponent } from './pod-bookmark-paginate/pod-bookmark-paginate.component';
+import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-paginate.component';
+import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
+import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
 
 export const UserRoutes: Routes = [
     {
@@ -207,22 +213,50 @@ export const UserRoutes: Routes = [
             {
                 path:'videohistory',
                 component:VidHistoryComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoHistory}
+            },
+            {
+                path:'videohistory/:id',
+                component:VidHistoryPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoHistoryPaginate}
             },
             {
                 path:'podcasthistory',
                 component:PodHistoryComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{podcast:GetPodcastHistory}
+            },
+            {
+                path:'podcasthistory/:id',
+                component:PodHistoryPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{podcast:GetPodcastHistoryPaginate}
             },
             {
                 path:'videobookmark',
                 component:VidBookmarkComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoBookMark}
+            },
+            {
+                path:'videobookmark/:id',
+                component:VidBookmarkPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoBookMarkPginate}
             },
             {
                 path:'podcastbookmark',
                 component:PodBookmarkComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{podcast:GetPodcastBookMark}
+            },
+            {
+                path:'podcastbookmark/:id',
+                component:PodBookmarkPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{podcast:GetPodcastBookMarkPaginate}
             },
             {
                 path:'profile/:id',

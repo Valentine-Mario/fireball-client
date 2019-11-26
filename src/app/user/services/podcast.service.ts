@@ -79,4 +79,17 @@ export class PodcastService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
+  viewBookmark(page, limit){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/bookmark/podcastget?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
+
+  podcastHistory(page, limit){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/podcast/history?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
 }

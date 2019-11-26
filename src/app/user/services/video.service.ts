@@ -78,4 +78,18 @@ export class VideoService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
+
+  viewBookmark(page, limit){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/bookmark/videoget?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
+
+  videoHistory(page, limit){
+    let authToken= localStorage.getItem('token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/user/video/history?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
 }
