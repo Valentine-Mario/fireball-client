@@ -50,6 +50,7 @@ import { PodBookmarkPaginateComponent } from './pod-bookmark-paginate/pod-bookma
 import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-paginate.component';
 import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
 import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
+import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
 
 export const UserRoutes: Routes = [
     {
@@ -172,13 +173,13 @@ export const UserRoutes: Routes = [
                 path:'video-item/:id2',
                 component:VideoDetailsComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark}
+                resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark, comment:GetVideoComment}
             },
             {
                 path:'podcast-item/:id2',
                 component:AudiodetailsComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:PodcastByToken, user:GetUserProfile, bookmark:CheckPodcastBookmark}
+                resolve:{podcast:PodcastByToken, user:GetUserProfile, bookmark:CheckPodcastBookmark, comment:GetPodcastComment}
             },
             {
                 path:'channel-item/:id',
@@ -188,13 +189,13 @@ export const UserRoutes: Routes = [
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
                     canActivate:[AuthGuard],
-                    resolve:{video:VideoByToken2, user:GetUserProfile, bookmark:CheckVideoBookmark2}
+                    resolve:{video:VideoByToken2, user:GetUserProfile, bookmark:CheckVideoBookmark2, comment:GetVideoComment}
                 },
                 {
                     path:'podcast/:id2',
                     component:ChannelPodcastComponent,
                     canActivate:[AuthGuard],
-                    resolve:{podcast:PodcastByToken2, user:GetUserProfile, bookmark:CheckPodcastBookmark2}
+                    resolve:{podcast:PodcastByToken2, user:GetUserProfile, bookmark:CheckPodcastBookmark2, comment:GetPodcastComment}
                 }
                 ]
             },

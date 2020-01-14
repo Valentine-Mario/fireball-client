@@ -12,7 +12,7 @@ export class GetVideoComment implements Resolve<any> {
     
   resolve(route: ActivatedRouteSnapshot){
     
-   return this.data.getVideoComments(route.paramMap.get('id2'), 1, 6).pipe(catchError((err)=>{
+   return this.data.getVideoComments(route.paramMap.get('id2'), 1, 5).pipe(catchError((err)=>{
     this.reuse.errorToast('Error', 'Error connection to the server')
       return empty();
   }))
@@ -25,9 +25,10 @@ export class GetPodcastComment implements Resolve<any> {
     
   resolve(route: ActivatedRouteSnapshot){
     
-   return this.data.getPodcastComment(route.paramMap.get('id2'), 1, 6).pipe(catchError((err)=>{
+   return this.data.getPodcastComment(route.paramMap.get('id2'), 1, 10).pipe(catchError((err)=>{
     this.reuse.errorToast('Error', 'Error connection to the server')
       return empty();
   }))
   }
 }
+

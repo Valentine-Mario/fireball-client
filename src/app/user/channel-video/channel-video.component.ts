@@ -32,6 +32,8 @@ closeResult:string
     reportForm:FormGroup
     editForm:FormGroup
     video_link:string
+    comments:any
+    p:number
   ngOnInit() {
     setTimeout(() => {
       this.reuse.changeMessage(false)
@@ -40,6 +42,8 @@ closeResult:string
     this.video=this.router.snapshot.data['video']
       this.user=this.router.snapshot.data['user']
       this.title.setTitle(this.video.message.title);
+      this.comments=this.router.snapshot.data['comment']
+
       this.meta.updateTag({ name: this.video.message.title, content: this.video.message.description });
       if(this.video.code=="01"){
         this.location.back()
@@ -63,6 +67,10 @@ closeResult:string
         description:[this.video.message.description, Validators.required]
       })
       
+  }
+
+  paginateComment(e){
+
   }
   loadNew(){
     this.vidservice.getVideoByToken(this.parameter).subscribe(val=>{

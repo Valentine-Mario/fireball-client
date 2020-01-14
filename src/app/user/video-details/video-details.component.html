@@ -34,6 +34,62 @@
       </div>
 </div>
 
+
+<!-- video comment -->
+<div *ngIf="comments.message.length > 0" class="container">
+
+      <ul *ngFor="let a of comments.message| paginate: {id:'comment', itemsPerPage: 5, currentPage: p, totalItems: comments.total}" class="list-group">
+        <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|timeAgo}}</small></p>
+
+        <li class="list-group-item">
+          {{a.comment}}
+          
+          <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == a.user.id">
+            <small (click)="open(content4)" style="cursor:pointer;">delete</small>
+            <!-- delete comment modal -->
+            <ng-template #content4 let-modal>
+              <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div align="center" class="modal-body">
+                <h5>Are You Sure You Want To Delete comment (all replies in this comment would be deleted)</h5>
+                <button (click)="modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-info">No</button>
+                <button (click)="deleteComment(a); modal.dismiss('Cross click')" class="btn px-4 m-1 btn-outline-danger"> Delete</button>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </ng-template>
+
+            <!-- end of modal -->
+          </div>
+        </li>
+        </ul><br/>
+       <div align="center"><pagination-controls id="comment"  (pageChange)="p = $event; paginateComment($event)"></pagination-controls></div> 
+</div>
+
+<div *ngIf="comments.message.length < 1" class="container">
+  <p align="center">No comments in this video yet.</p>
+</div>
+
+
+<!-- add comments -->
+<div class="container" style="width:70%;">
+  <form [formGroup]="commentForm" (ngSubmit)="addComment()">
+  
+    <div class="form-group">
+        <p>Add Comment</p>
+            <textarea formControlName="comment" class="form-control"  placeholder='Got something to say?'>
+                </textarea>
+        </div>
+       
+       
+    <div align="center" ><button class="btn px-4 m-1 btn-outline-info" [disabled]="commentForm.invalid" >Add Comment</button></div>
+  </form>
+</div>
+
+
 <!-- settings modal -->
 <ng-template #content let-modal>
   <div class="modal-header">

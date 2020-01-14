@@ -33,6 +33,26 @@
       </div>
 </div>
 
+<!-- video comment -->
+<div *ngIf="comments.message.length > 0" class="container">
+
+  <div  class="row">
+    <div *ngFor="let a of comments.message| paginate: {id:'comment', itemsPerPage: 10, currentPage: p, totalItems: comments.total}" class="col-lg-4">
+     <div class="comment">
+       <h3>{{a.user.name}}</h3>
+      <p>{{a.comment}}</p>
+      <small>{{a.created_at| timeAgo}</small>
+     </div>
+    </div>   
+  </div>
+  <br/>
+  <div align="center"><pagination-controls id="comment"  (pageChange)="p = $event; paginateComment($event)"></pagination-controls></div> 
+</div>
+
+<div *ngIf="comments.message.length < 1" class="container">
+  <p align="center">No comments in this video yet.</p>
+</div>
+
 <!-- settings modal -->
 <ng-template #content let-modal>
   <div class="modal-header">

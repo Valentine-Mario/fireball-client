@@ -62,6 +62,9 @@ import { PodBookmarkPaginateComponent } from './pod-bookmark-paginate/pod-bookma
 import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-paginate.component';
 import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
 import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
+import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
+
+
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
      NotificationComponent, ProfileComponent, LoginComponent, LandingComponent, HeaderComponent,
@@ -91,7 +94,8 @@ import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-
        CheckPodcastBookmark2, PodcastByToken2, CheckPodcastBookmark, PodcastByToken, MostListens, 
    SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast,
    GetVideoBookMark, GetVideoBookMarkPginate, GetVideoHistory, GetVideoHistoryPaginate,
-   GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate
+   GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate, GetVideoComment,
+   GetPodcastComment
     ]
 })
 export class UserModule { }
