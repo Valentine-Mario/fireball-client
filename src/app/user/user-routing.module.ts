@@ -169,13 +169,13 @@ export const UserRoutes: Routes = [
                 resolve:{sub:getSubscriptionPageOther}
             },
             {
-                path:'video-item/:id',
+                path:'video-item/:id2',
                 component:VideoDetailsComponent,
                 canActivate:[AuthGuard],
                 resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark}
             },
             {
-                path:'podcast-item/:id',
+                path:'podcast-item/:id2',
                 component:AudiodetailsComponent,
                 canActivate:[AuthGuard],
                 resolve:{podcast:PodcastByToken, user:GetUserProfile, bookmark:CheckPodcastBookmark}

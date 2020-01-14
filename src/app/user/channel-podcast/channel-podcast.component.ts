@@ -50,7 +50,10 @@ export class ChannelPodcastComponent implements OnInit, OnDestroy, OnChanges {
         this.reuse.logoutAndRedirect();
         this.reuse.infoToast('Try to login again', "Token expired")
       }
-      this.bookmark=this.router.snapshot.data['bookmark'].message
+
+      setTimeout(() => {
+        this.bookmark=this.router.snapshot.data['bookmark'].message
+      }, 1000);
       
       this.reportForm=this.fb.group({
         report:['', Validators.required]
@@ -84,7 +87,9 @@ export class ChannelPodcastComponent implements OnInit, OnDestroy, OnChanges {
   bookmark_func(){
     this.podservice.bookmarkPodcast(this.podcast.message.id).subscribe(val=>{
       if(val['code']=="00"){
-        this.bookmark=val['bookmark']
+        setTimeout(() => {
+          this.bookmark=val['bookmark']
+        }, 1000);
       }else{
         this.reuse.errorToast('Error', val['message'])
       }
@@ -116,7 +121,7 @@ export class ChannelPodcastComponent implements OnInit, OnDestroy, OnChanges {
       this.title.setTitle(this.podcast.message.title);
 
       this.podservice.checkPodcastBookMark(this.parameter).subscribe(value=>{
-        this.bookmark=value['bookmark']
+        this.bookmark=value['message']
       })
     })
   }
