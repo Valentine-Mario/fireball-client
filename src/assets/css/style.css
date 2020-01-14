@@ -1325,7 +1325,7 @@ h3 {
 
 /* line 1, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_about.scss */
 .about_area {
-  padding: 200px 0 270px 0;
+  padding: 200px 0 50px 0;
 }
 
 @media (max-width: 767px) {
@@ -1338,14 +1338,14 @@ h3 {
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 1, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_about.scss */
   .about_area {
-    padding: 100px 0;
+    padding: 50px 0;
   }
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
   /* line 1, C:/Users/SPN Graphics/Desktop/CL September/Edu mark/207 Education/HTML/scss/_about.scss */
   .about_area {
-    padding: 200px 0 200px 0;
+    padding: 200px 0 50px 0;
   }
 }
 

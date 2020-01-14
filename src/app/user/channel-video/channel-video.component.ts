@@ -32,6 +32,8 @@ closeResult:string
     reportForm:FormGroup
     editForm:FormGroup
     video_link:string
+    comments:any
+    p:number
   ngOnInit() {
     setTimeout(() => {
       this.reuse.changeMessage(false)
@@ -40,6 +42,8 @@ closeResult:string
     this.video=this.router.snapshot.data['video']
       this.user=this.router.snapshot.data['user']
       this.title.setTitle(this.video.message.title);
+      this.comments=this.router.snapshot.data['comment']
+
       this.meta.updateTag({ name: this.video.message.title, content: this.video.message.description });
       if(this.video.code=="01"){
         this.location.back()
@@ -50,7 +54,11 @@ closeResult:string
         this.reuse.infoToast('Try to login again', "Token expired")
 
       }
-      this.bookmark=this.router.snapshot.data['bookmark'].message
+      setTimeout(() => {
+        this.bookmark=this.router.snapshot.data['bookmark'].message
+      }, 1000);
+
+
       this.reportForm=this.fb.group({
         report:['', Validators.required]
       })
@@ -60,15 +68,19 @@ closeResult:string
       })
       
   }
+
+  paginateComment(e){
+
+  }
   loadNew(){
     this.vidservice.getVideoByToken(this.parameter).subscribe(val=>{
       this.video=val
       
       
       this.title.setTitle(this.video.message.title);
-      this.cdRef.detectChanges();
       this.vidservice.checkVideoBookMark(this.parameter).subscribe(value=>{
-        this.bookmark=value['bookmark']
+     
+        this.bookmark=value['message']
       })
     })
     
@@ -109,7 +121,9 @@ closeResult:string
   bookmark_func(){
     this.vidservice.bookmarkVideo(this.video.message.id).subscribe(val=>{
       if(val['code']=="00"){
-        this.bookmark=val['bookmark']
+        setTimeout(() => {
+          this.bookmark=val['bookmark']
+        }, 1000);
       }else{
         this.reuse.errorToast('Error', val['message'])
       }

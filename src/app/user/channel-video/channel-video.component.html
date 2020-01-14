@@ -1,10 +1,10 @@
-
 <h5 align="center" style="padding-bottom: 10px; padding-top:10px;" class="card-title">{{video.message.title}}</h5>
   <div class="embed-responsive embed-responsive-16by9 container">
     <video [src]="video.video" class="embed-responsive-item" controls  controls="controls" controlsList="nodownload">
         <source />
     </video>
 </div>
+
 <div style="display: flex;" class="blog_right_sidebar container"> 
     <p>Views: {{video.message.views| formatNumber}}</p>&nbsp;&nbsp;&nbsp;
     <p><i [ngStyle]="{'color':bookmark === true ? 'rgb(91, 150, 163)' : '#333' }" style="cursor: pointer;" (click)="bookmark_func()" class="material-icons">bookmark</i></p>&nbsp;&nbsp;&nbsp;
@@ -31,6 +31,26 @@
           <small>Created: {{video.message.created_at|timeAgo }}</small>
         </div>
       </div>
+</div>
+
+<!-- video comment -->
+<div *ngIf="comments.message.length > 0" class="container">
+
+  <div  class="row">
+    <div *ngFor="let a of comments.message| paginate: {id:'comment', itemsPerPage: 10, currentPage: p, totalItems: comments.total}" class="col-lg-4">
+     <div class="comment">
+       <h3>{{a.user.name}}</h3>
+      <p>{{a.comment}}</p>
+      <small>{{a.created_at| timeAgo}</small>
+     </div>
+    </div>   
+  </div>
+  <br/>
+  <div align="center"><pagination-controls id="comment"  (pageChange)="p = $event; paginateComment($event)"></pagination-controls></div> 
+</div>
+
+<div *ngIf="comments.message.length < 1" class="container">
+  <p align="center">No comments in this video yet.</p>
 </div>
 
 <!-- settings modal -->

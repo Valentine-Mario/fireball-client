@@ -90,7 +90,7 @@ export class GetNewPodcast implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
       resolve(route: ActivatedRouteSnapshot){
-        return this.data.getPodcastByToken(route.paramMap.get('id')).pipe(catchError((err)=>{
+        return this.data.getPodcastByToken(route.paramMap.get('id2')).pipe(catchError((err)=>{
               return empty();
           }))
         
@@ -116,7 +116,7 @@ export class GetNewPodcast implements Resolve<any> {
       constructor(private data: PodcastService, private reuse:OthersService) {}
         
       resolve(route: ActivatedRouteSnapshot){
-        return this.data.checkPodcastBookMark(route.paramMap.get('id')).pipe(catchError((err)=>{
+        return this.data.checkPodcastBookMark(route.paramMap.get('id2')).pipe(catchError((err)=>{
               return empty();
           }))
         
