@@ -50,7 +50,11 @@ closeResult:string
         this.reuse.infoToast('Try to login again', "Token expired")
 
       }
-      this.bookmark=this.router.snapshot.data['bookmark'].message
+      setTimeout(() => {
+        this.bookmark=this.router.snapshot.data['bookmark'].message
+      }, 1000);
+
+
       this.reportForm=this.fb.group({
         report:['', Validators.required]
       })
@@ -66,9 +70,9 @@ closeResult:string
       
       
       this.title.setTitle(this.video.message.title);
-      this.cdRef.detectChanges();
       this.vidservice.checkVideoBookMark(this.parameter).subscribe(value=>{
-        this.bookmark=value['bookmark']
+     
+        this.bookmark=value['message']
       })
     })
     
@@ -109,7 +113,9 @@ closeResult:string
   bookmark_func(){
     this.vidservice.bookmarkVideo(this.video.message.id).subscribe(val=>{
       if(val['code']=="00"){
-        this.bookmark=val['bookmark']
+        setTimeout(() => {
+          this.bookmark=val['bookmark']
+        }, 1000);
       }else{
         this.reuse.errorToast('Error', val['message'])
       }

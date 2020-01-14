@@ -35,10 +35,10 @@ export class ChannelSearchPaginateComponent implements OnInit {
       this.route.navigate(['/user/channel-search/'+this.parameter])
     }
     else{
-    this.route.navigate(['user/channel-search/'+this.parameter+'/'+a])
     this.channelService.searchChannel(this.parameter, a, 6).subscribe(val=>{
       this.channel=val['message']
     })
+    this.route.navigate(['user/channel-search/'+this.parameter+'/'+a])
     this.p=parseInt(a)
     } 
   }

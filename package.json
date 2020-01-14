@@ -7,7 +7,11 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "serve:ssr": "node dist/server",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:client-and-server-bundles": "ng build --prod && ng run fireball:server:production --bundleDependencies all"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +23,12 @@
     "@angular/forms": "~8.2.4",
     "@angular/platform-browser": "~8.2.4",
     "@angular/platform-browser-dynamic": "~8.2.4",
+    "@angular/platform-server": "~8.2.4",
     "@angular/router": "~8.2.4",
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
+    "@nguniversal/express-engine": "^8.2.6",
+    "@nguniversal/module-map-ngfactory-loader": "v8.2.6",
+    "express": "^4.15.2",
     "ngx-pagination": "^4.1.0",
     "ngx-spinner": "^8.0.3",
     "ngx-toastr": "^11.2.0",
@@ -33,6 +41,7 @@
     "@angular/cli": "~8.3.3",
     "@angular/compiler-cli": "~8.2.4",
     "@angular/language-service": "~8.2.4",
+    "@types/express": "^4.17.0",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
@@ -45,8 +54,10 @@
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
+    "ts-loader": "^5.2.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
+    "typescript": "~3.5.3",
+    "webpack-cli": "^3.1.0"
   }
 }
