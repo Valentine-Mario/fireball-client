@@ -28,6 +28,7 @@ bookmark:boolean
 reportForm:FormGroup
 editForm:FormGroup
 commentForm:FormGroup
+replyForm:FormGroup
 comments:any
 p:number
 parameter:string
@@ -53,8 +54,13 @@ parameter:string
       this.bookmark=this.router.snapshot.data['bookmark'].message
 
       //forms
+      this.replyForm=this.fb.group({
+        comment:['', Validators.required],
+
+      })
+
       this.reportForm=this.fb.group({
-        report:['', Validators.required]
+        report:['', Validators.required],
       })
       this.editForm=this.fb.group({
         title:[this.video.message.title, Validators.required],
@@ -91,6 +97,29 @@ parameter:string
     })
   }
 
+  replyComment(a){
+    var formValue=this.replyForm.value
+    this.commentServices.addVideoCommentReplies(formValue, a.id).subscribe(val=>{
+      if(val['code']=="00"){
+        var push_data={
+          comment:val['message'].comment,
+          created_at:val['message'].created_at,
+          user:{
+            name:val['message'].user.name,
+            token:val['message'].user.token
+          }
+        }
+        a.videoreplies.push(push_data)
+        this.reuse.successToast('replied', 'reply added successfully')
+        this.replyForm=this.fb.group({
+          comment:['', Validators.required],
+  
+        })
+      }else{
+          this.reuse.errorToast('error', val['message'])
+      }
+    })
+  }
   deleteComment(a){
     this.commentServices.deleteVideoComment(a.id).subscribe(val=>{
       if(val['code']=="00"){
