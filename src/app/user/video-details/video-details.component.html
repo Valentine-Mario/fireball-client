@@ -49,6 +49,8 @@
           </div>
         </li>
 
+
+
         <!-- view replies -->
         <div *ngIf="a.videoreplies.length < 1">
           No replies here.
@@ -58,13 +60,19 @@
           <div style="padding-left: 10px;" *ngFor="let b of a.videoreplies| paginate: {id:a.id, itemsPerPage: 5, currentPage: a.comment}">
             <li style="color: #333;" class="list-group-item">
             <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> : {{b.comment}}
+            <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == b.user.id">
+              <small (click)="deleteReply(a, b)" style="cursor:pointer;">delete</small>
+            </div>
             </li>
             {{b.created_at|timeAgo}}
           </div>
+         
           <div align="center"><pagination-controls id="{{a.id}}"  (pageChange)="a.comment = $event;"></pagination-controls></div> 
 
         </div>
        
+
+
 
         <!-- adding reply -->
         <div align="right" style="padding-top:10px;">

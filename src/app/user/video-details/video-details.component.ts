@@ -37,7 +37,6 @@ parameter:string
       this.video=this.router.snapshot.data['video']
       this.user=this.router.snapshot.data['user']
       this.comments=this.router.snapshot.data['comment']
-      console.log(this.comments)
       this.title.setTitle(this.video.message.title);
       this.meta.updateTag({ name: this.video.message.title, content: this.video.message.description });
 
@@ -120,6 +119,18 @@ parameter:string
       }
     })
   }
+
+  deleteReply(a, b){
+    this.commentServices.DeleteVideoReply(b.id).subscribe(val=>{
+      if(val['code']=="00"){
+        a.videoreplies.splice(a.videoreplies.indexOf(b), 1)
+      }else{
+        this.reuse.errorToast("Error", val['message'])
+      }
+    })
+  }
+
+
   deleteComment(a){
     this.commentServices.deleteVideoComment(a.id).subscribe(val=>{
       if(val['code']=="00"){
