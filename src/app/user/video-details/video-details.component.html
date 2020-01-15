@@ -37,7 +37,7 @@
 
 <!-- video comment -->
 <div *ngIf="comments.message.length > 0" class="container">
-
+  <h5>Comments {{comments.total| formatNumber}}</h5>
       <ul *ngFor="let a of comments.message| paginate: {id:'comment', itemsPerPage: 5, currentPage: p, totalItems: comments.total}" class="list-group">
         <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|timeAgo}}</small></p>
 
