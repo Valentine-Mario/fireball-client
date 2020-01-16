@@ -83,7 +83,8 @@ parameter:string
           id:val['message'].id,
           user:{
             name: val['message'].user.name,
-            token:val['message'].user.token
+            token:val['message'].user.token,
+            id:val['message'].user.id
           },
           videoreplies:[]
         }
@@ -105,9 +106,11 @@ parameter:string
         var push_data={
           comment:val['message'].comment,
           created_at:val['message'].created_at,
+          id:val['message'].id,
           user:{
             name:val['message'].user.name,
-            token:val['message'].user.token
+            token:val['message'].user.token,
+            id:val['message'].user.id
           }
         }
         a.videoreplies.push(push_data)
