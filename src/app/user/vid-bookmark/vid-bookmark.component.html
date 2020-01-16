@@ -1,3 +1,25 @@
 <app-header></app-header>
 
-<p>vid-bookmark works!</p>
+<div style="padding-top:15px;" class="container">
+    <div align="center" *ngIf="bookmarks.message.length < 1">
+            <h5><i class="material-icons"> mood_bad</i></h5> 
+            <p>You haven't bookmarked any video</p><br/>
+            <a routerLink="/user/video"><button class="btn px-4 m-1 btn-outline-info">Get started</button> </a>
+    </div>
+        <div *ngIf="bookmarks.message.length > 0" class="list-group">
+            
+            <a *ngFor="let a of bookmarks.message| paginate: {id:'sub', itemsPerPage: 15, currentPage: p, totalItems: bookmarks.total}" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 routerLink="/user/video-item/{{a.video.token}}" class="mb-1">{{a.video.title}}</h5>
+                <small>bookmarked : {{a.created_at | timeAgo}}<br/>
+                <button (click)="remove(a)" class="btn px-4 m-1 btn-outline-info">remove</button></small>
+              </div>
+              <p class="mb-1">{{a.video.description | slice:0:50}}</p>
+            </a>
+            <br/>
+            <div align="center"><pagination-controls id="sub"  (pageChange)="p = $event;  paginate($event)"></pagination-controls></div> 
+
+          </div>
+          <br/>
+        
+    </div>

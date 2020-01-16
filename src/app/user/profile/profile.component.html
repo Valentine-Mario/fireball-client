@@ -98,12 +98,10 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div style="display: flex;" class="modal-body">
-                            <a (click)="modal.dismiss('Cross click')" routerLink="/user/videobookmark"><button class="btn btn-primary">Video Bookmark</button></a>&nbsp;&nbsp;
-                            <a (click)="modal.dismiss('Cross click')" routerLink="/user/podcastbookmark"><button class="btn btn-primary">Podcast Bookmark</button></a>
-                           </div>
-                    <div class="modal-footer">
-                    </div>
+                    <div align="center" class="modal-body">
+                      <a (click)="modal.dismiss('Cross click')" routerLink="/user/videobookmark"><button class="btn btn-primary">Video Bookmark</button></a>&nbsp;&nbsp;
+                      <a (click)="modal.dismiss('Cross click')" routerLink="/user/podcastbookmark"><button class="btn btn-primary">Podcast Bookmark</button></a>
+                     </div>
                   </ng-template>
 
 
@@ -125,8 +123,9 @@
                              <p>subscribed   {{a.created_at| timeAgo}}</p>
                            <hr/>
                             </div>
-
-                           <pagination-controls id="sub"  (pageChange)="p = $event; getSubscribers(subscribers[0].channel_id, $event)"></pagination-controls>
+                            <div *ngIf="subscribers.length>0">
+                              <pagination-controls id="sub"  (pageChange)="p = $event; getSubscribers(subscribers[0].channel_id, $event)"></pagination-controls>
+                            </div>
 
                     </div>
                     <div class="modal-footer">
