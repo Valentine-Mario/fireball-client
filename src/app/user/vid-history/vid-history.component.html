@@ -3,7 +3,7 @@
 <div style="padding-top:15px;" class="container">
     <div align="center" *ngIf="videos.message.length < 1">
             <h5><i class="material-icons"> mood_bad</i></h5> 
-            <p>You watched any video</p><br/>
+            <p>You have not watched any video</p><br/>
             <a routerLink="/user/video"><button class="btn px-4 m-1 btn-outline-info">Get started</button> </a>
     </div>
         <div *ngIf="videos.message.length > 0" class="list-group">

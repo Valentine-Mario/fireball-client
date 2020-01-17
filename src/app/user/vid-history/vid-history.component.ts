@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router'
-import {VideoService}  from '../services/video.service'
 import {OthersService} from '../services/others.service'
 
 
@@ -12,7 +11,7 @@ import {OthersService} from '../services/others.service'
 export class VidHistoryComponent implements OnInit {
 
   constructor(private router:ActivatedRoute, private route:Router,
-    private videoService:VideoService, private reuse:OthersService) {
+   private reuse:OthersService) {
      }
     videos:any;
     p:number=1
