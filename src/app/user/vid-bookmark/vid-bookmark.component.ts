@@ -15,10 +15,15 @@ export class VidBookmarkComponent implements OnInit {
     private videoService:VideoService, private reuse:OthersService) { }
     bookmarks:any;
     p:number=1
-    
+    user:any
   ngOnInit() {
     this.bookmarks=this.router.snapshot.data['video']
-    
+    this.user=this.router.snapshot.data['user']
+
+    if(this.user.code!="00"){
+      this.reuse.logoutAndRedirect()
+      this.reuse.infoToast('Try to login again', "Token expired")
+    }
   }
   paginate(e){
     if(e==1){

@@ -215,49 +215,49 @@ export const UserRoutes: Routes = [
                 path:'videohistory',
                 component:VidHistoryComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoHistory}
+                resolve:{video:GetVideoHistory, user:GetUserProfile}
             },
             {
                 path:'videohistory/:id',
                 component:VidHistoryPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoHistoryPaginate}
+                resolve:{video:GetVideoHistoryPaginate, user:GetUserProfile}
             },
             {
                 path:'podcasthistory',
                 component:PodHistoryComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastHistory}
+                resolve:{podcast:GetPodcastHistory, user:GetUserProfile}
             },
             {
                 path:'podcasthistory/:id',
                 component:PodHistoryPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastHistoryPaginate}
+                resolve:{podcast:GetPodcastHistoryPaginate, user:GetUserProfile}
             },
             {
                 path:'videobookmark',
                 component:VidBookmarkComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoBookMark}
+                resolve:{video:GetVideoBookMark, user:GetUserProfile}
             },
             {
                 path:'videobookmark/:id',
                 component:VidBookmarkPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoBookMarkPginate}
+                resolve:{video:GetVideoBookMarkPginate, user:GetUserProfile}
             },
             {
                 path:'podcastbookmark',
                 component:PodBookmarkComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastBookMark}
+                resolve:{podcast:GetPodcastBookMark, user:GetUserProfile}
             },
             {
                 path:'podcastbookmark/:id',
                 component:PodBookmarkPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastBookMarkPaginate}
+                resolve:{podcast:GetPodcastBookMarkPaginate, user:GetUserProfile}
             },
             {
                 path:'profile/:id',
