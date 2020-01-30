@@ -5,7 +5,8 @@ import {
   NavigationEnd,
   NavigationError,
   NavigationStart,
-  Router
+  Router,
+  ActivatedRoute
 } from '@angular/router';
 import { NgxSpinnerService } from "ngx-spinner";
 import { OthersService } from '../services/others.service'
@@ -19,7 +20,10 @@ export class HeaderComponent implements OnInit {
   logout_user:boolean;
   login_user:boolean
   load:boolean=false
-  constructor(private router: Router, private spinner:NgxSpinnerService, private reuseable:OthersService) {
+  notif_length:number
+
+  constructor(private router: Router, private spinner:NgxSpinnerService,
+     private reuseable:OthersService, private route:ActivatedRoute) {
     this.router.events.subscribe((event: Event) => {
       switch (true) {
         case event instanceof NavigationStart: {
@@ -28,7 +32,6 @@ export class HeaderComponent implements OnInit {
           this.load=true
           break;
         }
-
         case event instanceof NavigationEnd:
         case event instanceof NavigationCancel:
         case event instanceof NavigationError: {
@@ -47,7 +50,14 @@ export class HeaderComponent implements OnInit {
    }
 
   ngOnInit() {
-   
+    this.notif_length=this.route.snapshot.data['length'].message
+    if(localStorage.getItem('token')){
+      if(this.route.snapshot.data['length'].code!='00'){
+        this.reuseable.logoutAndRedirect()
+        this.reuseable.infoToast('Token error', this.route.snapshot.data['length'].message)
+      }
+    }
+    
     if(localStorage.getItem('token')){
       this.logout_user=false;
       this.login_user=true;

@@ -19,7 +19,7 @@
           </li>
 
           <li *ngIf="login_user" class="nav-item">
-            <a  routerLink="/user/notification" class="nav-link d-flex align-items-center"><span class="badge badge-danger badge-pill">14</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
+            <a  routerLink="/user/notification" class="nav-link d-flex align-items-center"><span *ngIf="notif_length > 0" class="badge badge-danger badge-pill">{{notif_length}}</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
           </li>
           <li *ngIf="login_user" class="nav-item">
             <a routerLink="/user/subscription" class="nav-link d-flex align-items-center"><i routerLink="/user/subscription" routerLinkActive="activelink" class="material-icons">fireplace</i>Subscription</a>

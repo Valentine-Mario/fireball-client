@@ -62,8 +62,9 @@ import { PodBookmarkPaginateComponent } from './pod-bookmark-paginate/pod-bookma
 import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-paginate.component';
 import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
 import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
-import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
-
+import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers';
+import { NotificationPaginateComponent } from './notification-paginate/notification-paginate.component'
+import {GetVideoNotif, GetPodcastNotif, GetNotifLength, GetVideoNotifPaginate, GetPodcastNotifPaginate} from './resolvers/notification.resolvers'
 
 @NgModule({
   declarations: [HomeComponent, ChannelComponent, PodcastComponent, VideoComponent,
@@ -74,7 +75,7 @@ import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
         VidBookmarkComponent, PodBookmarkComponent, ProfileIdComponent, ChannelPaginateComponent, ChannelVideoPageComponent, 
         ChannelVideoPagePaginateComponent, ChannelPodcastPageComponent, ChannelPodcastPagePaginateComponent, ChannelSearchComponent,
          ChannelSearchPaginateComponent, ChannelSerachFormComponent, SubscriptionPaginateComponent, DateAgoPipe,
-         FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent, PodBookmarkPaginateComponent, PodHistoryPaginateComponent, VidBookmarkPaginateComponent, VidHistoryPaginateComponent],
+         FormatNumber, VideoPagpaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastPaginateComponent, PodcastSearchComponent, PodcastSearchPaginateComponent, PodBookmarkPaginateComponent, PodHistoryPaginateComponent, VidBookmarkPaginateComponent, VidHistoryPaginateComponent, NotificationPaginateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
@@ -95,7 +96,7 @@ import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
    SearchPodcastPaginate, SearchPodcast, GetPodcastFeedPaginate, GetPodcastFeed, GetNewPodcastPaginate, GetNewPodcast,
    GetVideoBookMark, GetVideoBookMarkPginate, GetVideoHistory, GetVideoHistoryPaginate,
    GetPodcastBookMark,  GetPodcastBookMarkPaginate, GetPodcastHistory, GetPodcastHistoryPaginate, GetVideoComment,
-   GetPodcastComment
+   GetPodcastComment, GetVideoNotif, GetPodcastNotif, GetVideoNotifPaginate, GetPodcastNotifPaginate, GetNotifLength
     ]
 })
 export class UserModule { }
