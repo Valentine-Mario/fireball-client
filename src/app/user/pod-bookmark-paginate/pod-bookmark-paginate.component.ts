@@ -17,11 +17,16 @@ export class PodBookmarkPaginateComponent implements OnInit {
     parameter:string
     bookmarks:any;
     p:number
-
+    user:any
   ngOnInit() {
     this.bookmarks=this.router.snapshot.data['podcast']
     this.p=parseInt(this.parameter)
+    this.user=this.router.snapshot.data['user']
 
+    if(this.user.code!="00"){
+      this.reuse.logoutAndRedirect()
+      this.reuse.infoToast('Try to login again', "Token expired")
+    }
   }
 
   paginate(a){

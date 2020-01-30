@@ -1,3 +1,25 @@
 <app-header></app-header>
 
-<p>pod-history works!</p>
+<div style="padding-top:15px;" class="container">
+    <div align="center" *ngIf="podcasts.message.length < 1">
+            <h5><i class="material-icons"> mood_bad</i></h5> 
+            <p>You have not listened to any podcast</p><br/>
+            <a routerLink="/user/podcast"><button class="btn px-4 m-1 btn-outline-info">Get started</button> </a>
+    </div>
+        <div *ngIf="podcasts.message.length > 0" class="list-group">
+            
+            <a *ngFor="let a of podcasts.message| paginate: {id:'sub', itemsPerPage: 15, currentPage: p, totalItems: podcasts.total}" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 routerLink="/user/podcast-item/{{a.podcast.token}}" class="mb-1">{{a.podcast.title}}</h5>
+                <small>last listen : {{a.updated_at | timeAgo}}<br/>
+                Your listens on podcast:{{a.listens| formatNumber}}</small>
+              </div>
+              <p class="mb-1">{{a.podcast.desciption | slice:0:50}}</p>
+            </a>
+            <br/>
+            <div align="center"><pagination-controls id="sub"  (pageChange)="p = $event;  paginate($event)"></pagination-controls></div> 
+
+          </div>
+          <br/>
+        
+    </div>

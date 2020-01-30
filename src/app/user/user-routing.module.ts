@@ -51,12 +51,20 @@ import { PodHistoryPaginateComponent } from './pod-history-paginate/pod-history-
 import { VidBookmarkPaginateComponent } from './vid-bookmark-paginate/vid-bookmark-paginate.component';
 import { VidHistoryPaginateComponent } from './vid-history-paginate/vid-history-paginate.component'
 import {GetVideoComment, GetPodcastComment} from './resolvers/comment.resolvers'
+import { NotificationPaginateComponent } from './notification-paginate/notification-paginate.component'
+import {GetVideoNotif, GetPodcastNotif, GetNotifLength, GetVideoNotifPaginate, GetPodcastNotifPaginate} from './resolvers/notification.resolvers'
+import { HeaderComponent } from './header/header.component';
 
 export const UserRoutes: Routes = [
     {
         path:'',
         component:LandingComponent,
-        resolve:{info:GetLengthOfUsersVideosPodcast, channels:GetNewChannels}
+        resolve:{info:GetLengthOfUsersVideosPodcast, channels:GetNewChannels, length:GetNotifLength}
+    },
+    {   
+        path:'head',
+        component:HeaderComponent,
+        resolve:{length:GetNotifLength}
     },
     {
         path:'user',
@@ -65,204 +73,212 @@ export const UserRoutes: Routes = [
             {
                 path:'channel',
                 component:ChannelComponent,
-                resolve:{channel:GetNewChannelsPage1}
+                resolve:{channel:GetNewChannelsPage1, length:GetNotifLength}
             },
             {
                 path:'channel/:id',
                 component:ChannelPaginateComponent,
-                resolve:{channel:GetNewChannelsPageOther}
+                resolve:{channel:GetNewChannelsPageOther, length:GetNotifLength}
             },
             {
                 path:'channel-video',
                 component:ChannelVideoPageComponent,
-                resolve:{channel:GetVideoChannelPage1}
+                resolve:{channel:GetVideoChannelPage1, length:GetNotifLength}
             },
             {
                 path:'channel-video/:id',
                 component:ChannelVideoPagePaginateComponent,
-                resolve:{channel:GetVideoChannelPageOther}
+                resolve:{channel:GetVideoChannelPageOther, length:GetNotifLength}
             },
             {
                 path:'channel-podcast',
                 component:ChannelPodcastPageComponent,
-                resolve:{channel:GetPodcastChannelPage1}
+                resolve:{channel:GetPodcastChannelPage1, length:GetNotifLength}
             },
             {
                 path:'channel-podcast/:id',
                 component:ChannelPodcastPagePaginateComponent,
-                resolve:{channel:GetPodcastChannelPageOther}
+                resolve:{channel:GetPodcastChannelPageOther, length:GetNotifLength}
             },
             {
                 path:'channel-search/:id',
                 component:ChannelSearchComponent,
-                resolve:{channel:SearchChannel}
+                resolve:{channel:SearchChannel, length:GetNotifLength}
             },
             {
                 path:'channel-search/:id/:id2',
                 component:ChannelSearchPaginateComponent,
-                resolve:{channel:SearchChannelPageOther}
+                resolve:{channel:SearchChannelPageOther, length:GetNotifLength}
             },
             {
                 path:'video',
                 component:VideoComponent,
-                resolve:{new_video:GetNewVideo, feed_video:GetVideoFeed, most_viewed:MostViewed}
+                resolve:{new_video:GetNewVideo, feed_video:GetVideoFeed, most_viewed:MostViewed, length:GetNotifLength}
             },
             {
                 path:'video/:id',
                 component:VideoPagpaginateComponent,
-                resolve:{new_video:GetNewVideoPaginate, feed_video:GetVideoFeedPaginate}
+                resolve:{new_video:GetNewVideoPaginate, feed_video:GetVideoFeedPaginate, length:GetNotifLength}
             },
             {
                 path:'video-search/:id',
                 component:VideoSearchComponent,
-                resolve:{video:SearchVideo}
+                resolve:{video:SearchVideo, length:GetNotifLength}
             },
             {
                 path:'video-search/:id/:id2',
                 component:VideoSearchPaginateComponent,
-                resolve:{video: SearchVideoPaginate}
+                resolve:{video: SearchVideoPaginate, length:GetNotifLength}
             },
             {
                 path:'podcast',
                 component:PodcastComponent,
-                resolve:{podcast:GetNewPodcast, feed:GetPodcastFeed, most_listens:MostListens}
+                resolve:{podcast:GetNewPodcast, feed:GetPodcastFeed, most_listens:MostListens, length:GetNotifLength}
             },
             {
                 path:'podcast/:id',
                 component:PodcastPaginateComponent,
-                resolve:{podcast:GetNewPodcastPaginate, feed:GetPodcastFeedPaginate}
+                resolve:{podcast:GetNewPodcastPaginate, feed:GetPodcastFeedPaginate, length:GetNotifLength}
             },
             {
                 path:'podcast-search/:id',
                 component:PodcastSearchComponent,
-                resolve:{podcast:SearchPodcast}
+                resolve:{podcast:SearchPodcast, length:GetNotifLength}
             },
             {
                 path:'podcast-search/:id/:id2',
                 component:PodcastSearchPaginateComponent,
-                resolve:{podcast:SearchPodcastPaginate}
+                resolve:{podcast:SearchPodcastPaginate, length:GetNotifLength}
             },
             {
                 path:'notification',
                 component:NotificationComponent,
-                canActivate:[AuthGuard]
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoNotif, podcast:GetPodcastNotif, user:GetUserProfile, length:GetNotifLength}
+            },
+            {
+                path:'notification/:id',
+                component:NotificationPaginateComponent,
+                canActivate:[AuthGuard],
+                resolve:{video:GetVideoNotifPaginate, podcast:GetPodcastNotifPaginate, length:GetNotifLength, user:GetUserProfile}
             },
             {
                 path:'profile',
                 component:ProfileComponent,
                 canActivate:[AuthGuard],
-                resolve:{user:GetUserProfile, channel:GetMyChannel}
+                resolve:{user:GetUserProfile, channel:GetMyChannel, length:GetNotifLength}
             },
             {
                 path:'login',
-                component:LoginComponent
+                component:LoginComponent,
+                resolve:{length:GetNotifLength}
             },
             {
                 path:'subscription',
                 component:SubscriptionComponent,
                 canActivate:[AuthGuard],
-                resolve:{sub:getSubscriptionPage1}
+                resolve:{sub:getSubscriptionPage1, length:GetNotifLength}
             },
             {
                 path:'subscription/:id',
                 component:SubscriptionPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{sub:getSubscriptionPageOther}
+                resolve:{sub:getSubscriptionPageOther, length:GetNotifLength}
             },
             {
                 path:'video-item/:id2',
                 component:VideoDetailsComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:VideoByToken, user:GetUserProfile, bookmark:CheckVideoBookmark, comment:GetVideoComment}
+                resolve:{video:VideoByToken, length:GetNotifLength, user:GetUserProfile, bookmark:CheckVideoBookmark, comment:GetVideoComment}
             },
             {
                 path:'podcast-item/:id2',
                 component:AudiodetailsComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:PodcastByToken, user:GetUserProfile, bookmark:CheckPodcastBookmark, comment:GetPodcastComment}
+                resolve:{podcast:PodcastByToken, length:GetNotifLength, user:GetUserProfile, bookmark:CheckPodcastBookmark, comment:GetPodcastComment}
             },
             {
                 path:'channel-item/:id',
                 component:ChannelDetailsComponent,
-                resolve:{channel:GetChannelBYToken, user:GetUserProfile, sub:CheckIfUserIsSubscribed},
+                resolve:{channel:GetChannelBYToken, user:GetUserProfile, sub:CheckIfUserIsSubscribed, length:GetNotifLength},
                 children:[
                 { path:'video/:id2',
                     component:ChannelVideoComponent,
                     canActivate:[AuthGuard],
-                    resolve:{video:VideoByToken2, user:GetUserProfile, bookmark:CheckVideoBookmark2, comment:GetVideoComment}
+                    resolve:{video:VideoByToken2, length:GetNotifLength, user:GetUserProfile, bookmark:CheckVideoBookmark2, comment:GetVideoComment}
                 },
                 {
                     path:'podcast/:id2',
                     component:ChannelPodcastComponent,
                     canActivate:[AuthGuard],
-                    resolve:{podcast:PodcastByToken2, user:GetUserProfile, bookmark:CheckPodcastBookmark2, comment:GetPodcastComment}
+                    resolve:{podcast:PodcastByToken2, length:GetNotifLength, user:GetUserProfile, bookmark:CheckPodcastBookmark2, comment:GetPodcastComment}
                 }
                 ]
             },
             {
                 path:'addcontent',
                 component:CreateCteContentComponent,
-                resolve:{podcast:GetMyPodcast, video:GetMyVideos},
+                resolve:{podcast:GetMyPodcast, video:GetMyVideos, length:GetNotifLength},
                 canActivate:[AuthGuard]
             },
             {
                 path:'profile/settings',
                 component:SettingComponent,
                 canActivate:[AuthGuard],
-                resolve:{user:GetUserProfile}
+                resolve:{user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'videohistory',
                 component:VidHistoryComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoHistory}
+                resolve:{video:GetVideoHistory, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'videohistory/:id',
                 component:VidHistoryPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoHistoryPaginate}
+                resolve:{video:GetVideoHistoryPaginate, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'podcasthistory',
                 component:PodHistoryComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastHistory}
+                resolve:{podcast:GetPodcastHistory, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'podcasthistory/:id',
                 component:PodHistoryPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastHistoryPaginate}
+                resolve:{podcast:GetPodcastHistoryPaginate,length:GetNotifLength, user:GetUserProfile}
             },
             {
                 path:'videobookmark',
                 component:VidBookmarkComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoBookMark}
+                resolve:{video:GetVideoBookMark, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'videobookmark/:id',
                 component:VidBookmarkPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{video:GetVideoBookMarkPginate}
+                resolve:{video:GetVideoBookMarkPginate, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'podcastbookmark',
                 component:PodBookmarkComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastBookMark}
+                resolve:{podcast:GetPodcastBookMark, length:GetNotifLength, user:GetUserProfile}
             },
             {
                 path:'podcastbookmark/:id',
                 component:PodBookmarkPaginateComponent,
                 canActivate:[AuthGuard],
-                resolve:{podcast:GetPodcastBookMarkPaginate}
+                resolve:{podcast:GetPodcastBookMarkPaginate, user:GetUserProfile, length:GetNotifLength}
             },
             {
                 path:'profile/:id',
                 component:ProfileIdComponent,
-                resolve:{user:GetUserById, user2:GetUserProfile, channel:GetChannelOfUser}
+                resolve:{user:GetUserById, user2:GetUserProfile, channel:GetChannelOfUser, length:GetNotifLength}
             }
         ]
     }
