@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AppEndpoint} from '../endpoint'
+import {AppEndpoint} from '../../endpoint'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
