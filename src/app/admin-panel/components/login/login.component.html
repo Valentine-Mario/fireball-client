@@ -1,0 +1,48 @@
+<div style="width:70%;" class="container">
+          
+    <div>
+            <div style="padding-top:30px;" class="section-heading mb-5">
+          <h3 style="cursor: pointer;" routerLink="/">Fire<span style="color:rgb(91, 150, 163);">Ball</span></h3> 
+        </div>    
+            <div class="tab-card p-4">
+              <div class="tab-menu tab-secondary mb-4">
+                <div class="nav flex-row nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                  <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Admin Login</a>
+                </div>
+              </div>
+              <div class="tab-content" id="v-pills-tabContent">
+                <div class="tab-pane show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                  
+                          <div class="blog_right_sidebar container"> 
+                                  <aside class="single_sidebar_widget newsletter_widget">
+                                          <h4 class="widget_title">Login</h4>
+
+                                          <div *ngIf="login_spinner" align="center">
+                                                          <div class="spinner-border" role="status">
+                                                            <span class="sr-only">Loading...</span>
+                                                          </div>
+                                                         </div> 
+              
+                                          <form [formGroup]="loginForm" (ngSubmit)="login()">
+                                              <div class="form-group">
+                                                  <input formControlName="email" type="email" class="form-control" onfocus="this.placeholder = ''"
+                                                      onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                                              </div>
+                                              <div class="form-group">
+                                                      <input formControlName="password" type="password" class="form-control"  placeholder='Enter password' required>
+                                                  </div>
+                                              <div align="center"><button [disabled]="loginForm.invalid" class="boxed_btn_rev"
+                                                  type="submit">Login</button></div>
+                                          </form>
+                                      </aside>
+                                  </div>
+                 
+                </div>
+                
+              </div>
+            </div>
+          
+     
+      
+    </div>
+  </div>

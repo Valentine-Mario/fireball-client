@@ -1,0 +1,109 @@
+<app-header></app-header>
+
+<section style="padding-top: 20px;" class="blog_area">
+    <div class="container">
+
+          
+       
+            <div style="font-size: 22px;" align="right">
+                  <a routerLink="/user/profile/settings"><button  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button></a>  
+            </div>
+            <br/>
+                <div class="blog_left_sidebar">
+<article class="blog_item">
+    <div class="blog_item_img">
+        <img class="card-img rounded-0" src="{{user.pics}}" alt="">
+    </div>
+
+    <div class="blog_details">
+       
+        <ul class="blog-info-link">
+            <li><a href="#"><i class="fa fa-user"></i> {{user.message.name}}</a></li>
+            <li><a href="#"><i class="material-icons">email</i> {{user.message.email}}</a></li>
+            <li><a href="#"><i class="material-icons">date_range</i>{{user.message.created_at| date:"MM/dd/yyyy"}}</a></li>
+        </ul>
+    </div>
+</article>
+                </div>
+            </div>
+        </section>
+        <div align="center">
+                <a routerLink="/user/addcontent"><button class="btn px-4 m-1 btn-outline-info">Create a FireBall</button></a>
+                <button routerLink="/user/videobookmark" class="btn px-4 m-1 btn-outline-info">Video Bookmark</button>
+                <button routerLink="/user/podcastbookmark" class="btn px-4 m-1 btn-outline-info">Podcast Bookmark</button>
+                <button routerLink="/user/videohistory" class="btn px-4 m-1 btn-outline-info">Video History</button>
+                <button routerLink="/user/podcasthistory" class="btn px-4 m-1 btn-outline-info">Podcast History</button>
+            </div>
+
+
+
+        <div class="popular_courses">
+                <div style="width: 90%;" class="container">
+                        <div *ngIf="channels.length < 1" align="center">
+                                <p>You have no channel yet. Try creating a channel and share your ideas to the world</p>
+                            </div>
+        <div class="row">
+                <div *ngIf="channels.length > 0" class="col-xl-12">
+                    <div class="section_title text-center mb-100">
+                        <h3>Your channels</h3>
+                    </div>
+                </div>
+                
+                    <div *ngFor="let a of channels| paginate: {id:'channel', itemsPerPage: 6, currentPage: p, totalItems:total}" class="col-xl-4 col-lg-4 col-md-6">
+                            <div class="single_courses">
+                                <div class="thumb">
+                                    <a routerLink="/user/channel-item/{{a.content.token_channel}}">
+                                        <img style="height: 300px;" src="{{a.images}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="courses_info">
+                                    <span>{{a.content.name}}</span>
+                                    <h3><a routerLink="/user/channel-item/{{a.content.token_channel}}">{{a.content.description| slice:0:70}}... <br>
+                                            <p *ngIf="a.content.content == 1">Podcast Channel</p>
+                                            <p *ngIf="a.content.content == 2">Video Channel</p></a></h3>
+                                    <div class="star_prise d-flex justify-content-between">
+                                        <div class="star">
+                                                <span>Created {{a.content.created_at | timeAgo}}</span>
+                                        </div>
+                                        <div align="center"><button (click)="getSubscribers(a.content.id, 1); open(content3)" class="btn btn-primary">See subscribers</button></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        
+            </div>
+            <div *ngIf="channels.length > 0" align="center"><pagination-controls id="channel"  (pageChange)="p = $event; paginate($event)"></pagination-controls></div> 
+
+            </div>
+            </div>
+
+
+            <!-- modal -->
+                
+                  <ng-template #content3 let-modal>
+                    <div class="modal-header">
+                      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div style="padding-left: 10px; padding-right: 10px;" class="modal-body">
+                        <div *ngIf="sub_loader" align="center">
+                            <div class="spinner-border" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                           </div>   
+                            This channel has {{total_sub}} subscribers
+                           <div *ngFor="let a of subscribers| paginate: {id:'sub', itemsPerPage: 30, currentPage: p, totalItems:total_sub}">
+                            <h5>{{a.user.name}}</h5>
+                             <p>subscribed   {{a.created_at| timeAgo}}</p>
+                           <hr/>
+                            </div>
+                            <div *ngIf="subscribers.length>0">
+                              <pagination-controls id="sub"  (pageChange)="p = $event; getSubscribers(subscribers[0].channel_id, $event)"></pagination-controls>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                  </ng-template>
+                  

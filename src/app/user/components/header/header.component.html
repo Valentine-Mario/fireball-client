@@ -1,0 +1,58 @@
+<nav  class=" px-4 navbar navbar-expand-lg navbar-dark bg-info mb-4 sticky-top">
+    <a routerLink="" class="navbar-brand">Fire <span style="color:black;">Ball</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown3" aria-controls="navbarNavDropdown3" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown3">
+      <ul class="navbar-nav ml-auto">
+        
+        <li class="nav-item">
+          <a routerLink="/user/channel" class="nav-link d-flex align-items-center" ><i routerLink="/user/channel" routerLinkActive="activelink" class="material-icons">tv </i> Channel</a>
+        </li>
+        
+        <li class="nav-item">
+          <a routerLink="/user/podcast" class="nav-link d-flex align-items-center"><i routerLink="/user/podcast" routerLinkActive="activelink" class="material-icons">mic</i> Podcasts</a>
+        </li>
+
+        <li class="nav-item">
+            <a routerLink="/user/video" class="nav-link d-flex align-items-center"><i routerLink="/user/video" routerLinkActive="activelink" class="material-icons">video_library</i>Videos</a>
+          </li>
+
+          <li *ngIf="login_user" class="nav-item">
+            <a  routerLink="/user/notification" class="nav-link d-flex align-items-center"><span *ngIf="notif_length > 0" class="badge badge-danger badge-pill">{{notif_length}}</span><i routerLink="/user/notification" routerLinkActive="activelink" class="material-icons">notifications</i>Alert </a>
+          </li>
+          <li *ngIf="login_user" class="nav-item">
+            <a routerLink="/user/subscription" class="nav-link d-flex align-items-center"><i routerLink="/user/subscription" routerLinkActive="activelink" class="material-icons">fireplace</i>Subscription</a>
+          </li>
+
+          <li *ngIf="login_user" class="nav-item">
+            <a routerLink="/user/profile" class="nav-link d-flex align-items-center"><i routerLink="/user/profile" routerLinkActive="activelink" class="material-icons">account_circle</i>Account</a>
+          </li>
+
+          <li *ngIf="login_user" class="nav-item">
+            <a (click)="logout()" class="nav-link d-flex align-items-center"><i class="material-icons">power_settings_new</i> Logout</a>
+          </li>
+
+          <li *ngIf="logout_user" class="nav-item">
+            <a routerLink="/user/login" class="nav-link d-flex align-items-center"><i routerLink="/user/login" routerLinkActive="activelink" class="material-icons">person_add</i> Login/register</a>
+          </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  
+  <!-- <ngx-spinner bdColor="rgba(51,51,51,0.8)"
+    size="medium"
+    color="#fff"
+    name="loader"
+    type="ball-atom"
+    fullScreen="false">
+    <p style="font-size: 20px; color: white">Loading...</p>
+    </ngx-spinner> -->
+
+    <div *ngIf="load" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
