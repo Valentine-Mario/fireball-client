@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UsersService} from '../../services/users.service'
 import {OthersService} from '../../../user/services/others.service'
+import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-user-paginate',
@@ -11,16 +12,20 @@ import {OthersService} from '../../../user/services/others.service'
 export class UserPaginateComponent implements OnInit {
 
   constructor(private userService:UsersService, private router:Router,
-     private route:ActivatedRoute, private reuseable:OthersService) {
+     private route:ActivatedRoute, private reuseable:OthersService, private fb:FormBuilder) {
     this.route.params.subscribe(params => this.parameter = params.id)
    }
 users:any;
 p:number
-parameter:string
+parameter:string;
+searchForm:FormGroup
+
   ngOnInit() {
     this.users=this.route.snapshot.data['users']
     this.p=parseInt(this.parameter)
-
+    this.searchForm=this.fb.group({
+      search:['', Validators.required]
+    })
   }
 
   paginate(a){
@@ -82,6 +87,12 @@ parameter:string
         this.reuseable.errorToast('', `error removing ${user.name} as an admin`)
       }
     })
+  }
+
+  search(){
+    var value=this.searchForm.value;
+    this.router.navigate(['/adminpanel/action/user-search/'+value.search])
+
   }
 
 }

@@ -43,4 +43,11 @@ export class UsersService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
     })
   }
+
+  searchUser(id, page, limit){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+'/admin/search/user/'+id+`?page=${page}&per_page=${limit}`, {
+      headers: new HttpHeaders({'authorization': "bearer "+authToken, 'Content-Type': 'application/json'}),
+    })
+  }
 }

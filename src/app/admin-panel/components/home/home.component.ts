@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OthersService} from '../../../user/services/others.service'
 import {Router, ActivatedRoute} from '@angular/router'
 import {UsersService} from '../../services/users.service'
+import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +12,15 @@ import {UsersService} from '../../services/users.service'
 export class HomeComponent implements OnInit {
 
   constructor(private reuseable:OthersService, private router:Router,
-     private route:ActivatedRoute, private userService:UsersService) { }
+     private route:ActivatedRoute, private userService:UsersService, private fb:FormBuilder) { }
 users:any
 p:number
+searchForm:FormGroup
   ngOnInit() {
     this.users=this.route.snapshot.data['users']
-
+    this.searchForm=this.fb.group({
+      search:['', Validators.required]
+    })
   }
 
   paginate(a){
@@ -73,6 +77,12 @@ p:number
         this.reuseable.errorToast('', `error removing ${user.name} as an admin`)
       }
     })
+  }
+
+  search(){
+    var value=this.searchForm.value;
+    this.router.navigate(['/adminpanel/action/user-search/'+value.search])
+
   }
 
 }
