@@ -13,9 +13,14 @@ import { VideoComponent } from './components/video/video.component';
 import { PodcastComponent } from './components/podcast/podcast.component';
 import { LoginComponent } from './components/login/login.component';
 import {GetAdminProfile} from './resolvers/admin.resolvers'
+import {GetUserList, GetUserListPaginate} from './resolvers/user.resolvers';
+import { UserPaginateComponent } from './components/user-paginate/user-paginate.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
+import { UserSearchPginateComponent } from './components/user-search-pginate/user-search-pginate.component'
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HomeComponent, VideoComponent, PodcastComponent, LoginComponent],
+  declarations: [HeaderComponent, FooterComponent, HomeComponent, VideoComponent, PodcastComponent,
+     LoginComponent, UserPaginateComponent, UserSearchComponent, UserSearchPginateComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
@@ -24,6 +29,6 @@ import {GetAdminProfile} from './resolvers/admin.resolvers'
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers:[AuthGuard, GetAdminProfile]
+  providers:[AuthGuard, GetAdminProfile, GetUserList, GetUserListPaginate]
 })
 export class AdminPanelModule { }
