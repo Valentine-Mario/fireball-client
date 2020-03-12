@@ -1,10 +1,12 @@
 <div class="container">
     <ul *ngFor="let a of users.message| paginate: {id:'users', itemsPerPage: 30, currentPage: p, totalItems: users.total}" class="list-group">
         <div *ngIf="a.suspended">
-            <li  class="list-group-item list-group-item-danger">{{a.name}} <small>email:{{a.email}}</small></li>
+            <li  class="list-group-item list-group-item-danger">
+                <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small></li>
         </div>
         <div *ngIf="!a.suspended">
-            <li  class="list-group-item">{{a.name}} <small>email:{{a.email}}</small></li>
+            <li  class="list-group-item">
+                <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small></li>
         </div>
       </ul>
 </div>
