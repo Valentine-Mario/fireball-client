@@ -1,4 +1,12 @@
 <div class="container">
+
+    <div class="searchForm">
+        <form [formGroup]="searchForm" (ngSubmit)="search()" style="display: flex;">
+            <input formControlName="search" type="search" class="form-control m-1" placeholder="input name or email">
+            <button [disabled]="searchForm.invalid" class="btn px-4 m-1 btn-outline-dark">search</button>
+        </form>
+    </div>
+
     <ul *ngFor="let a of users.message| paginate: {id:'users', itemsPerPage: 30, currentPage: p, totalItems: users.total}" class="list-group">
         <div *ngIf="a.suspended">
             <li  class="list-group-item list-group-item-danger">

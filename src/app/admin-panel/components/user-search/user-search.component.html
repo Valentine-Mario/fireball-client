@@ -1,1 +1,41 @@
-<p>user-search works!</p>
+<div class="container">
+    <div class="searchForm">
+        <form [formGroup]="searchForm" (ngSubmit)="search()" style="display: flex;">
+            <input formControlName="search" type="search" class="form-control m-1" placeholder="input name or email">
+            <button [disabled]="searchForm.invalid" class="btn px-4 m-1 btn-outline-dark">search</button>
+        </form>
+    </div>
+
+    <div *ngIf="users.message.length < 1">
+        <p>
+            No user found here buddy
+        </p>
+    </div>
+    <div *ngIf="users.message.length > 0">
+        <ul *ngFor="let a of users.message| paginate: {id:'users', itemsPerPage: 30, currentPage: p, totalItems: users.total}" class="list-group">
+            <div *ngIf="a.suspended">
+                <li  class="list-group-item list-group-item-danger">
+                    
+                    <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small>
+                    <div style="float: right;">
+                        <button class="btn px-4 m-1 btn-outline-dark" (click)="unsuspendUser(a)">Unsuspend</button>
+                        <span *ngIf="a.isAdmin"><button (click)="removeAdmin(a)" class="btn px-4 m-1 btn-outline-danger">remove admin</button></span>
+                        <span *ngIf="!a.isAdmin"><button (click)="makeAdmin(a)" class="btn px-4 m-1 btn-outline-info">make admin</button></span>
+                    </div></li>
+            </div>
+            <div *ngIf="!a.suspended">
+                <li  class="list-group-item">
+                    <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small>
+                    <div style="float: right;">
+                        <button class="btn px-4 m-1 btn-outline-danger" (click)="suspendUser(a)">Suspend</button>
+                        <span *ngIf="a.isAdmin"><button (click)="removeAdmin(a)" class="btn px-4 m-1 btn-outline-danger">remove admin</button></span>
+                        <span *ngIf="!a.isAdmin"><button (click)="makeAdmin(a)" class="btn px-4 m-1 btn-outline-info">make admin</button></span>
+                    </div></li>
+            </div>
+          </ul>
+    </div>
+    <div align="center"><pagination-controls id="users"  (pageChange)="p = $event;  paginate($event)"></pagination-controls></div> 
+
+</div>
+
+
