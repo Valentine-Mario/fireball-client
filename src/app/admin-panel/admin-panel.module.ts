@@ -17,10 +17,21 @@ import {GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate} from '
 import { UserPaginateComponent } from './components/user-paginate/user-paginate.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UserSearchPginateComponent } from './components/user-search-pginate/user-search-pginate.component'
+import { GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from '../user/resolvers/video.resolvers';
+import {GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from '../user/resolvers/podcast.resolvers';
+import { VideoPaginateComponent } from './components/video-paginate/video-paginate.component';
+import { PodcastPaginateComponent } from './components/podcast-paginate/podcast-paginate.component';
+import { VideoSearchComponent } from './components/video-search/video-search.component';
+import { VideoSearchPaginateComponent } from './components/video-search-paginate/video-search-paginate.component';
+import { PodcastSearchPaginateComponent } from './components/podcast-search-paginate/podcast-search-paginate.component';
+import { PodcastDetailsComponent } from './components/podcast-details/podcast-details.component';
+import { VideoDetailsComponent } from './components/video-details/video-details.component';
+import {VideoByToken} from './resolvers/video.resolvers';
+import {PodcastByToken} from './resolvers/podcast.resolvers';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, HomeComponent, VideoComponent, PodcastComponent,
-     LoginComponent, UserPaginateComponent, UserSearchComponent, UserSearchPginateComponent],
+     LoginComponent, UserPaginateComponent, UserSearchComponent, UserSearchPginateComponent, VideoPaginateComponent, PodcastPaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastSearchPaginateComponent, PodcastDetailsComponent, VideoDetailsComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
@@ -29,6 +40,8 @@ import { UserSearchPginateComponent } from './components/user-search-pginate/use
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers:[AuthGuard, GetAdminProfile, GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate]
+  providers:[AuthGuard, GetAdminProfile, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate, VideoByToken,
+     GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate, 
+     GetNewPodcast, GetNewPodcastPaginate, PodcastByToken, SearchPodcastPaginate, SearchPodcast]
 })
 export class AdminPanelModule { }
