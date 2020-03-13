@@ -37,7 +37,7 @@ export class SearchUser implements Resolve<any> {
   constructor(private data: UsersService, private reuse:OthersService) {}
     
   resolve(route: ActivatedRouteSnapshot){
-    return this.data.searchUser(route.paramMap.get('id'), 1, 1).pipe(catchError((err)=>{
+    return this.data.searchUser(route.paramMap.get('id'), 1, 30).pipe(catchError((err)=>{
       this.reuse.errorToast('Error', 'Error connection to the server')
           return empty();
       }))
@@ -50,7 +50,7 @@ export class SearchUserPaginate implements Resolve<any> {
   constructor(private data: UsersService, private reuse:OthersService) {}
     
   resolve(route: ActivatedRouteSnapshot){
-    return this.data.searchUser(route.paramMap.get('id'), route.paramMap.get('id'), 1).pipe(catchError((err)=>{
+    return this.data.searchUser(route.paramMap.get('id'), route.paramMap.get('id2'), 30).pipe(catchError((err)=>{
       this.reuse.errorToast('Error', 'Error connection to the server')
           return empty();
       }))

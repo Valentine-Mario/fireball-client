@@ -12,13 +12,16 @@ import {Validators, FormBuilder, FormGroup} from '@angular/forms';
 export class UserSearchComponent implements OnInit {
 
   constructor(private reuseable:OthersService, private router:Router,
-    private route:ActivatedRoute, private userService:UsersService, private fb:FormBuilder) { }
+    private route:ActivatedRoute, private userService:UsersService, private fb:FormBuilder) { 
+      this.route.params.subscribe(params => this.parameter = params.id)
+
+    }
     users:any
     p:number
     searchForm:FormGroup
+    parameter:string
   ngOnInit() {
     this.users=this.route.snapshot.data['users']
-    console.log(this.users)
     this.searchForm=this.fb.group({
       search:['', Validators.required]
     })
@@ -27,7 +30,7 @@ export class UserSearchComponent implements OnInit {
     if(a==1){
       this.router.navigate(['/adminpanel/action/user-search'])
     }else{
-      this.router.navigate(['/adminpanel/action/user-search/'+a])
+      this.router.navigate(['/adminpanel/action/user-search/'+this.parameter+'/'+a])
     }
   }
 
@@ -80,8 +83,15 @@ export class UserSearchComponent implements OnInit {
   }
 
   search(){
-    var value=this.searchForm.value;
-    this.router.navigate(['/adminpanel/action/user-search/'+value.search])
+    var value=this.searchForm.value.search;
+    this.router.navigate(['/adminpanel/action/user-search/'+value])
+    this.userService.searchUser(value, 1, 30).subscribe(val=>{
+      if(val['code']=="00"){
+        this.users=val
+      }else{
+        this.reuseable.errorToast('', 'error fetching user')
+      }
+    })
 
   }
 
