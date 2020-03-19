@@ -18,7 +18,7 @@ import { VideoSearchPaginateComponent } from './components/video-search-paginate
 import { PodcastSearchPaginateComponent } from './components/podcast-search-paginate/podcast-search-paginate.component';
 import { PodcastDetailsComponent } from './components/podcast-details/podcast-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
-import { PodcastSearchComponent } from '../user/components/podcast-search/podcast-search.component';
+import {PodcastSearchComponent} from './components/podcast-search/podcast-search.component'
 import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
 import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
 

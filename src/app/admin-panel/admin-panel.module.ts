@@ -26,10 +26,11 @@ import { PodcastDetailsComponent } from './components/podcast-details/podcast-de
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
 import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
+import {PodcastSearchComponent} from './components/podcast-search/podcast-search.component'
 
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HomeComponent, VideoComponent, PodcastComponent,
-     LoginComponent, UserPaginateComponent, UserSearchComponent, UserSearchPginateComponent, VideoPaginateComponent, PodcastPaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastSearchPaginateComponent, PodcastDetailsComponent, VideoDetailsComponent],
+  declarations: [HeaderComponent, FooterComponent, HomeComponent, VideoComponent, PodcastComponent, PodcastSearchComponent,
+     LoginComponent, UserPaginateComponent, UserSearchComponent, UserSearchPginateComponent, VideoPaginateComponent, PodcastPaginateComponent, VideoSearchComponent, VideoSearchPaginateComponent, PodcastSearchPaginateComponent, PodcastDetailsComponent, VideoDetailsComponent, PodcastSearchComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRoutes),
