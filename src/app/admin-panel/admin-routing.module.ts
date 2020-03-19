@@ -10,8 +10,7 @@ import {GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate} from '
 import { UserPaginateComponent } from './components/user-paginate/user-paginate.component';
 import { UserSearchComponent } from './components/user-search/user-search.component';
 import { UserSearchPginateComponent } from './components/user-search-pginate/user-search-pginate.component'
-import { GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from '../user/resolvers/video.resolvers';
-import {GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from '../user/resolvers/podcast.resolvers';
+
 import { VideoPaginateComponent } from './components/video-paginate/video-paginate.component';
 import { PodcastPaginateComponent } from './components/podcast-paginate/podcast-paginate.component';
 import { VideoSearchComponent } from './components/video-search/video-search.component';
@@ -20,8 +19,8 @@ import { PodcastSearchPaginateComponent } from './components/podcast-search-pagi
 import { PodcastDetailsComponent } from './components/podcast-details/podcast-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import { PodcastSearchComponent } from '../user/components/podcast-search/podcast-search.component';
-import {VideoByToken} from './resolvers/video.resolvers';
-import {PodcastByToken} from './resolvers/podcast.resolvers';
+import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
+import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
 
 export const AdminRoutes: Routes = [
     {

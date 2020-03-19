@@ -15,4 +15,18 @@ export class VideoService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
+
+  getallVideos(page, limit){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/getallvideos?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  searchVideo(id, page, limit){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/searchvideo/${id}?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
 }

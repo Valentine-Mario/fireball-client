@@ -1,2 +1,32 @@
+<div class="container">
+    <div class="col-md-3">
+        <form [formGroup]="searchForm" (ngSubmit)="searchVideo();">
+            <div class="input-group">           
+                <input style="height: 30px;" formControlName="search" type="text" class="form-control border-right-0" placeholder="Search video" aria-label="Search video" aria-describedby="basic-addon1">
+                <button style="height: 30px;" [disabled]="searchForm.invalid"><i class="material-icons">search</i></button>
+              </div>
+        </form>
+        
+        </div>
+    <div class="row">
+      <div *ngFor="let a of video.message| paginate: {id:'video', itemsPerPage: 6, currentPage: p, totalItems: video.total}" class="col-lg-4">
+        <div class="card card-20201">
+          
+          <div class="card-body">
+            <h5 class="card-title">{{a.title}} <i class="material-icons"> play_circle_filled</i></h5>
+            <p style="color:gray;">By <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> {{a.created_at| date: 'dd/MM/yyyy'}}</p>
 
-<p>video works!</p>
+            <small  style="color:gray;">views: {{a.views| number}}</small>
+            <p class="card-text mb-5">{{a.description| slice:0:50}}</p>
+            <div *ngIf="a.suspended"><p style="color:rgb(192, 112, 112);">this video is suspended</p></div>
+            <hr/>
+            <small style="color:gray;">posted in <a routerLink="/user/channel-item/{{a.channel.token_channel}}">{{a.channel.name}}</a></small><br/>
+            <a routerLink="/adminpanel/action/video/{{a.token}}" class="btn btn-primary">Take a look</a>
+          </div>
+        </div>
+      </div>   
+    </div>
+    <br/>
+    <div align="center"><pagination-controls id="video"  (pageChange)="p = $event; paginateVideo($event)"></pagination-controls></div> 
+
+  </div>
