@@ -19,6 +19,7 @@
             <small  style="color:gray;">views: {{a.views| number}}</small>
             <p class="card-text mb-5">{{a.description| slice:0:50}}</p>
             <div *ngIf="a.suspended"><p style="color:rgb(192, 112, 112);">this video is suspended</p></div>
+
             <hr/>
             <small style="color:gray;">posted in <a routerLink="/user/channel-item/{{a.channel.token_channel}}">{{a.channel.name}}</a></small><br/>
             <a routerLink="/adminpanel/action/video/{{a.token}}" class="btn btn-primary">Take a look</a>
