@@ -19,8 +19,8 @@ import { PodcastSearchPaginateComponent } from './components/podcast-search-pagi
 import { PodcastDetailsComponent } from './components/podcast-details/podcast-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
 import {PodcastSearchComponent} from './components/podcast-search/podcast-search.component'
-import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
-import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
+import {VideoByToken, GetNewVideo, GetVideoReport,  GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
+import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast, GetPodcastReport} from './resolvers/podcast.resolvers';
 
 export const AdminRoutes: Routes = [
     {
@@ -66,7 +66,7 @@ export const AdminRoutes: Routes = [
             {
                 path:'video/:id',
                 component:VideoDetailsComponent,
-                resolve:{video:VideoByToken}
+                resolve:{video:VideoByToken, report:GetVideoReport}
             },
             {
                 path:'video-list/search/:id',
@@ -91,7 +91,7 @@ export const AdminRoutes: Routes = [
             {
                 path:'podcast/:id',
                 component:PodcastDetailsComponent,
-                resolve:{podcast:PodcastByToken}
+                resolve:{podcast:PodcastByToken, report:GetPodcastReport}
             },
             {
                 path:'podcast-list/search/:id',

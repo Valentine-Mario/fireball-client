@@ -24,8 +24,8 @@ import { VideoSearchPaginateComponent } from './components/video-search-paginate
 import { PodcastSearchPaginateComponent } from './components/podcast-search-paginate/podcast-search-paginate.component';
 import { PodcastDetailsComponent } from './components/podcast-details/podcast-details.component';
 import { VideoDetailsComponent } from './components/video-details/video-details.component';
-import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate} from './resolvers/video.resolvers';
-import {PodcastByToken, GetNewPodcast, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
+import {VideoByToken, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate, GetVideoReport} from './resolvers/video.resolvers';
+import {PodcastByToken, GetNewPodcast, GetPodcastReport, GetNewPodcastPaginate, SearchPodcastPaginate, SearchPodcast} from './resolvers/podcast.resolvers';
 import {PodcastSearchComponent} from './components/podcast-search/podcast-search.component'
 
 @NgModule({
@@ -40,7 +40,7 @@ import {PodcastSearchComponent} from './components/podcast-search/podcast-search
     NgxPaginationModule,
   ],
   providers:[AuthGuard, GetAdminProfile, GetNewVideo, GetNewVideoPaginate, SearchVideo, SearchVideoPaginate, VideoByToken,
-     GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate, 
+     GetUserList, GetUserListPaginate, SearchUser, SearchUserPaginate, GetVideoReport, GetPodcastReport,
      GetNewPodcast, GetNewPodcastPaginate, PodcastByToken, SearchPodcastPaginate, SearchPodcast]
 })
 export class AdminPanelModule { }
