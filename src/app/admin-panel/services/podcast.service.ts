@@ -38,13 +38,13 @@ export class PodcastService {
     })
   }
 
-  suspendVideo(id){
+  suspendPodcast(id){
     let authToken= localStorage.getItem('admin-token')
     return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/suspendpodcast/${id}`, {  
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
-  unsuspendVideo(id){
+  unsuspendPodcast(id){
     let authToken= localStorage.getItem('admin-token')
     return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/unsuspendpodcast/${id}`, {  
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),

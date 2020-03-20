@@ -25,7 +25,7 @@ parameter:string
   }
 
   paginateComment(a){
-    this.vidService.getVideoReports(this.parameter, a, 5).subscribe(val=>{
+    this.vidService.getVideoReports(this.parameter, a, 10).subscribe(val=>{
       this.report.message=val['message']
     })
     this.p=parseInt(a)
@@ -35,7 +35,7 @@ parameter:string
     this.vidService.suspendVideo(this.video.message.id).subscribe(val=>{
       if(val['code']=="00"){
         this.reuseable.infoToast("", "video suspended successfully")
-        this.video.message.suspended==true
+        this.video.message.suspended=true
       }else{
         this.reuseable.errorToast("", 'error suspending video')
       }
@@ -46,7 +46,7 @@ parameter:string
     this.vidService.unsuspendVideo(this.video.message.id).subscribe(val=>{
       if(val['code']=="00"){
         this.reuseable.infoToast("", "video unsuspended successfully")
-        this.video.message.suspended==false
+        this.video.message.suspended=false
       }else{
         this.reuseable.errorToast("", 'error unsuspending video')
       }

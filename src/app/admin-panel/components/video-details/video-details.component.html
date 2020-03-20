@@ -39,7 +39,7 @@
 
 <div *ngIf="report.message.length > 0" class="container">
     <h5>Reports {{report.total| number}}</h5>
-        <ul *ngFor="let a of report.message| paginate: {id:'comment', itemsPerPage: 5, currentPage: p, totalItems: report.total}" class="list-group">
+        <ul *ngFor="let a of report.message| paginate: {id:'comment', itemsPerPage: 10, currentPage: p, totalItems: report.total}" class="list-group">
           <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|date: 'dd/MM/yyyy'}}</small></p>
   
           <li style="color:black;" class="list-group-item">
