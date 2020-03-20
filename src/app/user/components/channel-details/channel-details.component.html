@@ -9,13 +9,19 @@
           <!-- show for podcast -->
                 <div *ngIf="channel.message.content== 1" class="list item">
                     <p >{{channel.subscribers| formatNumber}} subscribers
-                        <a *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</a> 
-                       <span *ngIf="show_item"><a (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</a>     </span> 
-    
+                        <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</button> 
+                       <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</button>     </span> 
+                       
                         </p>
-                        <div *ngIf="show_item">
+                        <div style="display: flex;">
+                          <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+                            See podcasts
+                           </button>
+                           <div *ngIf="show_item">
                             <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
                         </div>
+                        </div>
+                        
                         <ul class="list-group large-list">
                                         
                                                 <div class="card card-body">
@@ -37,11 +43,6 @@
                         <!-- small list -->
 
                         <ul class="list-group small-list">
-                            
-                    <p> <a class="btn btn-primary vid" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                              See podcasts
-                            </a>
-                          </p>
                           
                           <div class="collapse" id="collapseExample2">
                               <div class="card card-body">
@@ -66,12 +67,19 @@
 
 <div *ngIf="channel.message.content== 2" class="list item">
   <p >{{channel.subscribers| formatNumber}} subscribers
-    <a *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</a> 
-    <span *ngIf="show_item"><a (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</a></span>     
-      </p>
-      <div *ngIf="show_item">
-          <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
-      </div>
+    <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</button> 
+    <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</button></span>     
+     
+  </p>
+  <div style="display: flex;">
+    <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
+      See videos
+    </button>   
+    <div *ngIf="show_item">
+      <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
+  </div>
+  </div>
+      
       <ul class="list-group large-list">
                       
                               <div class="card card-body">
@@ -95,10 +103,7 @@
 
       <ul class="list-group small-list">
           
-  <p> <a class="btn btn-primary vid" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-            See videos
-          </a>
-        </p>
+  
         
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">

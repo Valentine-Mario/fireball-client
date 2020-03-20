@@ -1,17 +1,17 @@
 <app-header></app-header>
 
 <h5 align="center" style="padding-bottom: 10px; padding-top:10px;" class="card-title">{{video.message.title}}</h5>
-  <div class="embed-responsive embed-responsive-16by9 container">
+  <div class="embed-responsive embed-responsive-16by9 container videowidth">
     <video class="embed-responsive-item" controls  controls="controls" controlsList="nodownload">
         <source src="{{video.video}}"/>
     </video>
 </div>
 <div style="display: flex;" class="blog_right_sidebar container"> 
-    <p>Views: {{video.message.views| formatNumber}}</p>&nbsp;&nbsp;&nbsp;
-    <p><i [ngStyle]="{'color':bookmark === true ? 'rgb(91, 150, 163)' : '#333' }" style="cursor: pointer;" (click)="bookmark_func()" class="material-icons">bookmark</i></p>&nbsp;&nbsp;&nbsp;
-    <p>Channel: <a style="color:rgb(91, 150, 163);" routerLink="/user/channel-item/{{video.message.channel.token_channel}}"> {{video.message.channel.name}}</a>&nbsp;&nbsp;&nbsp;  
+    <small>Views: {{video.message.views| formatNumber}}</small>&nbsp;&nbsp;&nbsp;
+    <small><i [ngStyle]="{'color':bookmark === true ? 'rgb(91, 150, 163)' : '#333' }" style="cursor: pointer;" (click)="bookmark_func()" class="material-icons">bookmark</i></small>&nbsp;&nbsp;&nbsp;
+    <small>Channel: <a style="color:rgb(91, 150, 163);" routerLink="/user/channel-item/{{video.message.channel.token_channel}}"> {{video.message.channel.name}}</a>&nbsp;&nbsp;&nbsp;  
       By:<a style="color:rgb(91, 150, 163);" routerLink="/user/profile/{{video.message.user.token}}"> {{video.message.user.name}}</a>
-    </p>
+    </small>
 
 </div>
 <br/>
@@ -42,7 +42,7 @@
         <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|timeAgo}}</small></p>
 
         <li style="color:black;" class="list-group-item">
-          {{a.comment}}
+         <div style="white-space: pre-wrap;"> {{a.comment}} </div>
           
           <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == a.user.id">
             <small (click)="open(content4)" style="cursor:pointer;">delete</small>
@@ -59,7 +59,7 @@
           <p>Replies</p>
           <div style="padding-left: 10px;" *ngFor="let b of a.videoreplies| paginate: {id:a.id, itemsPerPage: 5, currentPage: a.comment}">
             <li style="color: #333;" class="list-group-item">
-            <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> : {{b.comment}}
+            <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> : <p style="white-space: pre-wrap;">{{b.comment}}</p>
             <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == b.user.id">
               <small (click)="deleteReply(a, b)" style="cursor:pointer;">delete</small>
             </div>
