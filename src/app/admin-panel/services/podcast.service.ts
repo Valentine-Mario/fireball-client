@@ -30,4 +30,24 @@ export class PodcastService {
       headers: new HttpHeaders({'authorization': "bearer "+authToken}),
     })
   }
+
+  getPodcastReports(id, page, limit){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/podcastreport/${id}?page=${page}&per_page=${limit}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+
+  suspendPodcast(id){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/suspendpodcast/${id}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    })
+  }
+  unsuspendPodcast(id){
+    let authToken= localStorage.getItem('admin-token')
+    return this.http.get(AppEndpoint.API_ENDPOINT+`/admin/unsuspendpodcast/${id}`, {  
+      headers: new HttpHeaders({'authorization': "bearer "+authToken}),
+    }) 
+  }
 }

@@ -1,1 +1,53 @@
-<p>video-details works!</p>
+<h5 align="center" style="padding-bottom: 10px; padding-top:10px;" class="card-title">{{video.message.title}} <div *ngIf="video.message.suspended"> <p style="color:rgb(161, 76, 76);">video has been suspended</p></div></h5>
+  <div class="embed-responsive embed-responsive-16by9 container">
+    <video class="embed-responsive-item" controls  controls="controls" controlsList="nodownload">
+        <source src="{{video.video}}"/>
+    </video>
+</div>
+<div style="display: flex;" class="blog_right_sidebar container"> 
+    <p>Views: {{video.message.views| number}}</p>&nbsp;&nbsp;&nbsp;
+    <p>Channel: <a style="color:rgb(91, 150, 163);" routerLink="/user/channel-item/{{video.message.channel.token_channel}}"> {{video.message.channel.name}}</a>&nbsp;&nbsp;&nbsp;  
+      By:<a style="color:rgb(91, 150, 163);" routerLink="/user/profile/{{video.message.user.token}}"> {{video.message.user.name}}</a>
+    </p>
+
+</div>
+<br/>
+<div class="container">
+    <div style="display: flex;">
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          See Videos description
+        </a> 
+        <div *ngIf="!video.message.suspended">
+            <button (click)="suspendVideo()" class="btn px-4 m-1 btn-outline-danger">
+                suspend video
+            </button> 
+        </div>
+       <div *ngIf="video.message.suspended">
+        <button (click)="unsuspendVideo()" class="btn px-4 m-1 btn-outline-danger">
+            unsuspend video
+        </button>
+       </div>
+    </div>
+      <div class="collapse" id="collapseExample">
+        <div style="white-space: pre-wrap;" class="card card-body">
+         {{video.message.description}}
+          <br/>
+          <small>Created: {{video.message.created_at|date: 'dd/MM/yyyy'}}</small>
+        </div>
+      </div>
+</div>
+
+<div *ngIf="report.message.length > 0" class="container">
+    <h5>Reports {{report.total| number}}</h5>
+        <ul *ngFor="let a of report.message| paginate: {id:'comment', itemsPerPage: 10, currentPage: p, totalItems: report.total}" class="list-group">
+          <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|date: 'dd/MM/yyyy'}}</small></p>
+  
+          <li style="color:black;" class="list-group-item">
+            {{a.report}}
+          </li>
+          </ul>
+          <div align="center"><pagination-controls id="comment"  (pageChange)="p = $event; paginateComment($event)"></pagination-controls></div> 
+</div>
+<div *ngIf="report.message.length < 1" class="container">
+    <p>No report here</p>
+</div>

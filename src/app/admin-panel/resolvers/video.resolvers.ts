@@ -62,3 +62,15 @@ import {VideoService} from '../services/video.service'
         }))
     }
   }
+
+  @Injectable()
+  export class GetVideoReport implements Resolve<any>{
+    constructor(private data: VideoService, private reuse:OthersService) {}
+      
+    resolve(route: ActivatedRouteSnapshot){
+      return this.data.getVideoReports(route.paramMap.get('id'), 1, 10).pipe(catchError((err)=>{
+            return empty();
+        }))
+      
+    }
+  }

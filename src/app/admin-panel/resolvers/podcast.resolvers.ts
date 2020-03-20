@@ -62,3 +62,14 @@ import {PodcastService} from '../services/podcast.service'
         }))
     }
   }
+
+  @Injectable()
+  export class GetPodcastReport implements Resolve<any> {
+    constructor(private data: PodcastService, private reuse:OthersService) {}
+      
+    resolve(route: ActivatedRouteSnapshot){
+      return this.data.getPodcastReports(route.paramMap.get('id'), 1, 10).pipe(catchError((err)=>{
+            return empty();
+        }))
+    }
+  }
