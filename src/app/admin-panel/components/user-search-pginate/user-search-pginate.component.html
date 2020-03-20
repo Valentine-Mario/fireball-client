@@ -11,7 +11,7 @@
         <div *ngIf="a.suspended">
             <li  class="list-group-item list-group-item-danger">
                 
-                <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small>
+                <small *ngIf="a.isAdmin"><i class="material-icons">stars</i></small>{{a.name}} <small>email:{{a.email}}</small>
                 <div style="float: right;">
                     <button class="btn px-4 m-1 btn-outline-dark" (click)="unsuspendUser(a)">Unsuspend</button>
                     <span *ngIf="a.isAdmin"><button (click)="removeAdmin(a)" class="btn px-4 m-1 btn-outline-danger">remove admin</button></span>
@@ -20,7 +20,7 @@
         </div>
         <div *ngIf="!a.suspended">
             <li  class="list-group-item">
-                <small *ngIf="a.isAdmin"><i class="material-icons">emoji_events</i></small>{{a.name}} <small>email:{{a.email}}</small>
+                <small *ngIf="a.isAdmin"><i class="material-icons">stars</i></small>{{a.name}} <small>email:{{a.email}}</small>
                 <div style="float: right;">
                     <button class="btn px-4 m-1 btn-outline-danger" (click)="suspendUser(a)">Suspend</button>
                     <span *ngIf="a.isAdmin"><button (click)="removeAdmin(a)" class="btn px-4 m-1 btn-outline-danger">remove admin</button></span>
