@@ -1,6 +1,6 @@
 <app-header></app-header>
                             
-                                <h5 align="center">{{channel.message.name}}</h5>
+                                <h5 style="text-transform: uppercase;" align="center">{{channel.message.name}}</h5>
   
 <div>
     <div style="padding-top:10px;" class="container">
@@ -8,12 +8,10 @@
         <div class="channel">
           <!-- show for podcast -->
                 <div *ngIf="channel.message.content== 1" class="list item">
-                    <p >{{channel.subscribers| formatNumber}} subscribers
-                        <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</button> 
-                       <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</button>     </span> 
-                       
-                        </p>
+                        
                         <div style="display: flex;">
+                          <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" class="btn px-4 m-1 btn-outline-info" >Subscribe</button> 
+                       <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed"  class="btn px-4 m-1 btn-outline-info" >Unsubscribe</button>     </span> 
                           <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
                             See podcasts
                            </button>
@@ -21,20 +19,21 @@
                             <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
                         </div>
                         </div>
-                        
+                        <p >{{channel.subscribers| formatNumber}} subscribers</p>
+
                         <ul class="list-group large-list">
                                         
                                                 <div class="card card-body">
                                                 
-                                                <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                                                <p>Created by <a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
                                                  
                                                
                                                 <div *ngIf="channel.message.podcasts.length < 1">
                                                     <p>No Podcast yet here. Check back later</p>
                                                   </div>
                                                       <ul *ngFor="let a of channel.message.podcasts" class="list-group">
-                                                          <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a>    
-                                                          <hr/> 
+                                                         <p> <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a></p> 
+                                                         
                                                         </ul>
                                                
                                         </div>
@@ -47,15 +46,15 @@
                           <div class="collapse" id="collapseExample2">
                               <div class="card card-body">
                                       
-                                      <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p> 
+                                      <p>Created by <a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p> 
                                       
 
                                       <div *ngIf="channel.message.podcasts.length < 1">
                                           <p>No Podcast yet here. Check back later</p>
                                         </div>
                                             <ul *ngFor="let a of channel.message.podcasts" class="list-group">
-                                                <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a>    
-                                                <hr/>    
+                                               <p><a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/podcast/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a></p>     
+                                                 
                                               </ul>
                                        
                               </div>
@@ -66,12 +65,11 @@
 <!-- for video -->
 
 <div *ngIf="channel.message.content== 2" class="list item">
-  <p >{{channel.subscribers| formatNumber}} subscribers
-    <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" style="color:white;" class="btn btn-primary" >Subscribe</button> 
-    <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" style="color:rgb(143, 48, 48);" class="btn px-4 m-1 btn-outline-danger" >unubscribe</button></span>     
-     
-  </p>
+    
+
   <div style="display: flex;">
+    <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" class="btn px-4 m-1 btn-outline-info" >Subscribe</button> 
+    <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" class="btn px-4 m-1 btn-outline-info" >Unsubscribe</button></span>     
     <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
       See videos
     </button>   
@@ -79,12 +77,14 @@
       <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
   </div>
   </div>
+  <p>{{channel.subscribers| formatNumber}} subscribers</p>
+
       
       <ul class="list-group large-list">
                       
                               <div class="card card-body">
                               
-                              <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                              <p>Created by<a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
                               
                               
                              
@@ -92,8 +92,8 @@
                                   <p>No Video yet here. Check back later</p>
                                 </div>
                                     <ul *ngFor="let a of channel.message.videos" class="list-group">
-                                        <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a>    
-                                        <hr/> 
+                                        <p> <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">  {{a.title}}</li></a> </p>    
+                                        
                                       </ul>
                         
                       </div>
@@ -108,7 +108,7 @@
         <div class="collapse" id="collapseExample2">
           <div class="card card-body">
                   
-                  <p><a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
+                  <p>Created by <a routerLink="/user/profile/{{channel.message.user.token}}"> {{channel.message.user.name}}</a></p>
                   
                   
 
@@ -116,8 +116,8 @@
                       <p>No Video yet here. Check back later</p>
                     </div>
                         <ul *ngFor="let a of channel.message.videos" class="list-group">
-                            <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a>    
-                            <hr/>    
+                            <p> <a (click)="hideDescription()" routerLink="/user/channel-item/{{channel.message.token_channel}}/video/{{a.token}}"> <li routerLinkActive="activelink">{{a.title}}</li></a></p>    
+                             
                           </ul>
                    
           </div>

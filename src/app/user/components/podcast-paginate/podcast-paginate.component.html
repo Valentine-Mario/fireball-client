@@ -22,7 +22,7 @@
           <div class="card card-20201">
             
             <div class="card-body">
-              <h5 class="card-title">{{a.title}} <i class="material-icons">mic_none</i></h5>
+              <h3 class="card-title">{{a.title | slice:0:30}} <i class="material-icons">mic_none</i></h3>
               <p style="color:gray;">By <a routerLink="/user/profile/{{a.user.token}}">{{a.user.name}}</a> {{a.created_at| timeAgo}}</p>
               <small  style="color:gray;">listens: {{a.listens| formatNumber}}</small>
               <p class="card-text mb-5">{{a.desciption| slice:0:50}}</p>

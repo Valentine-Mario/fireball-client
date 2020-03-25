@@ -18,17 +18,17 @@
                                 <div class="single_courses">
                                     <div class="thumb">
                                         <a routerLink="/user/channel-item/{{a.content.token_channel}}">
-                                            <img style="height: 300px;" src="{{a.images}}" alt="">
+                                            <img style="height: 250px;" src="{{a.images}}" alt="">
                                         </a>
                                     </div>
                                     <div class="courses_info">
-                                        <span>{{a.content.name}}</span>
-                                        <h3><a routerLink="/user/channel-item/{{a.content.token_channel}}">{{a.content.description| slice:0:70}}... <br>
+                                        <h5>{{a.content.name | slice:0:30}}</h5>
+                                        <a routerLink="/user/channel-item/{{a.content.token_channel}}"><p>{{a.content.description| slice:0:100}}...</p></a>
                                                 <p *ngIf="a.content.content == 1">Podcast Channel</p>
-                                                <p *ngIf="a.content.content == 2">Video Channel</p></a></h3>
+                                                <p *ngIf="a.content.content == 2">Video Channel</p>
                                         <div class="star_prise d-flex justify-content-between">
                                             <div class="star">
-                                                    <a routerLink="/user/profile/{{a.user.token}}"><span>By {{a.user.name}} {{a.content.created_at | timeAgo}}</span></a> 
+                                                    <a routerLink="/user/profile/{{a.user.token}}"><p>By {{a.user.name}}  {{a.content.created_at | timeAgo}}</p></a> 
                                             </div>
                                             
                                         </div>
