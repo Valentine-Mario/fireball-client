@@ -37,7 +37,7 @@
       
       </div>
 
-      <div align="center"><pagination-controls id="podcast"  (pageChange)="p = $event; paginatePodcast($event)"></pagination-controls></div> 
+      <div *ngIf="podcast.message.length > 0" align="center"><pagination-controls id="podcast"  (pageChange)="p = $event; paginatePodcast($event)"></pagination-controls></div> 
 
     </div>
   </div>

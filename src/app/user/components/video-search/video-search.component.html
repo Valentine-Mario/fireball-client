@@ -38,7 +38,7 @@
         </div>   
       </div>
 <br/>
-      <div align="center"><pagination-controls id="video"  (pageChange)="p = $event; paginateVideo($event)"></pagination-controls></div> 
+      <div *ngIf="video.message.length > 0" align="center"><pagination-controls id="video"  (pageChange)="p = $event; paginateVideo($event)"></pagination-controls></div> 
 
     </div>
   </div>

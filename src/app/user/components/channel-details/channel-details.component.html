@@ -13,7 +13,7 @@
                           <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" class="btn px-4 m-1 btn-outline-info" >Subscribe</button> 
                        <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed"  class="btn px-4 m-1 btn-outline-info" >Unsubscribe</button>     </span> 
                           <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-                            See podcasts
+                            podcasts
                            </button>
                            <div *ngIf="show_item">
                             <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
@@ -71,7 +71,7 @@
     <button *ngIf="!show_item || !check_sub.subscribed" (click)="addSubscription()" class="btn px-4 m-1 btn-outline-info" >Subscribe</button> 
     <span *ngIf="show_item"><button (click)="unSubscribe()" *ngIf="check_sub.subscribed" class="btn px-4 m-1 btn-outline-info" >Unsubscribe</button></span>     
     <button class="btn px-4 m-1 btn-outline-info vid small-list" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2">
-      See videos
+     videos
     </button>   
     <div *ngIf="show_item">
       <button *ngIf="channel.message.user.id == user2.message.id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
