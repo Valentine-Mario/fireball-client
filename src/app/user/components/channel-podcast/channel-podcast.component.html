@@ -24,7 +24,7 @@
         <div >
             <div class="card card-21029">
               <div class="card-body">
-                <p style="white-space: pre-wrap;" class="card-text">{{podcast.message.desciption}}</p>
+                <p [innerHTML]="highlight()" style="white-space: pre-wrap;" class="card-text">{{podcast.message.desciption}}</p>
                 <br/>
                 <small>{{podcast.message.created_at| timeAgo}}</small>
                 <p class="card-text"><a routerLink="/user/channel-item/{{podcast.message.channel.token_channel}}">{{podcast.message.channel.name}}</a> by <a routerLink="/user/profile/{{podcast.message.user.token}}">{{podcast.message.user.name}}</a></p>
@@ -43,7 +43,7 @@
         <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|timeAgo}}</small></p>
 
         <li style="color:black;" class="list-group-item">
-          <div style="white-space: pre-wrap;">{{a.comment}}</div>
+          <div [innerHTML]="hightlight_comment(a.comment)" style="white-space: pre-wrap;">{{a.comment}}</div>
           
           <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == a.user.id">
             <small (click)="open(content4)" style="cursor:pointer;">delete</small>
@@ -60,7 +60,7 @@
           <p>Replies</p>
           <div style="padding-left: 10px;" *ngFor="let b of a.podcastreplies| paginate: {id:a.id, itemsPerPage: 5, currentPage: a.comment}">
             <li style="color: #333;" class="list-group-item">
-            <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p style="white-space: pre-wrap;">{{b.comment}}</p> 
+            <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p [innerHTML]="hightlight_comment(b.comment)" style="white-space: pre-wrap;">{{b.comment}}</p> 
             <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == b.user.id">
               <small (click)="deleteReply(a, b)" style="cursor:pointer;">delete</small>
             </div>
@@ -145,15 +145,15 @@
        <input type="text" formControlName="title" placeholder="title" class="form-control">
       </div>
       <div class="form-group">
-         <textarea formControlName="desciption" placeholder="edit podcast" class="form-control">
+         <textarea style="height:200px;" formControlName="desciption" placeholder="edit podcast" class="form-control">
  
            </textarea>
       </div>
-      <button [disabled]="editForm.invalid" class="btn px-4 m-1 btn-outline-info"> Update</button>
+<div align="center"><button [disabled]="editForm.invalid" class="btn px-4 m-1 btn-outline-info"> Update</button></div>
  
     </form>
     <hr/>
-    <button (click)="open(content3); modal.dismiss('Cross click');" class="btn px-4 m-1 btn-outline-damger">Delete Podcast</button>
+   <div align="center"><button (click)="open(content3); modal.dismiss('Cross click');" class="btn px-4 m-1 btn-outline-damger">Delete Podcast</button></div> 
    </div>
   <div class="modal-footer">
   </div>

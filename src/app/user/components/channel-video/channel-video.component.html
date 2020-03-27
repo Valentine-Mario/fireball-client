@@ -24,7 +24,7 @@
         <button *ngIf="user.message.id == video.message.user_id" (click)="open(content)"  type="button" class="btn px-4 m-1 btn-outline-info">Settings</button>
       </p>
       <div class="collapse" id="collapseExample">
-        <div style="white-space: pre-wrap;" class="card card-body">
+        <div [innerHTML]="highlight()" style="white-space: pre-wrap;" class="card card-body">
          {{video.message.description}}
           <br/>
           <small>Created: {{video.message.created_at|timeAgo }}</small>
@@ -39,7 +39,7 @@
     <p><a routerLink="/user/profile/{{a.user.token}}" style="color:black;">{{a.user.name}}</a>&nbsp;<small>{{a.created_at|timeAgo}}</small></p>
 
     <li style="color:black;" class="list-group-item">
-     <div style="white-space: pre-wrap;">{{a.comment}}</div> 
+     <div [innerHTML]="hightlight_comment(a.comment)" style="white-space: pre-wrap;">{{a.comment}}</div> 
       
       <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == a.user.id">
         <small (click)="open(content4)" style="cursor:pointer;">delete</small>
@@ -56,7 +56,7 @@
       <p>Replies</p>
       <div style="padding-left: 10px;" *ngFor="let b of a.videoreplies| paginate: {id:a.id, itemsPerPage: 5, currentPage: a.comment}">
         <li style="color: #333;" class="list-group-item">
-        <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p style="white-space: pre-wrap;">{{b.comment}}</p> 
+        <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p [innerHTML]="hightlight_comment(a.comment)" style="white-space: pre-wrap;">{{b.comment}}</p> 
         <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == b.user.id">
           <small (click)="deleteReply(a, b)" style="cursor:pointer;">delete</small>
         </div>
@@ -140,7 +140,7 @@
       <input type="text" formControlName="title" placeholder="title" class="form-control">
      </div>
      <div class="form-group">
-        <textarea formControlName="description" placeholder="Report video" class="form-control">
+        <textarea style="height: 200px;" formControlName="description" placeholder="video description" class="form-control">
 
           </textarea>
      </div>

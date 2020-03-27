@@ -32,6 +32,8 @@ replyForm:FormGroup
 comments:any
 p:number
 parameter:string
+query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
   ngOnInit() {
    
       this.video=this.router.snapshot.data['video']
@@ -70,7 +72,23 @@ parameter:string
       })
 
   }
+  highlight() {
+    if(!this.query) {
+        return this.video.message.description;
+    }
+    return this.video.message.description.replace(new RegExp(this.query, "gi"), match => {
+        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+    });
+}
 
+hightlight_comment(comment){
+  if(!this.query) {
+    return comment;
+}
+return comment.replace(new RegExp(this.query, "gi"), match => {
+    return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+});
+}
   addComment(){
     var formValue=this.commentForm.value
     this.commentServices.addVideoComment(formValue, this.video.message.id).subscribe(val=>{

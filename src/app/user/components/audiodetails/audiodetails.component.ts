@@ -32,6 +32,8 @@ replyForm:FormGroup
 comments:any
 p:number
 parameter:string
+query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
   ngOnInit() {
     this.podcast=this.router.snapshot.data['podcast']
       this.user=this.router.snapshot.data['user']
@@ -69,7 +71,23 @@ parameter:string
         desciption:[this.podcast.message.desciption, Validators.required]
       })
   }
+  highlight() {
+    if(!this.query) {
+        return this.podcast.message.desciption;
+    }
+    return this.podcast.message.desciption.replace(new RegExp(this.query, "gi"), match => {
+        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+    });
+}
 
+hightlight_comment(comment){
+  if(!this.query) {
+    return comment;
+}
+return comment.replace(new RegExp(this.query, "gi"), match => {
+    return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+});
+}
   addComment(){
     var formValue=this.commentForm.value
     this.commentServices.addPodcastComment(formValue, this.podcast.message.id).subscribe(val=>{

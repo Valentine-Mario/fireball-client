@@ -38,6 +38,8 @@ export class ChannelPodcastComponent implements OnInit, OnDestroy, OnChanges {
     replyForm:FormGroup
     comments:any
     p:number
+    query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
   ngOnInit() {
     setTimeout(() => {
       this.reuse.changeMessage(false)
@@ -78,6 +80,25 @@ export class ChannelPodcastComponent implements OnInit, OnDestroy, OnChanges {
         desciption:[this.podcast.message.desciption, Validators.required]
       })
   }
+
+  highlight() {
+    if(!this.query) {
+        return this.podcast.message.desciption;
+    }
+    return this.podcast.message.desciption.replace(new RegExp(this.query, "gi"), match => {
+        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+    });
+}
+
+hightlight_comment(comment){
+  if(!this.query) {
+    return comment;
+}
+return comment.replace(new RegExp(this.query, "gi"), match => {
+    return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+});
+}
+
 
   addComment(){
     var formValue=this.commentForm.value

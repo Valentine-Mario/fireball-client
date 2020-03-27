@@ -36,7 +36,9 @@ closeResult:string
     comments:any
     p:number
     commentForm:FormGroup
-replyForm:FormGroup
+    replyForm:FormGroup
+    query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+
   ngOnInit() {
     setTimeout(() => {
       this.reuse.changeMessage(false)
@@ -80,6 +82,24 @@ replyForm:FormGroup
       })
       
   }
+  highlight() {
+    if(!this.query) {
+        return this.video.message.description;
+    }
+    return this.video.message.description.replace(new RegExp(this.query, "gi"), match => {
+        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+    });
+}
+
+hightlight_comment(comment){
+  if(!this.query) {
+    return comment;
+}
+return comment.replace(new RegExp(this.query, "gi"), match => {
+    return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+});
+}
+
 
   addComment(){
     var formValue=this.commentForm.value
