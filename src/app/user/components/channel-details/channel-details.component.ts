@@ -149,16 +149,15 @@ delete(){
 }
   edit(){
    var formData=this.editForm.value
+   this.edit_spinner=true;
    this.channelService.editChannel(this.channel.message.id, formData).subscribe(val=>{
-     this.edit_spinner=true;
+    this.edit_spinner=false;
      if(val['code']=="00"){
-       this.edit_spinner=false;
        this.data.successToast('Success', val['message'])
        this.channel.message.name=formData.name
        this.channel.message.description=formData.description
      }else{
        this.data.errorToast('Error', val['message'])
-       this.edit_spinner=false;
      }
    })
   }

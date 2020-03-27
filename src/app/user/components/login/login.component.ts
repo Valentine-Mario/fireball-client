@@ -46,35 +46,33 @@ login_spinner:boolean=false
   
   login(){
     var formData=this.loginForm.value;
+    this.login_spinner=true
     this.data.loginUser(formData).subscribe(val=>{
-      this.login_spinner=true
+      this.login_spinner=false
      if(val['code']=="00"){
     this.reuseable.successToast('Successful login', `<i class="material-icons"> emoji_emotions </i>`)
        localStorage.setItem('token', val['token'])
        this.location.back()
-       this.login_spinner=false
      }else{
     this.reuseable.errorToast(val['message'], `<i class="material-icons"> mood_bad </i>`)
-    this.login_spinner=false
      }
     })
   }
 
   register(){
     var formData=this.registerForm.value;
+    this.register_spinner=true
     this.data.registerUser(formData).subscribe(val=>{
-      this.register_spinner=true
+      this.register_spinner=false
       if(val['code']=="00"){
         this.reuseable.successToast('Welcome to FireBall', `<i class="material-icons"> emoji_emotions </i>`)
            localStorage.setItem('token', val['token'])
            this.location.back()
-           this.register_spinner=false
          }else{
            if(val['message'].email){
             this.reuseable.errorToast("Email has already been taken", `<i class="material-icons"> mood_bad </i>`)
            }else if(val['message'].password_confirmation){
             this.reuseable.errorToast("Password don't match", `<i class="material-icons"> mood_bad </i>`)
-            this.register_spinner=false
            }
          }
     })

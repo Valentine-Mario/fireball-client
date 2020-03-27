@@ -38,6 +38,10 @@ closeResult:string
     commentForm:FormGroup
     replyForm:FormGroup
     query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
+    comment_spinner:boolean=false
+    edit_spinner:boolean=false;
+    report_spinner:boolean=false;
+
 
   ngOnInit() {
     setTimeout(() => {
@@ -103,7 +107,9 @@ return comment.replace(new RegExp(this.query, "gi"), match => {
 
   addComment(){
     var formValue=this.commentForm.value
+    this.comment_spinner=true;
     this.commentServices.addVideoComment(formValue, this.video.message.id).subscribe(val=>{
+      this.comment_spinner=false;
       if(val['code']=="00"){
         this.comments.message.length < 1 == false
         this.reuse.successToast('Comment added', '')
@@ -211,11 +217,14 @@ return comment.replace(new RegExp(this.query, "gi"), match => {
 
   editVideo(){
     var formValue=this.editForm.value
+    this.edit_spinner=true;
     this.vidservice.editVideo(formValue, this.video.message.id).subscribe(val=>{
+      this.edit_spinner=false
       if(val['code']=="00"){
         this.reuse.successToast('Successful', val['message'])
         this.video.message.title=formValue.title
         this.video.message.description=formValue.description
+        this.modalService.dismissAll()
       }else{
         this.reuse.errorToast('Error', val['message'])
       }
@@ -224,9 +233,12 @@ return comment.replace(new RegExp(this.query, "gi"), match => {
 
   report(){
     var formValue=this.reportForm.value
+    this.report_spinner=true
     this.vidservice.reportVideo(formValue, this.video.message.id).subscribe(val=>{
+      this.report_spinner=false
       if(val['code']=="00"){
         this.reuse.successToast('Sent', val['message'])
+        this.modalService.dismissAll()
       }else{
         this.reuse.errorToast('Error', val['message'])
       }

@@ -43,14 +43,13 @@ progress: number = 0;
 
   editPassword(){
     var formData=this.passwordForm.value
+    this.password_spinner=true
     this.userService.editPassword(formData).subscribe(val=>{
-      this.password_spinner=true
+      this.password_spinner=false
       if(val['code']=="00"){
         this.reuse.successToast('Success', val['message'])
-        this.password_spinner=false
       }else{
         this.reuse.errorToast('Error', val['message'])
-        this.password_spinner=false
       }
     })
   }
@@ -95,26 +94,24 @@ uploadImg(){
 }
   edit(){
     var formData=this.editForm.value
+    this.edit_spinner=true
     this.userService.editProfile(formData).subscribe(val=>{
-      this.edit_spinner=true
+      this.edit_spinner=false
       if(val['code']=="00"){
         this.reuse.successToast('Success', val['message'])
-        this.edit_spinner=false
       }else{
         this.reuse.errorToast('Error', val['message'])
-        this.edit_spinner=false
       }
     })
   }
 
   deletePics(){
+    this.delete_pics_spinner=true
     this.userService.deletePics().subscribe(val=>{
-      this.delete_pics_spinner=true
+      this.delete_pics_spinner=false
       if(val['code']=="00"){
-        this.delete_pics_spinner=false
         this.reuse.successToast('Success', val['message'])
       }else{
-        this.delete_pics_spinner=false
         this.reuse.errorToast('Error', val['message'])
       }
     })

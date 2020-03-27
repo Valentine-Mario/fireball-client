@@ -56,7 +56,7 @@
       <p>Replies</p>
       <div style="padding-left: 10px;" *ngFor="let b of a.videoreplies| paginate: {id:a.id, itemsPerPage: 5, currentPage: a.comment}">
         <li style="color: #333;" class="list-group-item">
-        <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p [innerHTML]="hightlight_comment(a.comment)" style="white-space: pre-wrap;">{{b.comment}}</p> 
+        <a routerLink="/user/profile/{{b.user.token}}">{{b.user.name}}</a> :<p [innerHTML]="hightlight_comment(b.comment)" style="white-space: pre-wrap;">{{b.comment}}</p> 
         <div style="padding-top: 7px; color: rgb(214, 81, 81);" *ngIf="user.message.id == b.user.id">
           <small (click)="deleteReply(a, b)" style="cursor:pointer;">delete</small>
         </div>
@@ -116,6 +116,13 @@
 
 <div class="form-group">
     <p>Add Comment</p>
+
+    <div *ngIf="comment_spinner" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
         <textarea formControlName="comment" class="form-control"  placeholder='Got something to say?'>
             </textarea>
     </div>
@@ -135,7 +142,14 @@
   </div>
   <div align="center" class="modal-body">
    <h5>Edit Video</h5>
-   <form [formGroup]="editForm" (ngSubmit)="editVideo(); modal.dismiss('Cross click');">
+
+   <div *ngIf="edit_spinner" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+   <form [formGroup]="editForm" (ngSubmit)="editVideo();">
      <div class="form-group">
       <input type="text" formControlName="title" placeholder="title" class="form-control">
      </div>
@@ -164,7 +178,12 @@
   </div>
   <div align="center" class="modal-body">
     <h5>Report Video</h5>
-    <form [formGroup]="reportForm" (ngSubmit)="report(); modal.dismiss('Cross click');">
+    <div *ngIf="report_spinner" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <form [formGroup]="reportForm" (ngSubmit)="report();">
       
       <div class="form-group">
         <textarea formControlName="report" placeholder="Report video" class="form-control">

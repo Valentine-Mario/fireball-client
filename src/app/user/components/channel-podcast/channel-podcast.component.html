@@ -120,6 +120,13 @@
   
     <div class="form-group">
         <p>Add Comment</p>
+
+        <div *ngIf="comment_spinner" class="text-center">
+          <div class="spinner-border" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+
             <textarea formControlName="comment" class="form-control"  placeholder='Got something to say?'>
                 </textarea>
         </div>
@@ -140,7 +147,12 @@
   </div>
   <div class="modal-body">
    <p>Edit podcast</p>
-   <form [formGroup]="editForm" (ngSubmit)="editPodcast(); modal.dismiss('Cross click');">
+   <div *ngIf="edit_spinner" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+   <form [formGroup]="editForm" (ngSubmit)="editPodcast();">
       <div class="form-group">
        <input type="text" formControlName="title" placeholder="title" class="form-control">
       </div>
@@ -169,7 +181,12 @@
     </div>
     <div class="modal-body">
      <h5>Report podcast</h5>
-     <form [formGroup]="reportForm" (ngSubmit)="report(); modal.dismiss('Cross click');">
+     <div *ngIf="report_spinner" class="text-center">
+      <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+     <form [formGroup]="reportForm" (ngSubmit)="report()">
       
         <div class="form-group">
           <textarea formControlName="report" placeholder="Report video" class="form-control">
