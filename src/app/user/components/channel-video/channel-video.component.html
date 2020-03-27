@@ -5,7 +5,7 @@
     </video>
 </div>
 
-<div style="display: flex;" class="blog_right_sidebar container"> 
+<div style="display: flex;" class="blog_right_sidebar"> 
   <small>Views: {{video.message.views| formatNumber}}</small>&nbsp;&nbsp;&nbsp;
   <small><i [ngStyle]="{'color':bookmark === true ? 'rgb(91, 150, 163)' : '#333' }" style="cursor: pointer;" (click)="bookmark_func()" class="material-icons">bookmark</i></small>&nbsp;&nbsp;&nbsp;
   <small>Channel: <a style="color:rgb(91, 150, 163);" routerLink="/user/channel-item/{{video.message.channel.token_channel}}"> {{video.message.channel.name}}</a>&nbsp;&nbsp;&nbsp;  

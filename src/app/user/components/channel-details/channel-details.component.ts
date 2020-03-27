@@ -61,7 +61,7 @@ check_sub:any
         return this.channel.message.description;
     }
     return this.channel.message.description.replace(new RegExp(this.query, "gi"), match => {
-        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+        return `<a href='${match}' target="_blank"><span class='text-primary body'>` + match + '</span></a>';
     });
 }
 
