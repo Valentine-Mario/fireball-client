@@ -24,6 +24,7 @@ channel_description:boolean
   closeResult:string
   channel:any
   user2:any
+  query: any=/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/
 show_item:boolean
 editForm:FormGroup
 edit_spinner:boolean=false
@@ -54,6 +55,15 @@ check_sub:any
       description:[this.channel.message.description, Validators.required]
     })
   }
+
+   highlight() {
+    if(!this.query) {
+        return this.channel.message.description;
+    }
+    return this.channel.message.description.replace(new RegExp(this.query, "gi"), match => {
+        return `<a href='${match}' target="_blank"><span class='text-primary'>` + match + '</span></a>';
+    });
+}
 
   
   addSubscription(){
