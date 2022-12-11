@@ -30,7 +30,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.2",
     "@nguniversal/express-engine": "^8.2.6",
     "@nguniversal/module-map-ngfactory-loader": "v8.2.6",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "ngx-pagination": "^4.1.0",
     "ngx-spinner": "^8.0.3",
     "ngx-toastr": "^11.2.0",
